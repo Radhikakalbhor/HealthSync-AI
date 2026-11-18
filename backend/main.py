@@ -18,6 +18,25 @@ async def lifespan(app: FastAPI):
     # Ensure storage directories exist
     upload_path = ensure_upload_dir()
     logger.info("Local storage directory verified at: %s", upload_path.resolve())
+
+    # Ensure canonical Alex Morgan synthetic demo dataset is seeded and available before accepting requests
+    try:
+        from backend.app.core.demo_data import ensure_all_demo_data_seeded
+        ensure_all_demo_data_seeded("demo-patient-001")
+        required_stores = [
+            "metadata.json",
+            "medication_reminders.json",
+            "advanced_intelligence.json",
+            "assistant_rag.json",
+        ]
+        missing_stores = [s for s in required_stores if not (upload_path / s).exists()]
+        if missing_stores:
+            logger.warning("Startup demo store check: missing files %s", missing_stores)
+        else:
+            logger.info("Alex Morgan synthetic demo stores and PDF documents verified successfully on startup.")
+    except Exception as e:
+        logger.error("Failed to seed Alex Morgan synthetic demo dataset on startup: %s", str(e), exc_info=True)
+
     yield
     logger.info("Shutting down %s...", settings.PROJECT_NAME)
 

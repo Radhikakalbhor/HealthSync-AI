@@ -1,0 +1,70 @@
+# ==============================================================================
+# HealthSync AI — Root .dockerignore
+# Excludes local environments, frontend build artifacts, git history, and secrets.
+# Whitelists ONLY canonical synthetic demo documents and JSON stores in uploads/.
+# ==============================================================================
+
+# Git & Version Control
+.git/
+.gitignore
+.gitattributes
+
+# Environment & Secrets (NEVER bake credentials into Docker images)
+.env
+.env.*
+.env.local
+.env.*.local
+*.env
+*.env.local
+!.env.example
+!.env.*.example
+
+# Frontend App (Deployed separately on Vercel)
+frontend/
+
+# Dependencies & Node artifacts
+node_modules/
+.npm/
+
+# Python Virtual Environments & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+
+# Testing & Scratch Artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+scratch/
+test_*.py
+
+# System & IDE files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Uploads directory: exclude temporary/test files, whitelist ONLY canonical demo files
+uploads/*
+!uploads/.gitkeep
+!uploads/demo_*.pdf
+!uploads/Synthetic_*.pdf
+!uploads/metadata.json
+!uploads/medication_reminders.json
+!uploads/advanced_intelligence.json
+!uploads/assistant_rag.json

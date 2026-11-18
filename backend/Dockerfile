@@ -9,6 +9,7 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV TESSERACT_CMD="/usr/bin/tesseract"
+ENV UPLOAD_DIR="/app/uploads"
 ENV HOST="0.0.0.0"
 ENV PORT="8000"
 
@@ -34,8 +35,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy application source code
 COPY backend/ /app/backend/
 
-# Create uploads directory with safe permissions
-RUN mkdir -p /app/backend/uploads && chmod 755 /app/backend/uploads
+# Copy canonical synthetic demo assets into persistent container uploads directory
+COPY uploads/ /app/uploads/
+RUN chmod -R 755 /app/uploads
 
 EXPOSE 8000
 
