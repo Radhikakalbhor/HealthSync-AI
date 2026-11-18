@@ -1,0 +1,46 @@
+# ==============================================================================
+# HealthSync AI — Render Blueprint Deployment Specification
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # FastAPI Backend Service (Docker container with Tesseract OCR & Python 3.12)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: healthsync-ai-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: .
+    plan: starter
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "8000"
+      - key: CORS_ORIGINS
+        sync: false # Set to your Vercel frontend URL, e.g. "https://healthsync-ai.vercel.app"
+      - key: TESSERACT_CMD
+        value: "/usr/bin/tesseract"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: SUPABASE_STORAGE_BUCKET
+        value: "medical-documents"
+      - key: LLM_PROVIDER
+        value: "gemini"
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        value: "gemini-1.5-flash"
