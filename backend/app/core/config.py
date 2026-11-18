@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     HOST: str = "0.0.0.0"
     PORT: int = 8000
     API_V1_STR: str = "/api/v1"
+    DEMO_MODE_ENABLED: bool = False
 
     # Medical Disclaimer
     MEDICAL_DISCLAIMER: str = (

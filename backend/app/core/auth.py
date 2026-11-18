@@ -34,8 +34,8 @@ def verify_jwt_token(token: str) -> UserTokenPayload:
 
     clean_token = token.strip()
 
-    # Development-only demo mode token for safe sandbox exploration
-    if settings.ENVIRONMENT == "development" and clean_token == "demo-jwt-token-healthsync-ai":
+    # Synthetic demo mode token for Instant Demo Access (sandbox exploration with synthetic data)
+    if settings.DEMO_MODE_ENABLED and clean_token == "demo-jwt-token-healthsync-ai":
         return UserTokenPayload(
             user_id="demo-patient-001",
             email="alex.morgan@healthsync.ai",

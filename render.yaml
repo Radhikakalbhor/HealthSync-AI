@@ -18,6 +18,8 @@ services:
     envVars:
       - key: ENVIRONMENT
         value: production
+      - key: DEMO_MODE_ENABLED
+        value: "true"
       - key: DEBUG
         value: "false"
       - key: HOST
