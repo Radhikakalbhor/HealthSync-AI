@@ -64,6 +64,16 @@ class IntelligenceService:
     )
 
     @classmethod
+    def _is_demo_user(cls, user_id: str) -> bool:
+        return user_id == "demo-patient-001" or (isinstance(user_id, str) and user_id.startswith("demo-"))
+
+    @classmethod
+    def _should_use_supabase(cls, user_id: str) -> bool:
+        if cls._is_demo_user(user_id):
+            return False
+        return is_supabase_configured()
+
+    @classmethod
     def _load_data(cls) -> Dict[str, Any]:
         """Loads data store with local fallback."""
         if not cls._data_file.exists():
@@ -147,14 +157,26 @@ class IntelligenceService:
                     key_items = [f"{m.get('name', 'Rx')} ({m.get('dosage', '')})" for m in meds[:4]]
                 summary = f"Prescription by {doctor_or_facility or 'Physician'} with {len(key_items)} medication(s)"
 
-            elif doc_type in ("blood_test", "laboratory_report"):
-                if structured.get("test_date"):
-                    event_d = structured["test_date"]
-                doctor_or_facility = structured.get("lab_name") or structured.get("referring_doctor")
-                results = structured.get("results", [])
+            elif doc_type in ("blood_test", "laboratory_report", "lab_report"):
+                if structured.get("test_date") or structured.get("report_date"):
+                    event_d = structured.get("test_date") or structured.get("report_date")
+                doctor_or_facility = structured.get("lab_name") or structured.get("referring_doctor") or structured.get("doctor_or_lab_name")
+                results = structured.get("results") or structured.get("tests") or []
                 if isinstance(results, list):
-                    key_items = [f"{r.get('test_name')}: {r.get('value')} {r.get('unit', '')}" for r in results[:4]]
-                summary = f"Diagnostic report from {doctor_or_facility or 'Laboratory'} with {len(results)} biomarker(s)"
+                    key_items = [f"{r.get('test_name')}: {r.get('value') or r.get('measured_value')} {r.get('unit', '')}".strip() for r in results[:4]]
+                summary = f"Diagnostic panel from {doctor_or_facility or 'Laboratory'} with {len(results)} biomarker(s)"
+
+            elif doc_type in ("consultation_record", "discharge_summary"):
+                if structured.get("visit_date") or structured.get("discharge_date"):
+                    event_d = structured.get("visit_date") or structured.get("discharge_date")
+                doctor_or_facility = structured.get("doctor_name") or structured.get("clinic_name") or structured.get("hospital_name")
+                chief = structured.get("chief_complaint") or structured.get("diagnosis_text")
+                summary = f"Consultation with {doctor_or_facility or 'Physician'}: {chief or d.original_filename}"
+                diags = structured.get("diagnoses") or []
+                if isinstance(diags, list) and diags:
+                    key_items = [str(x) for x in diags[:4]]
+                elif structured.get("clinical_notes"):
+                    key_items = [str(structured.get("clinical_notes"))[:100]]
 
             elif doc_type == "imaging_report":
                 if structured.get("report_date"):
@@ -236,19 +258,19 @@ class IntelligenceService:
             rec = DocumentService.get_document_record(d.document_id, user_id)
             ext = rec.get("extraction_result", {})
             structured = ext.get("structured_data", {}) if isinstance(ext, dict) else {}
-            results = structured.get("results", [])
+            results = structured.get("results") or structured.get("tests") or []
 
             if not isinstance(results, list):
                 continue
 
-            test_date_str = structured.get("test_date") or d.created_at.strftime("%Y-%m-%d")
+            test_date_str = structured.get("test_date") or structured.get("report_date") or d.created_at.strftime("%Y-%m-%d")
 
             for r in results:
                 name = r.get("test_name", "").strip()
-                val_raw = str(r.get("value", "")).strip()
+                val_raw = str(r.get("value") or r.get("measured_value") or "").strip()
                 unit = (r.get("unit") or "units").strip()
                 ref_range = r.get("reference_range")
-                flag = r.get("flag", "NORMAL")
+                flag = "ABNORMAL" if r.get("is_abnormal") else r.get("flag", "NORMAL")
 
                 # Parse float value
                 try:
@@ -311,7 +333,9 @@ class IntelligenceService:
     ) -> DoctorSummaryPreviewResponse:
         """Gathers patient-controlled clinical summary distinguishing active vs past medications."""
         patient_name = "Patient"
-        if is_supabase_configured():
+        if user_id == "demo-patient-001":
+            patient_name = "Alex Morgan"
+        elif is_supabase_configured():
             try:
                 admin_client = get_supabase_admin_client()
                 res = admin_client.table("profiles").select("full_name, email").eq("id", user_id).execute()
@@ -382,19 +406,19 @@ class IntelligenceService:
                             previous_meds.append(entry)
 
             # Process labs
-            elif doc_type in ("blood_test", "laboratory_report"):
-                lab_name = structured.get("lab_name") or "Laboratory"
-                results = structured.get("results", [])
+            elif doc_type in ("blood_test", "laboratory_report", "lab_report"):
+                lab_name = structured.get("lab_name") or structured.get("doctor_or_lab_name") or "Laboratory"
+                results = structured.get("results") or structured.get("tests") or []
                 if isinstance(results, list):
-                    for r in results[:6]:
+                    for r in results[:8]:
                         recent_labs.append({
                             "test_name": r.get("test_name"),
-                            "value": r.get("value"),
+                            "value": r.get("value") or r.get("measured_value"),
                             "unit": r.get("unit"),
                             "reference_range": r.get("reference_range"),
-                            "flag": r.get("flag", "NORMAL"),
+                            "flag": "ABNORMAL" if r.get("is_abnormal") else r.get("flag", "NORMAL"),
                             "lab": lab_name,
-                            "date": structured.get("test_date") or created_at.strftime("%Y-%m-%d"),
+                            "date": structured.get("test_date") or structured.get("report_date") or created_at.strftime("%Y-%m-%d"),
                             "source_doc": d.original_filename,
                         })
 
@@ -685,15 +709,26 @@ class IntelligenceService:
     # =========================================================================
 
     @classmethod
+    def _ensure_demo_seeded(cls, user_id: str) -> None:
+        if not cls._is_demo_user(user_id):
+            return
+        data = cls._load_data()
+        if user_id in data.get("emergency_cards", {}) and "demo-family-taylor" in data.get("family_profiles", {}):
+            return
+        from backend.app.core.demo_data import seed_demo_intelligence
+        seed_demo_intelligence(user_id)
+
+    @classmethod
     def get_or_create_emergency_card(cls, user_id: str) -> EmergencyCardResponse:
         """Retrieves or provisions the patient's emergency card."""
+        cls._ensure_demo_seeded(user_id)
         data = cls._load_data()
         card = data["emergency_cards"].get(user_id)
 
         now = datetime.now(timezone.utc)
 
         # Check Supabase if configured and not found locally
-        if not card and is_supabase_configured():
+        if not card and cls._should_use_supabase(user_id):
             try:
                 admin_client = get_supabase_admin_client()
                 res = admin_client.table("emergency_cards").select("*").eq("user_id", user_id).execute()
@@ -778,7 +813,7 @@ class IntelligenceService:
             data["emergency_cards"][user_id] = card
             cls._save_data(data)
 
-        if is_supabase_configured():
+        if cls._should_use_supabase(user_id):
             try:
                 admin_client = get_supabase_admin_client()
                 admin_client.table("emergency_cards").upsert(card).execute()
@@ -816,6 +851,9 @@ class IntelligenceService:
     @classmethod
     def get_public_emergency_card(cls, emergency_token: str) -> EmergencyCardResponse:
         """Retrieves emergency info for first responders via active token."""
+        if emergency_token == "emg_demo_alex_morgan":
+            from backend.app.core.demo_data import seed_demo_intelligence
+            seed_demo_intelligence("demo-patient-001")
         data = cls._load_data()
         target_card = None
         for c in data["emergency_cards"].values():
@@ -908,6 +946,7 @@ class IntelligenceService:
     @classmethod
     def list_family_profiles(cls, account_owner_id: str) -> List[FamilyProfileResponse]:
         """Lists family profiles belonging to the account owner."""
+        cls._ensure_demo_seeded(account_owner_id)
         data = cls._load_data()
         profiles = [
             FamilyProfileResponse(

@@ -93,7 +93,10 @@ export default function DocumentsPage() {
       const term = (searchTerm || '').trim().toLowerCase();
       const matchesSearch = !term || docName.includes(term) || docType.includes(term);
       const matchesCategory =
-        selectedCategory === 'all' || docType === selectedCategory.toLowerCase();
+        selectedCategory === 'all' ||
+        docType === selectedCategory.toLowerCase() ||
+        ((selectedCategory === 'laboratory_report' || selectedCategory === 'blood_test' || selectedCategory === 'lab_report') &&
+          (docType === 'lab_report' || docType === 'blood_test' || docType === 'laboratory_report'));
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {

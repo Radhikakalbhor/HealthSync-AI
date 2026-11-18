@@ -70,6 +70,7 @@ export default function TimelinePage() {
         return <Pill className="w-5 h-5 text-teal-600" />;
       case 'blood_test':
       case 'laboratory_report':
+      case 'lab_report':
         return <BarChart3 className="w-5 h-5 text-health-600" />;
       case 'imaging_report':
         return <Activity className="w-5 h-5 text-indigo-600" />;
@@ -84,6 +85,7 @@ export default function TimelinePage() {
         return 'bg-teal-50 text-teal-700 border-teal-200';
       case 'blood_test':
       case 'laboratory_report':
+      case 'lab_report':
         return 'bg-health-50 text-health-700 border-health-200';
       case 'imaging_report':
         return 'bg-indigo-50 text-indigo-700 border-indigo-200';

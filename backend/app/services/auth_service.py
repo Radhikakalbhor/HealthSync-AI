@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 from backend.app.core.exceptions import (
     UnauthorizedException,
@@ -131,13 +132,16 @@ class AuthService:
             logger.warning("Supabase logout warning: %s", str(e))
 
     @classmethod
-    async def get_user_profile(cls, user_id: str) -> UserProfileResponse:
+    def get_user_profile(cls, user_id: str) -> UserProfileResponse:
         """Retrieves user profile from public.profiles table."""
-        if user_id == "demo-patient-001":
+        if user_id == "demo-patient-001" or (isinstance(user_id, str) and user_id.startswith("demo-")):
             return UserProfileResponse(
                 id="demo-patient-001",
                 email="alex.morgan@healthsync.ai",
                 full_name="Alex Morgan",
+                role="patient",
+                clinician_approval_status="none",
+                created_at=datetime(2026, 4, 12, 0, 0, 0, tzinfo=timezone.utc),
             )
 
         if not is_supabase_configured():

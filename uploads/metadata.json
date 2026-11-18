@@ -1,0 +1,660 @@
+{
+  "demo-doc-rx-lisinopril": {
+    "document_id": "demo-doc-rx-lisinopril",
+    "user_id": "demo-patient-001",
+    "original_filename": "Prescription_Lisinopril_10mg.pdf",
+    "stored_filename": "demo_rx_lisinopril.pdf",
+    "storage_path": "demo_rx_lisinopril.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 3902,
+    "status": "extracted",
+    "document_type": "prescription",
+    "raw_text": "METRO CARDIOLOGY ASSOCIATES - PRESCRIPTION ORDER\nPhysician: Dr. Robert Chen, MD (Cardiology)\nPatient: Alex Morgan | DOB: 1988-04-12 | Date: 2026-05-15\nDiagnosis: Primary Essential Hypertension\nRx: Lisinopril 10 mg Oral Tablet\nSig: Take 1 tablet orally once daily in the morning with water.\nDispense: 90 tablets | Refills: 3",
+    "extraction_result": {
+      "document_id": "demo-doc-rx-lisinopril",
+      "document_type": "prescription",
+      "raw_text": "METRO CARDIOLOGY ASSOCIATES - PRESCRIPTION ORDER\nPhysician: Dr. Robert Chen, MD (Cardiology)\nPatient: Alex Morgan | DOB: 1988-04-12 | Date: 2026-05-15\nDiagnosis: Primary Essential Hypertension\nRx: Lisinopril 10 mg Oral Tablet\nSig: Take 1 tablet orally once daily in the morning with water.\nDispense: 90 tablets | Refills: 3",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.98,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.98,
+        "llm_confidence": null,
+        "overall_confidence": 0.98,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_name": "Dr. Robert Chen, MD",
+        "clinic_or_hospital": "Metro Cardiology Associates",
+        "prescription_date": "2026-05-15",
+        "diagnosis_text": "Primary Essential Hypertension (Synthetic Demo)",
+        "medications": [
+          {
+            "name": "Lisinopril",
+            "dosage": "10 mg",
+            "frequency": "Once daily (Morning)",
+            "duration": "90 days",
+            "instructions": "Take 1 tablet orally once daily in the morning with water"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-05-15T09:30:00Z",
+    "created_at": "2026-05-15T09:30:00Z",
+    "updated_at": "2026-05-15T09:30:00Z"
+  },
+  "demo-doc-rx-metformin": {
+    "document_id": "demo-doc-rx-metformin",
+    "user_id": "demo-patient-001",
+    "original_filename": "Prescription_Metformin_500mg.pdf",
+    "stored_filename": "demo_rx_metformin.pdf",
+    "storage_path": "demo_rx_metformin.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 3938,
+    "status": "extracted",
+    "document_type": "prescription",
+    "raw_text": "METRO HEALTH FAMILY MEDICINE - PRESCRIPTION ORDER\nPhysician: Dr. Sarah Lin, MD\nPatient: Alex Morgan | DOB: 1988-04-12 | Date: 2026-08-20\nDiagnosis: Impaired Fasting Glucose\nRx: Metformin HCl 500 mg Extended-Release Tablet\nSig: Take 1 tablet orally twice daily with meals (morning and evening).\nDispense: 60 tablets | Refills: 2",
+    "extraction_result": {
+      "document_id": "demo-doc-rx-metformin",
+      "document_type": "prescription",
+      "raw_text": "METRO HEALTH FAMILY MEDICINE - PRESCRIPTION ORDER\nPhysician: Dr. Sarah Lin, MD\nPatient: Alex Morgan | DOB: 1988-04-12 | Date: 2026-08-20\nDiagnosis: Impaired Fasting Glucose\nRx: Metformin HCl 500 mg Extended-Release Tablet\nSig: Take 1 tablet orally twice daily with meals (morning and evening).\nDispense: 60 tablets | Refills: 2",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.97,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.97,
+        "llm_confidence": null,
+        "overall_confidence": 0.97,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_name": "Dr. Sarah Lin, MD",
+        "clinic_or_hospital": "Metro Health Family Medicine",
+        "prescription_date": "2026-08-20",
+        "diagnosis_text": "Impaired Fasting Glucose (Synthetic Demo)",
+        "medications": [
+          {
+            "name": "Metformin Extended-Release",
+            "dosage": "500 mg",
+            "frequency": "Twice daily with meals",
+            "duration": "60 days",
+            "instructions": "Take 1 tablet orally twice daily with breakfast and dinner"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-08-20T10:15:00Z",
+    "created_at": "2026-08-20T10:15:00Z",
+    "updated_at": "2026-08-20T10:15:00Z"
+  },
+  "demo-doc-rx-amoxicillin": {
+    "document_id": "demo-doc-rx-amoxicillin",
+    "user_id": "demo-patient-001",
+    "original_filename": "Prescription_Amoxicillin_500mg.pdf",
+    "stored_filename": "demo_rx_amoxicillin.pdf",
+    "storage_path": "demo_rx_amoxicillin.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 3633,
+    "status": "extracted",
+    "document_type": "prescription",
+    "raw_text": "METRO HEALTH URGENT CARE - PRESCRIPTION\nDoctor: Dr. Sarah Lin, MD\nPatient: Alex Morgan | Date: 2026-11-10\nDiagnosis: Acute Bacterial Sinusitis\nRx: Amoxicillin 500 mg Capsule\nSig: Take 1 capsule orally every 8 hours with food for 10 days.\nDispense: 30 capsules | Refills: 0 (Course Completed)",
+    "extraction_result": {
+      "document_id": "demo-doc-rx-amoxicillin",
+      "document_type": "prescription",
+      "raw_text": "METRO HEALTH URGENT CARE - PRESCRIPTION\nDoctor: Dr. Sarah Lin, MD\nPatient: Alex Morgan | Date: 2026-11-10\nDiagnosis: Acute Bacterial Sinusitis\nRx: Amoxicillin 500 mg Capsule\nSig: Take 1 capsule orally every 8 hours with food for 10 days.\nDispense: 30 capsules | Refills: 0 (Course Completed)",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.99,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.99,
+        "llm_confidence": null,
+        "overall_confidence": 0.99,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_name": "Dr. Sarah Lin, MD",
+        "clinic_or_hospital": "Metro Health Urgent Care",
+        "prescription_date": "2026-11-10",
+        "diagnosis_text": "Acute Bacterial Sinusitis (Completed Course)",
+        "medications": [
+          {
+            "name": "Amoxicillin Capsule",
+            "dosage": "500 mg",
+            "frequency": "Every 8 hours",
+            "duration": "10 days",
+            "instructions": "Take 1 capsule orally every 8 hours with food. Complete entire course."
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-11-10T14:00:00Z",
+    "created_at": "2026-11-10T14:00:00Z",
+    "updated_at": "2026-11-10T14:00:00Z"
+  },
+  "demo-doc-lab-lipid-may": {
+    "document_id": "demo-doc-lab-lipid-may",
+    "user_id": "demo-patient-001",
+    "original_filename": "Lab_Report_Lipid_Panel_May2026.pdf",
+    "stored_filename": "demo_lab_may2026.pdf",
+    "storage_path": "demo_lab_may2026.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 4657,
+    "status": "extracted",
+    "document_type": "lab_report",
+    "raw_text": "QUEST DIAGNOSTICS CLINICAL REPORT\nDate: 2026-05-15 | Patient: Alex Morgan\nTotal Cholesterol: 215 mg/dL (Ref: 125-200) HIGH\nLDL Cholesterol: 135 mg/dL (Ref: 0-100) HIGH\nHDL Cholesterol: 48 mg/dL (Ref: 40-60) NORMAL\nTriglycerides: 160 mg/dL (Ref: 0-150) HIGH\nFasting Blood Glucose: 110 mg/dL (Ref: 70-99) HIGH\nSerum ALT: 28 U/L (Ref: 7-56) NORMAL\nSystolic Blood Pressure: 138 mmHg (Ref: 90-120) HIGH\nDiastolic Blood Pressure: 88 mmHg (Ref: 60-80) HIGH",
+    "extraction_result": {
+      "document_id": "demo-doc-lab-lipid-may",
+      "document_type": "lab_report",
+      "raw_text": "QUEST DIAGNOSTICS CLINICAL REPORT\nDate: 2026-05-15 | Patient: Alex Morgan\nTotal Cholesterol: 215 mg/dL (Ref: 125-200) HIGH\nLDL Cholesterol: 135 mg/dL (Ref: 0-100) HIGH\nHDL Cholesterol: 48 mg/dL (Ref: 40-60) NORMAL\nTriglycerides: 160 mg/dL (Ref: 0-150) HIGH\nFasting Blood Glucose: 110 mg/dL (Ref: 70-99) HIGH\nSerum ALT: 28 U/L (Ref: 7-56) NORMAL\nSystolic Blood Pressure: 138 mmHg (Ref: 90-120) HIGH\nDiastolic Blood Pressure: 88 mmHg (Ref: 60-80) HIGH",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.98,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.98,
+        "llm_confidence": null,
+        "overall_confidence": 0.98,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_or_lab_name": "Quest Diagnostics",
+        "report_date": "2026-05-15",
+        "test_category": "Lipid & Baseline Metabolic Panel",
+        "tests": [
+          {
+            "test_name": "Total Cholesterol",
+            "measured_value": "215",
+            "unit": "mg/dL",
+            "reference_range": "125 - 200",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "LDL Cholesterol",
+            "measured_value": "135",
+            "unit": "mg/dL",
+            "reference_range": "0 - 100",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "HDL Cholesterol",
+            "measured_value": "48",
+            "unit": "mg/dL",
+            "reference_range": "40 - 60",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Triglycerides",
+            "measured_value": "160",
+            "unit": "mg/dL",
+            "reference_range": "0 - 150",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "Fasting Blood Glucose",
+            "measured_value": "110",
+            "unit": "mg/dL",
+            "reference_range": "70 - 99",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "Serum ALT",
+            "measured_value": "28",
+            "unit": "U/L",
+            "reference_range": "7 - 56",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Systolic Blood Pressure",
+            "measured_value": "138",
+            "unit": "mmHg",
+            "reference_range": "90 - 120",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "Diastolic Blood Pressure",
+            "measured_value": "88",
+            "unit": "mmHg",
+            "reference_range": "60 - 80",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-05-15T11:00:00Z",
+    "created_at": "2026-05-15T11:00:00Z",
+    "updated_at": "2026-05-15T11:00:00Z"
+  },
+  "demo-doc-lab-cmp-aug": {
+    "document_id": "demo-doc-lab-cmp-aug",
+    "user_id": "demo-patient-001",
+    "original_filename": "Lab_Report_CMP_August2026.pdf",
+    "stored_filename": "demo_lab_aug2026.pdf",
+    "storage_path": "demo_lab_aug2026.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 5391,
+    "status": "extracted",
+    "document_type": "lab_report",
+    "raw_text": "QUEST DIAGNOSTICS CMP REPORT\nDate: 2026-08-20 | Patient: Alex Morgan\nFasting Blood Glucose: 104 mg/dL (Ref: 70-99) HIGH\nTotal Cholesterol: 202 mg/dL (Ref: 125-200) HIGH\nLDL Cholesterol: 124 mg/dL (Ref: 0-100) HIGH\nHDL Cholesterol: 52 mg/dL (Ref: 40-60) NORMAL\nSerum Sodium: 139 mEq/L (Ref: 135-145) NORMAL\nSerum Potassium: 4.3 mEq/L (Ref: 3.5-5.0) NORMAL\nSerum Calcium: 9.5 mg/dL (Ref: 8.5-10.2) NORMAL\nSerum ALT: 26 U/L (Ref: 7-56) NORMAL\nSerum Creatinine: 0.9 mg/dL (Ref: 0.6-1.2) NORMAL\nSystolic Blood Pressure: 130 mmHg (Ref: 90-120) HIGH\nDiastolic Blood Pressure: 84 mmHg (Ref: 60-80) HIGH",
+    "extraction_result": {
+      "document_id": "demo-doc-lab-cmp-aug",
+      "document_type": "lab_report",
+      "raw_text": "QUEST DIAGNOSTICS CMP REPORT\nDate: 2026-08-20 | Patient: Alex Morgan\nFasting Blood Glucose: 104 mg/dL (Ref: 70-99) HIGH\nTotal Cholesterol: 202 mg/dL (Ref: 125-200) HIGH\nLDL Cholesterol: 124 mg/dL (Ref: 0-100) HIGH\nHDL Cholesterol: 52 mg/dL (Ref: 40-60) NORMAL\nSerum Sodium: 139 mEq/L (Ref: 135-145) NORMAL\nSerum Potassium: 4.3 mEq/L (Ref: 3.5-5.0) NORMAL\nSerum Calcium: 9.5 mg/dL (Ref: 8.5-10.2) NORMAL\nSerum ALT: 26 U/L (Ref: 7-56) NORMAL\nSerum Creatinine: 0.9 mg/dL (Ref: 0.6-1.2) NORMAL\nSystolic Blood Pressure: 130 mmHg (Ref: 90-120) HIGH\nDiastolic Blood Pressure: 84 mmHg (Ref: 60-80) HIGH",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.98,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.98,
+        "llm_confidence": null,
+        "overall_confidence": 0.98,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_or_lab_name": "Quest Diagnostics",
+        "report_date": "2026-08-20",
+        "test_category": "Comprehensive Metabolic & Lipid Panel",
+        "tests": [
+          {
+            "test_name": "Fasting Blood Glucose",
+            "measured_value": "104",
+            "unit": "mg/dL",
+            "reference_range": "70 - 99",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "Total Cholesterol",
+            "measured_value": "202",
+            "unit": "mg/dL",
+            "reference_range": "125 - 200",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "LDL Cholesterol",
+            "measured_value": "124",
+            "unit": "mg/dL",
+            "reference_range": "0 - 100",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "HDL Cholesterol",
+            "measured_value": "52",
+            "unit": "mg/dL",
+            "reference_range": "40 - 60",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum Sodium",
+            "measured_value": "139",
+            "unit": "mEq/L",
+            "reference_range": "135 - 145",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum Potassium",
+            "measured_value": "4.3",
+            "unit": "mEq/L",
+            "reference_range": "3.5 - 5.0",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum Calcium",
+            "measured_value": "9.5",
+            "unit": "mg/dL",
+            "reference_range": "8.5 - 10.2",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum ALT",
+            "measured_value": "26",
+            "unit": "U/L",
+            "reference_range": "7 - 56",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum Creatinine",
+            "measured_value": "0.9",
+            "unit": "mg/dL",
+            "reference_range": "0.6 - 1.2",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Systolic Blood Pressure",
+            "measured_value": "130",
+            "unit": "mmHg",
+            "reference_range": "90 - 120",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "Diastolic Blood Pressure",
+            "measured_value": "84",
+            "unit": "mmHg",
+            "reference_range": "60 - 80",
+            "is_abnormal": true,
+            "flag": "HIGH"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-08-20T11:30:00Z",
+    "created_at": "2026-08-20T11:30:00Z",
+    "updated_at": "2026-08-20T11:30:00Z"
+  },
+  "demo-doc-lab-panels-nov": {
+    "document_id": "demo-doc-lab-panels-nov",
+    "user_id": "demo-patient-001",
+    "original_filename": "Lab_Report_Metabolic_FollowUp_Nov2026.pdf",
+    "stored_filename": "demo_lab_nov2026.pdf",
+    "storage_path": "demo_lab_nov2026.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 5397,
+    "status": "extracted",
+    "document_type": "lab_report",
+    "raw_text": "QUEST DIAGNOSTICS FOLLOW-UP REPORT\nDate: 2026-11-12 | Patient: Alex Morgan\nFasting Blood Glucose: 92 mg/dL (Ref: 70-99) NORMAL\nTotal Cholesterol: 188 mg/dL (Ref: 125-200) NORMAL\nLDL Cholesterol: 110 mg/dL (Ref: 0-100) NORMAL\nHDL Cholesterol: 55 mg/dL (Ref: 40-60) NORMAL\nTriglycerides: 125 mg/dL (Ref: 0-150) NORMAL\nSerum ALT: 24 U/L (Ref: 7-56) NORMAL\nHemoglobin A1c: 5.5 % (Ref: 4.0-5.6) NORMAL\nSerum Sodium: 140 mEq/L (Ref: 135-145) NORMAL\nSerum Potassium: 4.2 mEq/L (Ref: 3.5-5.0) NORMAL\nSystolic Blood Pressure: 122 mmHg (Ref: 90-120) NORMAL\nDiastolic Blood Pressure: 80 mmHg (Ref: 60-80) NORMAL",
+    "extraction_result": {
+      "document_id": "demo-doc-lab-panels-nov",
+      "document_type": "lab_report",
+      "raw_text": "QUEST DIAGNOSTICS FOLLOW-UP REPORT\nDate: 2026-11-12 | Patient: Alex Morgan\nFasting Blood Glucose: 92 mg/dL (Ref: 70-99) NORMAL\nTotal Cholesterol: 188 mg/dL (Ref: 125-200) NORMAL\nLDL Cholesterol: 110 mg/dL (Ref: 0-100) NORMAL\nHDL Cholesterol: 55 mg/dL (Ref: 40-60) NORMAL\nTriglycerides: 125 mg/dL (Ref: 0-150) NORMAL\nSerum ALT: 24 U/L (Ref: 7-56) NORMAL\nHemoglobin A1c: 5.5 % (Ref: 4.0-5.6) NORMAL\nSerum Sodium: 140 mEq/L (Ref: 135-145) NORMAL\nSerum Potassium: 4.2 mEq/L (Ref: 3.5-5.0) NORMAL\nSystolic Blood Pressure: 122 mmHg (Ref: 90-120) NORMAL\nDiastolic Blood Pressure: 80 mmHg (Ref: 60-80) NORMAL",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.99,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.99,
+        "llm_confidence": null,
+        "overall_confidence": 0.99,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_or_lab_name": "Quest Diagnostics",
+        "report_date": "2026-11-12",
+        "test_category": "Comprehensive Follow-up Panel",
+        "tests": [
+          {
+            "test_name": "Fasting Blood Glucose",
+            "measured_value": "92",
+            "unit": "mg/dL",
+            "reference_range": "70 - 99",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Total Cholesterol",
+            "measured_value": "188",
+            "unit": "mg/dL",
+            "reference_range": "125 - 200",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "LDL Cholesterol",
+            "measured_value": "110",
+            "unit": "mg/dL",
+            "reference_range": "0 - 100",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "HDL Cholesterol",
+            "measured_value": "55",
+            "unit": "mg/dL",
+            "reference_range": "40 - 60",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Triglycerides",
+            "measured_value": "125",
+            "unit": "mg/dL",
+            "reference_range": "0 - 150",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum ALT",
+            "measured_value": "24",
+            "unit": "U/L",
+            "reference_range": "7 - 56",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Hemoglobin A1c",
+            "measured_value": "5.5",
+            "unit": "%",
+            "reference_range": "4.0 - 5.6",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum Sodium",
+            "measured_value": "140",
+            "unit": "mEq/L",
+            "reference_range": "135 - 145",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Serum Potassium",
+            "measured_value": "4.2",
+            "unit": "mEq/L",
+            "reference_range": "3.5 - 5.0",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Systolic Blood Pressure",
+            "measured_value": "122",
+            "unit": "mmHg",
+            "reference_range": "90 - 120",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Diastolic Blood Pressure",
+            "measured_value": "80",
+            "unit": "mmHg",
+            "reference_range": "60 - 80",
+            "is_abnormal": false,
+            "flag": "NORMAL"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": true,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": true,
+    "requires_verification": true,
+    "user_reviewed": false,
+    "user_reviewed_at": null,
+    "created_at": "2026-11-12T10:00:00Z",
+    "updated_at": "2026-11-12T10:00:00Z"
+  },
+  "demo-doc-consult-annual": {
+    "document_id": "demo-doc-consult-annual",
+    "user_id": "demo-patient-001",
+    "original_filename": "Consultation_Annual_Wellness_Summary.pdf",
+    "stored_filename": "demo_consult_annual.pdf",
+    "storage_path": "demo_consult_annual.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 4083,
+    "status": "extracted",
+    "document_type": "consultation_record",
+    "raw_text": "METRO HEALTH ANNUAL WELLNESS SUMMARY\nPhysician: Dr. Sarah Lin, MD\nPatient: Alex Morgan | Date: 2026-10-05\nAssessment:\n1. Essential Hypertension: Well-controlled on Lisinopril 10mg.\n2. Metabolic Management: Favorable glycemic trend on Metformin 500mg BID.\n3. Preventive: Annual influenza vaccine administered.\nAllergies: Sulfa antibiotics, Latex.\nPlan: Repeat fasting labs in 1 month.",
+    "extraction_result": {
+      "document_id": "demo-doc-consult-annual",
+      "document_type": "consultation_record",
+      "raw_text": "METRO HEALTH ANNUAL WELLNESS SUMMARY\nPhysician: Dr. Sarah Lin, MD\nPatient: Alex Morgan | Date: 2026-10-05\nAssessment:\n1. Essential Hypertension: Well-controlled on Lisinopril 10mg.\n2. Metabolic Management: Favorable glycemic trend on Metformin 500mg BID.\n3. Preventive: Annual influenza vaccine administered.\nAllergies: Sulfa antibiotics, Latex.\nPlan: Repeat fasting labs in 1 month.",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.96,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.96,
+        "llm_confidence": null,
+        "overall_confidence": 0.96,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "doctor_name": "Dr. Sarah Lin, MD",
+        "clinic_name": "Metro Health Family Medicine",
+        "visit_date": "2026-10-05",
+        "chief_complaint": "Annual Comprehensive Wellness & Preventive Evaluation",
+        "diagnoses": [
+          "Primary Essential Hypertension (Controlled)",
+          "Impaired Fasting Glucose (Improving)"
+        ],
+        "medications": [
+          {
+            "name": "Lisinopril",
+            "dosage": "10 mg",
+            "frequency": "Once daily"
+          },
+          {
+            "name": "Metformin ER",
+            "dosage": "500 mg",
+            "frequency": "Twice daily with meals"
+          }
+        ],
+        "clinical_notes": "Patient actively maintains regular exercise and dietary sodium moderation. Blood pressure targets met."
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-10-05T15:30:00Z",
+    "created_at": "2026-10-05T15:30:00Z",
+    "updated_at": "2026-10-05T15:30:00Z"
+  },
+  "demo-doc-imaging-chest": {
+    "document_id": "demo-doc-imaging-chest",
+    "user_id": "demo-patient-001",
+    "original_filename": "Radiology_Chest_PA_Lateral.pdf",
+    "stored_filename": "demo_imaging_chest.pdf",
+    "storage_path": "demo_imaging_chest.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 4217,
+    "status": "extracted",
+    "document_type": "imaging_report",
+    "raw_text": "METRO DIAGNOSTIC IMAGING REPORT\nRadiologist: Dr. Michael Chang, MD\nPatient: Alex Morgan | Date: 2026-06-18\nProcedure: 2-View Chest Radiograph (PA & Lateral)\nFindings: Lungs clear. Heart size normal. No pleural effusion or pneumothorax.\nImpression: Normal two-view chest examination without acute cardiopulmonary disease.",
+    "extraction_result": {
+      "document_id": "demo-doc-imaging-chest",
+      "document_type": "imaging_report",
+      "raw_text": "METRO DIAGNOSTIC IMAGING REPORT\nRadiologist: Dr. Michael Chang, MD\nPatient: Alex Morgan | Date: 2026-06-18\nProcedure: 2-View Chest Radiograph (PA & Lateral)\nFindings: Lungs clear. Heart size normal. No pleural effusion or pneumothorax.\nImpression: Normal two-view chest examination without acute cardiopulmonary disease.",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 0.98,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 0.98,
+        "llm_confidence": null,
+        "overall_confidence": 0.98,
+        "confidence_method": "digital_pdf_stream (Calibrated Clinical Extraction)",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "Alex Morgan",
+        "radiologist_name": "Dr. Michael Chang, MD",
+        "imaging_center_or_hospital": "Metro Diagnostic Imaging Center",
+        "report_date": "2026-06-18",
+        "modality": "Radiography (X-Ray)",
+        "body_part_or_region": "Chest (Thorax)",
+        "findings": "Lungs are clear bilaterally. No pulmonary edema or consolidation. Normal cardiac size.",
+        "impression": "Normal two-view chest radiograph. No acute cardiopulmonary findings."
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Clinical extraction with calibrated confidence scoring (Synthetic Demo Record).",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "needs_human_review": false,
+    "requires_verification": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-06-18T13:45:00Z",
+    "created_at": "2026-06-18T13:45:00Z",
+    "updated_at": "2026-06-18T13:45:00Z"
+  }
+}

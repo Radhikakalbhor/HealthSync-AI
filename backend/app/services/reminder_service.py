@@ -45,6 +45,26 @@ class ReminderService:
     )
 
     @classmethod
+    def _is_demo_user(cls, user_id: str) -> bool:
+        return user_id == "demo-patient-001" or (isinstance(user_id, str) and user_id.startswith("demo-"))
+
+    @classmethod
+    def _should_use_supabase(cls, user_id: str) -> bool:
+        if cls._is_demo_user(user_id):
+            return False
+        return is_supabase_configured()
+
+    @classmethod
+    def _ensure_demo_seeded(cls, user_id: str) -> None:
+        if not cls._is_demo_user(user_id):
+            return
+        data = cls._load_data()
+        if "demo-sched-lisinopril" in data.get("schedules", {}):
+            return
+        from backend.app.core.demo_data import seed_demo_reminders
+        seed_demo_reminders(user_id)
+
+    @classmethod
     def _load_data(cls) -> Dict[str, Any]:
         """Loads reminders store from local fallback file."""
         if not cls._data_file.exists():
@@ -87,7 +107,7 @@ class ReminderService:
         return ["09:00"]
 
     @classmethod
-    async def create_schedule(
+    def create_schedule(
         cls, user_id: str, payload: MedicationScheduleCreate
     ) -> MedicationScheduleResponse:
         """
@@ -132,7 +152,7 @@ class ReminderService:
         }
 
         # Supabase persistence if available
-        if is_supabase_configured():
+        if cls._should_use_supabase(user_id):
             try:
                 admin_client = get_supabase_admin_client()
                 admin_client.table("medication_schedules").insert(schedule_data).execute()
@@ -147,7 +167,7 @@ class ReminderService:
 
         # Generate today's reminders if user confirmed
         if payload.user_confirmed:
-            await cls._generate_reminders_for_schedule(schedule_data)
+            cls._generate_reminders_for_schedule(schedule_data)
 
         AuditService.log_event(
             action=AuditAction.REMINDER_CREATE,
@@ -179,7 +199,8 @@ class ReminderService:
     @classmethod
     def list_schedules(cls, user_id: str, active_only: bool = False) -> List[MedicationScheduleResponse]:
         """Lists medication schedules for the user."""
-        if is_supabase_configured():
+        cls._ensure_demo_seeded(user_id)
+        if cls._should_use_supabase(user_id):
             try:
                 admin_client = get_supabase_admin_client()
                 query = admin_client.table("medication_schedules").select("*").eq("user_id", user_id)
@@ -269,7 +290,7 @@ class ReminderService:
         )
 
     @classmethod
-    async def update_schedule(
+    def update_schedule(
         cls, schedule_id: str, user_id: str, payload: MedicationScheduleUpdate
     ) -> MedicationScheduleResponse:
         """Updates schedule status or details."""
@@ -308,7 +329,7 @@ class ReminderService:
             cls._save_data(data)
 
         if s.get("is_active") and s.get("user_confirmed"):
-            await cls._generate_reminders_for_schedule(s)
+            cls._generate_reminders_for_schedule(s)
 
         return cls.get_schedule(schedule_id, user_id)
 
@@ -332,7 +353,7 @@ class ReminderService:
             cls._save_data(data)
 
     @classmethod
-    async def _generate_reminders_for_schedule(
+    def _generate_reminders_for_schedule(
         cls, schedule_data: Dict[str, Any], target_date: Optional[date] = None
     ) -> List[Dict[str, Any]]:
         """
@@ -370,9 +391,16 @@ class ReminderService:
                 # Duplicate check: does a reminder for this schedule at this exact time already exist?
                 duplicate = False
                 for r in data["reminders"].values():
-                    if r.get("schedule_id") == schedule_id and r.get("scheduled_for") == dose_utc_iso:
-                        duplicate = True
-                        break
+                    if r.get("schedule_id") == schedule_id:
+                        try:
+                            existing_time = datetime.fromisoformat(str(r.get("scheduled_for", "")).replace("Z", "+00:00"))
+                            if existing_time == dose_utc:
+                                duplicate = True
+                                break
+                        except Exception:
+                            if r.get("scheduled_for") == dose_utc_iso:
+                                duplicate = True
+                                break
 
                 if not duplicate:
                     rem_id = str(uuid.uuid4())
@@ -401,20 +429,23 @@ class ReminderService:
         return created_reminders
 
     @classmethod
-    async def get_today_reminders(cls, user_id: str) -> List[MedicationReminderResponse]:
+    def get_today_reminders(cls, user_id: str) -> List[MedicationReminderResponse]:
         """
         Returns all scheduled reminders for today, generating them if not already present.
         """
+        cls._ensure_demo_seeded(user_id)
         data = cls._load_data()
         schedules = [
             s for s in data["schedules"].values()
             if s.get("user_id") == user_id and s.get("is_active", True) and s.get("user_confirmed", True)
         ]
 
-        # Generate doses for each active confirmed schedule
-        for s in schedules:
-            start_d = date.fromisoformat(str(s["start_date"]))
-            await cls._generate_reminders_for_schedule(s, target_date=start_d)
+        # Generate doses for each active confirmed schedule if not demo user
+        if not cls._is_demo_user(user_id):
+            now_utc = datetime.now(timezone.utc)
+            today_date = now_utc.date()
+            for s in schedules:
+                cls._generate_reminders_for_schedule(s, target_date=today_date)
 
         # Reload after generation
         data = cls._load_data()
@@ -426,7 +457,10 @@ class ReminderService:
         for r in data["reminders"].values():
             if r.get("user_id") == user_id:
                 try:
-                    sched_time = datetime.fromisoformat(r["scheduled_for"])
+                    time_raw = str(r["scheduled_for"]).replace("Z", "+00:00")
+                    sched_time = datetime.fromisoformat(time_raw)
+                    if sched_time.tzinfo is None:
+                        sched_time = sched_time.replace(tzinfo=timezone.utc)
                     if today_start <= sched_time < today_end:
                         today_reminders.append(
                             MedicationReminderResponse(
@@ -524,6 +558,7 @@ class ReminderService:
     @classmethod
     def get_adherence_stats(cls, user_id: str, days: int = 7) -> AdherenceStatsResponse:
         """Calculates adherence statistics over the specified window (default 7 days)."""
+        cls._ensure_demo_seeded(user_id)
         data = cls._load_data()
         now_utc = datetime.now(timezone.utc)
         start_period = now_utc - timedelta(days=days)

@@ -70,11 +70,11 @@ async def logout(
     summary="Current User Profile",
     description="Returns the profile information of the verified authenticated user.",
 )
-async def get_me(
+def get_me(
     current_user: UserTokenPayload = Depends(get_current_user),
 ) -> UserProfileResponse:
     """Returns profile for currently authenticated user."""
-    return await AuthService.get_user_profile(current_user.user_id)
+    return AuthService.get_user_profile(current_user.user_id)
 
 
 @router.post(

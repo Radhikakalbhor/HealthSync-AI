@@ -1,0 +1,87 @@
+{
+  "conversations": {
+    "demo-conv-medication-review": {
+      "id": "demo-conv-medication-review",
+      "user_id": "demo-patient-001",
+      "title": "Current Medications & Allergy Consultation",
+      "created_at": "2026-11-14T10:00:00Z",
+      "updated_at": "2026-11-14T10:05:00Z"
+    },
+    "demo-conv-glucose-trends": {
+      "id": "demo-conv-glucose-trends",
+      "user_id": "demo-patient-001",
+      "title": "Cholesterol & Blood Glucose 6-Month Progress",
+      "created_at": "2026-11-15T14:30:00Z",
+      "updated_at": "2026-11-15T14:35:00Z"
+    }
+  },
+  "messages": {
+    "demo-conv-medication-review-msg-1": {
+      "id": "demo-conv-medication-review-msg-1",
+      "conversation_id": "demo-conv-medication-review",
+      "role": "user",
+      "content": "What are my current active medications and what were they prescribed for?",
+      "citations": [],
+      "created_at": "2026-11-14T10:00:00Z"
+    },
+    "demo-conv-medication-review-msg-2": {
+      "id": "demo-conv-medication-review-msg-2",
+      "conversation_id": "demo-conv-medication-review",
+      "role": "assistant",
+      "content": "Based on your verified medical records, you have two active long-term prescriptions:\n\n1. **Lisinopril (10 mg tablet)**: Take 1 tablet orally once daily in the morning with water. Prescribed by **Dr. Robert Chen, MD** on May 15, 2026 for **Primary Essential Hypertension**.\n\n2. **Metformin ER (500 mg tablet)**: Take 1 tablet orally twice daily with morning and evening meals. Prescribed by **Dr. Sarah Lin, MD** on August 20, 2026 for **Impaired Fasting Glucose**.\n\n*(Note: You also completed an acute 10-day course of Amoxicillin 500mg in November 2026 for sinusitis).*",
+      "citations": [
+        {
+          "document_id": "demo-doc-rx-lisinopril",
+          "document_filename": "Prescription_Lisinopril_10mg.pdf",
+          "document_date": "2026-05-15",
+          "document_type": "prescription",
+          "snippet": "Rx: Lisinopril 10 mg Oral Tablet | Sig: Take 1 tablet orally once daily every morning with water.",
+          "relevance_score": 0.96
+        },
+        {
+          "document_id": "demo-doc-rx-metformin",
+          "document_filename": "Prescription_Metformin_500mg.pdf",
+          "document_date": "2026-08-20",
+          "document_type": "prescription",
+          "snippet": "Rx: Metformin HCl 500 mg Extended-Release | Sig: Take 1 tablet orally twice daily with meals.",
+          "relevance_score": 0.95
+        }
+      ],
+      "created_at": "2026-11-14T10:00:05Z"
+    },
+    "demo-conv-glucose-trends-msg-1": {
+      "id": "demo-conv-glucose-trends-msg-1",
+      "conversation_id": "demo-conv-glucose-trends",
+      "role": "user",
+      "content": "How have my cholesterol and blood glucose levels trended between May and November 2026?",
+      "citations": [],
+      "created_at": "2026-11-15T14:30:00Z"
+    },
+    "demo-conv-glucose-trends-msg-2": {
+      "id": "demo-conv-glucose-trends-msg-2",
+      "conversation_id": "demo-conv-glucose-trends",
+      "role": "assistant",
+      "content": "Reviewing your Quest Diagnostics laboratory panels from May 15, August 20, and November 12, 2026, both your lipid and glycemic biomarkers show significant clinical improvement:\n\n- **Total Cholesterol**: Reduced from **215 mg/dL** [High] in May down to **202 mg/dL** in August, and reached **188 mg/dL** [Normal] on November 12.\n- **LDL Cholesterol**: Dropped from **135 mg/dL** [High] to **124 mg/dL**, and reached **110 mg/dL** [Normal].\n- **HDL Cholesterol**: Improved progressively from **48 mg/dL** to **52 mg/dL**, reaching **55 mg/dL**.\n- **Fasting Blood Glucose**: Decreased from **110 mg/dL** [High] in May and **104 mg/dL** in August down to **92 mg/dL** [Normal] in November.\n- **Hemoglobin A1c**: Verified at **5.5%** [Normal] in your November follow-up panel.",
+      "citations": [
+        {
+          "document_id": "demo-doc-lab-lipid-may",
+          "document_filename": "Lab_Report_Lipid_Panel_May2026.pdf",
+          "document_date": "2026-05-15",
+          "document_type": "lab_report",
+          "snippet": "Total Cholesterol: 215 mg/dL [HIGH] | Fasting Glucose: 110 mg/dL [HIGH]",
+          "relevance_score": 0.97
+        },
+        {
+          "document_id": "demo-doc-lab-panels-nov",
+          "document_filename": "Lab_Report_Metabolic_FollowUp_Nov2026.pdf",
+          "document_date": "2026-11-12",
+          "document_type": "lab_report",
+          "snippet": "Total Cholesterol: 188 mg/dL [NORMAL] | Fasting Glucose: 92 mg/dL [NORMAL] | HbA1c: 5.5%",
+          "relevance_score": 0.98
+        }
+      ],
+      "created_at": "2026-11-15T14:30:05Z"
+    }
+  },
+  "chunks": {}
+}

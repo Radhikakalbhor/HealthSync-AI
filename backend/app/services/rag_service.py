@@ -66,6 +66,26 @@ class RAGAssistantService:
     )
 
     @classmethod
+    def _is_demo_user(cls, user_id: str) -> bool:
+        return user_id == "demo-patient-001" or (isinstance(user_id, str) and user_id.startswith("demo-"))
+
+    @classmethod
+    def _should_use_supabase(cls, user_id: str) -> bool:
+        if cls._is_demo_user(user_id):
+            return False
+        return is_supabase_configured()
+
+    @classmethod
+    def _ensure_demo_seeded(cls, user_id: str) -> None:
+        if not cls._is_demo_user(user_id):
+            return
+        data = cls._load_data()
+        if "demo-conv-medication-review" in data.get("conversations", {}):
+            return
+        from backend.app.core.demo_data import seed_demo_assistant
+        seed_demo_assistant(user_id)
+
+    @classmethod
     def _load_data(cls) -> Dict[str, Any]:
         """Loads assistant and conversation store."""
         if not cls._rag_file.exists():

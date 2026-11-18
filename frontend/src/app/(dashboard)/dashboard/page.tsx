@@ -25,6 +25,7 @@ import { UploadModal } from '@/components/documents/UploadModal';
 export default function DashboardPage() {
   const { user } = useAuth();
   const [documents, setDocuments] = useState<MedicalDocument[]>([]);
+  const [todayReminders, setTodayReminders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
@@ -33,8 +34,17 @@ export default function DashboardPage() {
     setLoading(true);
     setError(null);
     try {
-      const data = await api.listDocuments(20, 0);
-      setDocuments(data.documents || []);
+      const [docsRes, remsRes] = await Promise.allSettled([
+        api.listDocuments(20, 0),
+        api.getTodayReminders(),
+      ]);
+
+      if (docsRes.status === 'fulfilled') {
+        setDocuments(docsRes.value.documents || []);
+      }
+      if (remsRes.status === 'fulfilled') {
+        setTodayReminders(remsRes.value || []);
+      }
     } catch (err: any) {
       // If error or unconfigured, keep documents empty
       setError(err?.message || null);
@@ -61,7 +71,7 @@ export default function DashboardPage() {
   const prescriptionsCount = documents.filter((d) => (d.document_type || '').toLowerCase() === 'prescription').length;
   const labReportsCount = documents.filter((d) => {
     const t = (d.document_type || '').toLowerCase();
-    return t === 'blood_test' || t === 'laboratory_report';
+    return t === 'blood_test' || t === 'laboratory_report' || t === 'lab_report';
   }).length;
   const pendingReviewCount = documents.filter((d) => d.needs_human_review || (d.status || '').toLowerCase() === 'needs_review').length;
 
@@ -264,21 +274,38 @@ export default function DashboardPage() {
             </p>
 
             <div className="space-y-3">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-2 h-2 rounded-full bg-health-500" />
-                  <div>
-                    <p className="text-xs font-semibold text-navy-800">Smart Daily Scheduling</p>
-                    <p className="text-[11px] text-navy-400">Mark doses as taken or skipped</p>
+              {todayReminders.length > 0 ? (
+                todayReminders.slice(0, 3).map((r: any) => (
+                  <div key={r.id} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-2 h-2 rounded-full ${r.status === 'TAKEN' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                      <div>
+                        <p className="text-xs font-bold text-navy-800">{r.medication_name} {r.dosage || ''}</p>
+                        <p className="text-[11px] text-navy-500">{r.status === 'TAKEN' ? 'Taken on schedule' : 'Pending dose'}</p>
+                      </div>
+                    </div>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${r.status === 'TAKEN' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'}`}>
+                      {r.status}
+                    </span>
                   </div>
+                ))
+              ) : (
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-2 h-2 rounded-full bg-health-500" />
+                    <div>
+                      <p className="text-xs font-semibold text-navy-800">Smart Daily Scheduling</p>
+                      <p className="text-[11px] text-navy-400">Mark doses as taken or skipped</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/reminders"
+                    className="text-xs font-semibold text-health-600 hover:text-health-700"
+                  >
+                    View
+                  </Link>
                 </div>
-                <Link
-                  href="/reminders"
-                  className="text-xs font-semibold text-health-600 hover:text-health-700"
-                >
-                  View
-                </Link>
-              </div>
+              )}
 
               <div className="p-3 rounded-xl bg-purple-50/50 border border-purple-100 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">

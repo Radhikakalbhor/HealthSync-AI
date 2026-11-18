@@ -44,9 +44,15 @@ htmlcov/
 !.env.example
 !.env.*.example
 
-# Local Uploads & Test Artifacts (Preserve directory structure via .gitkeep)
+# Local Uploads & Test Artifacts (Preserve directory structure and synthetic demo records)
 uploads/*
 !uploads/.gitkeep
+!uploads/demo_*.pdf
+!uploads/Synthetic_*.pdf
+!uploads/metadata.json
+!uploads/medication_reminders.json
+!uploads/advanced_intelligence.json
+!uploads/assistant_rag.json
 backend/uploads/*
 !backend/uploads/.gitkeep
 scratch/

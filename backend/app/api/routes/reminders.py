@@ -22,12 +22,12 @@ router = APIRouter(prefix="/reminders", tags=["Medication Reminders"])
     summary="Create Medication Reminder Schedule",
     description="Creates a new dosage schedule. Requires user confirmation before generating live reminders.",
 )
-async def create_schedule(
+def create_schedule(
     payload: MedicationScheduleCreate,
     current_user: UserTokenPayload = Depends(get_current_user),
 ) -> MedicationScheduleResponse:
     """Creates a medication schedule for the authenticated patient."""
-    return await ReminderService.create_schedule(current_user.user_id, payload)
+    return ReminderService.create_schedule(current_user.user_id, payload)
 
 
 @router.get(
@@ -67,13 +67,13 @@ def get_schedule(
     summary="Update Medication Schedule",
     description="Updates schedule dosage, frequency, times, or active status.",
 )
-async def update_schedule(
+def update_schedule(
     schedule_id: str,
     payload: MedicationScheduleUpdate,
     current_user: UserTokenPayload = Depends(get_current_user),
 ) -> MedicationScheduleResponse:
     """Updates a medication schedule."""
-    return await ReminderService.update_schedule(schedule_id, current_user.user_id, payload)
+    return ReminderService.update_schedule(schedule_id, current_user.user_id, payload)
 
 
 @router.delete(
@@ -98,11 +98,11 @@ def delete_schedule(
     summary="Get Today's Scheduled Reminders",
     description="Returns all scheduled dosage instances for today with taken/skipped status.",
 )
-async def get_today_reminders(
+def get_today_reminders(
     current_user: UserTokenPayload = Depends(get_current_user),
 ) -> List[MedicationReminderResponse]:
     """Retrieves today's scheduled doses."""
-    return await ReminderService.get_today_reminders(current_user.user_id)
+    return ReminderService.get_today_reminders(current_user.user_id)
 
 
 @router.post(

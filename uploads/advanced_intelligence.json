@@ -1,0 +1,231 @@
+{
+  "emergency_cards": {
+    "demo-patient-001": {
+      "id": "demo-card-alex-morgan",
+      "user_id": "demo-patient-001",
+      "emergency_token": "emg_demo_alex_morgan",
+      "emergency_contact_name": "Jordan Morgan",
+      "emergency_contact_phone": "+1 (555) 019-2834",
+      "emergency_contact_relation": "Spouse",
+      "blood_group": "O+",
+      "allergies": [
+        "Latex (mild contact dermatitis)",
+        "Sulfa antibiotics (cutaneous hives)"
+      ],
+      "confirmed_medications": [
+        "Lisinopril 10mg oral daily (08:00 AM)",
+        "Metformin 500mg oral twice daily with meals (08:30 AM, 07:30 PM)"
+      ],
+      "critical_notes": "DEMO PATIENT RECORD. Fictional data for demonstration purposes only. Known allergy to Sulfa antibiotics (cutaneous hives, carries medical alert). Mild essential hypertension well-managed on Lisinopril. Blood group O-positive.",
+      "is_active": true,
+      "created_at": "2026-05-15T09:00:00Z",
+      "updated_at": "2026-11-18T13:19:11.260310+00:00"
+    }
+  },
+  "family_profiles": {
+    "demo-family-taylor": {
+      "id": "demo-family-taylor",
+      "account_owner_id": "demo-patient-001",
+      "full_name": "Taylor Morgan",
+      "relationship": "Child",
+      "date_of_birth": "2018-06-22",
+      "gender": "Female",
+      "created_at": "2026-06-01T10:00:00Z",
+      "updated_at": "2026-06-01T10:00:00Z"
+    },
+    "demo-family-eleanor": {
+      "id": "demo-family-eleanor",
+      "account_owner_id": "demo-patient-001",
+      "full_name": "Eleanor Vance-Morgan",
+      "relationship": "Parent",
+      "date_of_birth": "1954-11-03",
+      "gender": "Female",
+      "created_at": "2026-06-01T10:05:00Z",
+      "updated_at": "2026-06-01T10:05:00Z"
+    }
+  },
+  "shares": {
+    "hst_957a360565d0422e894b10202744b35c": {
+      "share_token": "hst_957a360565d0422e894b10202744b35c",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:13:01.337500+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:13:01.369028+00:00",
+      "created_at": "2026-11-15T20:13:01.337500+00:00"
+    },
+    "hst_25109e1ab71e4c8dac24ae6f51a0d64b": {
+      "share_token": "hst_25109e1ab71e4c8dac24ae6f51a0d64b",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:13:34.379873+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:13:34.445919+00:00",
+      "created_at": "2026-11-15T20:13:34.379873+00:00"
+    },
+    "hst_5f1220cb92944739b09612e3540aa5b8": {
+      "share_token": "hst_5f1220cb92944739b09612e3540aa5b8",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:14:28.341675+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:14:28.391639+00:00",
+      "created_at": "2026-11-15T20:14:28.341675+00:00"
+    },
+    "hst_007eb26575914d20b30be40ccbaf2f35": {
+      "share_token": "hst_007eb26575914d20b30be40ccbaf2f35",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:14:56.138207+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:14:56.200779+00:00",
+      "created_at": "2026-11-15T20:14:56.138207+00:00"
+    },
+    "hst_d2fc3bd9c06a4cbbac06d1952afc9480": {
+      "share_token": "hst_d2fc3bd9c06a4cbbac06d1952afc9480",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:15:10.837821+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:15:10.869392+00:00",
+      "created_at": "2026-11-15T20:15:10.837821+00:00"
+    },
+    "hst_247b1db428d549d5912f9e03ae5728e4": {
+      "share_token": "hst_247b1db428d549d5912f9e03ae5728e4",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:19:10.366404+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:19:10.424137+00:00",
+      "created_at": "2026-11-15T20:19:10.366404+00:00"
+    },
+    "hst_4e4f0b70d90c4b5fa86473357f049a64": {
+      "share_token": "hst_4e4f0b70d90c4b5fa86473357f049a64",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:23:52.102977+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:23:52.152398+00:00",
+      "created_at": "2026-11-15T20:23:52.102977+00:00"
+    },
+    "hst_1035ee0576f44fa586ec4563f7f1386a": {
+      "share_token": "hst_1035ee0576f44fa586ec4563f7f1386a",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-16T20:28:22.304148+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-15T20:28:22.345635+00:00",
+      "created_at": "2026-11-15T20:28:22.304148+00:00"
+    },
+    "hst_aab165fff34d44cbaf3e0b941353736f": {
+      "share_token": "hst_aab165fff34d44cbaf3e0b941353736f",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-17T19:57:46.213124+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-16T19:57:46.252836+00:00",
+      "created_at": "2026-11-16T19:57:46.213124+00:00"
+    },
+    "hst_a50b3bef6d694ee1b795f5a8a7657345": {
+      "share_token": "hst_a50b3bef6d694ee1b795f5a8a7657345",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-17T19:58:19.085692+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-16T19:58:19.140314+00:00",
+      "created_at": "2026-11-16T19:58:19.085692+00:00"
+    },
+    "hst_1368bfa6967a4e6ca2955c26ae09aff0": {
+      "share_token": "hst_1368bfa6967a4e6ca2955c26ae09aff0",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-17T19:58:50.495867+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-16T19:58:50.545876+00:00",
+      "created_at": "2026-11-16T19:58:50.495867+00:00"
+    },
+    "hst_167f8cfb14e24e48b7bb0c3616d1ac12": {
+      "share_token": "hst_167f8cfb14e24e48b7bb0c3616d1ac12",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-17T19:59:37.349795+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-16T19:59:37.403069+00:00",
+      "created_at": "2026-11-16T19:59:37.349795+00:00"
+    },
+    "hst_bda711e5702d4eb7ae2b1a7a75f7e3ff": {
+      "share_token": "hst_bda711e5702d4eb7ae2b1a7a75f7e3ff",
+      "user_id": "test-intel-user-1",
+      "document_ids": [
+        "doc-test-presc-1"
+      ],
+      "recipient_label": "Dr. Davis Clinic",
+      "permission_level": "READ_ONLY",
+      "expires_at": "2026-11-17T20:17:49.295514+00:00",
+      "is_revoked": true,
+      "view_count": 1,
+      "last_accessed_at": "2026-11-16T20:17:49.357385+00:00",
+      "created_at": "2026-11-16T20:17:49.295514+00:00"
+    }
+  }
+}

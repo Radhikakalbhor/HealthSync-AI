@@ -1,0 +1,251 @@
+{
+  "schedules": {
+    "demo-sched-lisinopril": {
+      "id": "demo-sched-lisinopril",
+      "user_id": "demo-patient-001",
+      "medication_name": "Lisinopril",
+      "dosage": "10mg",
+      "frequency": "ONCE_DAILY",
+      "reminder_times": [
+        "08:00"
+      ],
+      "timezone": "UTC",
+      "start_date": "2026-05-15",
+      "end_date": null,
+      "instructions": "Take 1 tablet every morning with water for blood pressure control.",
+      "is_active": true,
+      "user_confirmed": true,
+      "document_id": "demo-doc-rx-lisinopril",
+      "created_at": "2026-05-15T09:30:00Z",
+      "updated_at": "2026-05-15T09:30:00Z"
+    },
+    "demo-sched-metformin": {
+      "id": "demo-sched-metformin",
+      "user_id": "demo-patient-001",
+      "medication_name": "Metformin",
+      "dosage": "500mg",
+      "frequency": "TWICE_DAILY",
+      "reminder_times": [
+        "08:30",
+        "19:30"
+      ],
+      "timezone": "UTC",
+      "start_date": "2026-08-20",
+      "end_date": null,
+      "instructions": "Take 1 tablet with morning and evening meals.",
+      "is_active": true,
+      "user_confirmed": true,
+      "document_id": "demo-doc-rx-metformin",
+      "created_at": "2026-08-20T10:15:00Z",
+      "updated_at": "2026-08-20T10:15:00Z"
+    }
+  },
+  "reminders": {
+    "demo-rem-2026-11-18-lis": {
+      "id": "demo-rem-2026-11-18-lis",
+      "schedule_id": "demo-sched-lisinopril",
+      "user_id": "demo-patient-001",
+      "medication_name": "Lisinopril",
+      "dosage": "10mg",
+      "scheduled_for": "2026-11-18T08:00:00Z",
+      "status": "TAKEN",
+      "instructions": "Take 1 tablet every morning with water.",
+      "notification_sent_at": "2026-11-18T08:00:00Z",
+      "created_at": "2026-11-18T00:00:00Z"
+    },
+    "demo-rem-2026-11-18-met1": {
+      "id": "demo-rem-2026-11-18-met1",
+      "schedule_id": "demo-sched-metformin",
+      "user_id": "demo-patient-001",
+      "medication_name": "Metformin",
+      "dosage": "500mg",
+      "scheduled_for": "2026-11-18T08:30:00Z",
+      "status": "TAKEN",
+      "instructions": "Take 1 tablet with breakfast.",
+      "notification_sent_at": "2026-11-18T08:30:00Z",
+      "created_at": "2026-11-18T00:00:00Z"
+    },
+    "demo-rem-2026-11-18-met2": {
+      "id": "demo-rem-2026-11-18-met2",
+      "schedule_id": "demo-sched-metformin",
+      "user_id": "demo-patient-001",
+      "medication_name": "Metformin",
+      "dosage": "500mg",
+      "scheduled_for": "2026-11-18T19:30:00Z",
+      "status": "PENDING",
+      "instructions": "Take 1 tablet with dinner.",
+      "notification_sent_at": null,
+      "created_at": "2026-11-18T00:00:00Z"
+    }
+  },
+  "logs": {
+    "demo-log-2026-11-17-lis": {
+      "id": "demo-log-2026-11-17-lis",
+      "reminder_id": "rem-2026-11-17-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-17T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-17-met1": {
+      "id": "demo-log-2026-11-17-met1",
+      "reminder_id": "rem-2026-11-17-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-17T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-17-met2": {
+      "id": "demo-log-2026-11-17-met2",
+      "reminder_id": "rem-2026-11-17-met2",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-17T19:45:00Z",
+      "notes": "Taken with dinner"
+    },
+    "demo-log-2026-11-16-lis": {
+      "id": "demo-log-2026-11-16-lis",
+      "reminder_id": "rem-2026-11-16-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-16T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-16-met1": {
+      "id": "demo-log-2026-11-16-met1",
+      "reminder_id": "rem-2026-11-16-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-16T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-16-met2": {
+      "id": "demo-log-2026-11-16-met2",
+      "reminder_id": "rem-2026-11-16-met2",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-16T19:45:00Z",
+      "notes": "Taken with dinner"
+    },
+    "demo-log-2026-11-15-lis": {
+      "id": "demo-log-2026-11-15-lis",
+      "reminder_id": "rem-2026-11-15-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-15T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-15-met1": {
+      "id": "demo-log-2026-11-15-met1",
+      "reminder_id": "rem-2026-11-15-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-15T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-15-met2": {
+      "id": "demo-log-2026-11-15-met2",
+      "reminder_id": "rem-2026-11-15-met2",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-15T19:45:00Z",
+      "notes": "Taken with dinner"
+    },
+    "demo-log-2026-11-14-lis": {
+      "id": "demo-log-2026-11-14-lis",
+      "reminder_id": "rem-2026-11-14-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-14T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-14-met1": {
+      "id": "demo-log-2026-11-14-met1",
+      "reminder_id": "rem-2026-11-14-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-14T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-14-met2": {
+      "id": "demo-log-2026-11-14-met2",
+      "reminder_id": "rem-2026-11-14-met2",
+      "user_id": "demo-patient-001",
+      "action": "SKIPPED",
+      "logged_at": "2026-11-14T19:45:00Z",
+      "notes": "Late dinner"
+    },
+    "demo-log-2026-11-13-lis": {
+      "id": "demo-log-2026-11-13-lis",
+      "reminder_id": "rem-2026-11-13-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-13T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-13-met1": {
+      "id": "demo-log-2026-11-13-met1",
+      "reminder_id": "rem-2026-11-13-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-13T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-13-met2": {
+      "id": "demo-log-2026-11-13-met2",
+      "reminder_id": "rem-2026-11-13-met2",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-13T19:45:00Z",
+      "notes": "Taken with dinner"
+    },
+    "demo-log-2026-11-12-lis": {
+      "id": "demo-log-2026-11-12-lis",
+      "reminder_id": "rem-2026-11-12-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-12T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-12-met1": {
+      "id": "demo-log-2026-11-12-met1",
+      "reminder_id": "rem-2026-11-12-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-12T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-12-met2": {
+      "id": "demo-log-2026-11-12-met2",
+      "reminder_id": "rem-2026-11-12-met2",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-12T19:45:00Z",
+      "notes": "Taken with dinner"
+    },
+    "demo-log-2026-11-11-lis": {
+      "id": "demo-log-2026-11-11-lis",
+      "reminder_id": "rem-2026-11-11-lis",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-11T08:05:00Z",
+      "notes": "Dose confirmed on time"
+    },
+    "demo-log-2026-11-11-met1": {
+      "id": "demo-log-2026-11-11-met1",
+      "reminder_id": "rem-2026-11-11-met1",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-11T08:40:00Z",
+      "notes": "Taken with breakfast"
+    },
+    "demo-log-2026-11-11-met2": {
+      "id": "demo-log-2026-11-11-met2",
+      "reminder_id": "rem-2026-11-11-met2",
+      "user_id": "demo-patient-001",
+      "action": "TAKEN",
+      "logged_at": "2026-11-11T19:45:00Z",
+      "notes": "Taken with dinner"
+    }
+  }
+}
