@@ -43,8 +43,7 @@ export function Navbar() {
                   onClick={loginDemo}
                   title="Explore instantly without registering"
                 >
-                  <Zap className="w-3.5 h-3.5 fill-teal-600 text-teal-600" />
-                  <span>Instant Demo</span>
+                  Instant Demo
                 </Button>
                 <Link href="/login">
                   <Button variant="ghost" size="sm">
@@ -95,8 +94,7 @@ export function Navbar() {
                   }}
                   className="w-full"
                 >
-                  <Zap className="w-4 h-4 fill-teal-600 text-teal-600" />
-                  Instant Demo Access
+                  Instant Demo
                 </Button>
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>

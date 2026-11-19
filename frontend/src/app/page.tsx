@@ -34,7 +34,6 @@ import {
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { useAuth } from '@/lib/auth-context';
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 import { BackgroundBeams } from '@/components/ui/background-beams';
 
 export default function LandingPage() {
@@ -100,80 +99,43 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                {/* Trust & Capability Points with equal alignment and clean lining */}
-                <div className="pt-1 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-navy-700 font-medium">
-                  <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-slate-200/90 shadow-2xs hover:border-health-300 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                    <span>Zero-Hallucination Extraction</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-slate-200/90 shadow-2xs hover:border-health-300 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                    <span>Calibrated Confidence Scoring</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-slate-200/90 shadow-2xs hover:border-health-300 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                    <span>PostgreSQL Row-Level Security</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-slate-200/90 shadow-2xs hover:border-health-300 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                    <span>Emergency QR Medical Card</span>
-                  </div>
+                {/* Trust & Capability Points: one single line below medical records */}
+                <div className="pt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-navy-600 font-medium">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                    Zero-Hallucination Extraction
+                  </span>
+                  <span className="text-slate-300 hidden sm:inline">•</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                    Calibrated Confidence Scoring
+                  </span>
+                  <span className="text-slate-300 hidden sm:inline">•</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                    PostgreSQL Row-Level Security
+                  </span>
+                  <span className="text-slate-300 hidden sm:inline">•</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                    Emergency QR Medical Card
+                  </span>
                 </div>
               </div>
 
-              {/* Right Column (5 cols): Action Portal Card */}
-              <div className="lg:col-span-5">
-                <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/60 space-y-5">
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-teal-600">
-                      Instant Patient Access
-                    </span>
-                    <h2 className="text-xl font-extrabold text-navy-950 font-display mt-0.5">
-                      Start Organizing Today
-                    </h2>
-                    <p className="text-xs text-navy-500 mt-1">
-                      Experience encrypted clinical document intelligence with instant demo mode.
-                    </p>
-                  </div>
-
-                  <div className="space-y-3 pt-1">
-                    {user ? (
-                      <Link href="/dashboard" className="block w-full">
-                        <button className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-health-600 hover:bg-health-700 text-white font-bold text-sm shadow-md shadow-health-600/25 transition-all hover:-translate-y-0.5 cursor-pointer">
-                          <Activity className="w-4 h-4" />
-                          <span>Go to Dashboard</span>
-                          <ArrowRight className="w-4 h-4 ml-0.5" />
-                        </button>
-                      </Link>
-                    ) : (
-                      <>
-                        <Link href="/register" className="block w-full">
-                          <button className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-health-600 hover:bg-health-700 text-white font-bold text-sm shadow-md shadow-health-600/25 transition-all hover:-translate-y-0.5 cursor-pointer">
-                            <span>Get Started Free</span>
-                            <ArrowRight className="w-4 h-4 ml-0.5" />
-                          </button>
-                        </Link>
-                        <button
-                          onClick={loginDemo}
-                          className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-teal-50 hover:bg-teal-100/80 text-teal-900 border border-teal-200/90 font-bold text-xs transition-all hover:-translate-y-0.5 cursor-pointer"
-                        >
-                          <Zap className="w-4 h-4 fill-teal-600 text-teal-600" />
-                          <span>Instant Demo (Alex Morgan)</span>
-                        </button>
-                        <div className="pt-1 text-center">
-                          <Link href="/login" className="inline-block text-xs font-semibold text-navy-600 hover:text-navy-900 transition-colors">
-                            Already registered? <span className="text-health-600 underline underline-offset-4">Sign in</span>
-                          </Link>
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-2 text-[11px] text-navy-400 font-medium">
-                    <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
-                    <span>Zero setup • HIPAA-compliant architecture</span>
-                  </div>
-                </div>
+              {/* Right Column: Only two clean buttons without card or emoji */}
+              <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-row gap-3 items-center justify-start lg:justify-end pt-2">
+                <Link href="/register">
+                  <button className="px-6 py-3 rounded-xl bg-health-600 hover:bg-health-700 text-white font-bold text-sm shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer">
+                    Get Started Free
+                  </button>
+                </Link>
+                <button
+                  onClick={loginDemo}
+                  className="px-6 py-3 rounded-xl bg-teal-50 hover:bg-teal-100/80 text-teal-900 border border-teal-200/90 font-bold text-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                >
+                  Instant Demo
+                </button>
               </div>
             </div>
 
@@ -579,190 +541,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* CORE CAPABILITIES - ACETERNITY BENTO GRID */}
-        <section id="features" className="py-20 md:py-28 bg-white border-t border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-xs font-bold text-health-600 uppercase tracking-wider">
-                Comprehensive Capabilities
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 mt-2 tracking-tight">
-                Engineered for clinical clarity & patient peace of mind
-              </h2>
-              <p className="mt-3 text-sm sm:text-base text-navy-600">
-                Explore how multimodal vision, calibrated confidence, and cryptographic isolation transform your personal health records.
-              </p>
-            </div>
-
-            <BentoGrid className="max-w-7xl mx-auto md:auto-rows-[20rem]">
-              {/* Bento 1: Multimodal OCR & Vision (col-span-2) */}
-              <BentoGridItem
-                className="md:col-span-2 bg-gradient-to-br from-white via-health-50/40 to-slate-50 border border-slate-200/90 shadow-card hover:shadow-card-hover"
-                title="Dual-Engine OCR & Gemini Multimodal Vision"
-                description="Combines digital PDF parsing (PyMuPDF), local OCR (Tesseract 5.4.0), and Google Gemini Vision to decipher cursive physician scripts with calibrated confidence scores."
-                header={
-                  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-health-100/60 via-teal-50/50 to-white p-4 border border-health-100 flex-col justify-between overflow-hidden">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-health-600 text-white shadow-2xs">
-                          PyMuPDF
-                        </span>
-                        <span className="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-teal-600 text-white shadow-2xs">
-                          Tesseract 5.4
-                        </span>
-                        <span className="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-navy-900 text-white shadow-2xs">
-                          Gemini 2.0 Flash
-                        </span>
-                      </div>
-                      <span className="text-xs font-extrabold text-teal-700 bg-teal-100/80 px-2.5 py-0.5 rounded-full border border-teal-200">
-                        99.2% Calibrated Accuracy
-                      </span>
-                    </div>
-                    <div className="mt-3 p-3 bg-white/90 rounded-xl border border-health-100 shadow-2xs flex items-center justify-between text-xs">
-                      <div>
-                        <p className="font-bold text-navy-950">Rx_Amoxicillin_500mg.pdf</p>
-                        <p className="text-[11px] text-navy-500">Extracted: Amoxicillin 500mg capsule • 3x daily • 10 days</p>
-                      </div>
-                      <span className="px-2 py-1 text-[10px] font-bold uppercase rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                        Zero Uncertain Fields
-                      </span>
-                    </div>
-                  </div>
-                }
-                icon={<FileCheck className="w-5 h-5 text-health-600" />}
-              />
-
-              {/* Bento 2: Chronological Timeline (col-span-1) */}
-              <BentoGridItem
-                className="md:col-span-1 bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover"
-                title="Unified Health Timeline"
-                description="Aggregates prescriptions, blood panels, scans, and doctor visits into an interactive, chronological narrative."
-                header={
-                  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-slate-50/80 p-3.5 border border-slate-200/80 flex-col justify-center space-y-2.5 overflow-hidden">
-                    <div className="flex items-center gap-2 text-xs">
-                      <div className="w-2 h-2 rounded-full bg-health-500 shrink-0" />
-                      <span className="font-bold text-navy-900">Nov 14:</span>
-                      <span className="text-navy-600 truncate">Metabolic Panel (Quest)</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs">
-                      <div className="w-2 h-2 rounded-full bg-teal-500 shrink-0" />
-                      <span className="font-bold text-navy-900">Nov 10:</span>
-                      <span className="text-navy-600 truncate">Amoxicillin Prescription</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs">
-                      <div className="w-2 h-2 rounded-full bg-purple-500 shrink-0" />
-                      <span className="font-bold text-navy-900">Oct 05:</span>
-                      <span className="text-navy-600 truncate">Annual Wellness Visit</span>
-                    </div>
-                  </div>
-                }
-                icon={<Clock className="w-5 h-5 text-teal-600" />}
-              />
-
-              {/* Bento 3: Medication Schedules (col-span-1) */}
-              <BentoGridItem
-                className="md:col-span-1 bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover"
-                title="Medication Reminders"
-                description="Generates daily medication administration schedules with one-tap compliance adherence tracking."
-                header={
-                  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-purple-50/50 p-3.5 border border-purple-100 flex-col justify-between overflow-hidden">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-purple-950">Lisinopril 10mg</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Daily</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 py-1 text-xs text-purple-900 font-semibold">
-                      <Clock className="w-3.5 h-3.5 text-purple-600" />
-                      <span>Next Dose: 8:00 PM</span>
-                    </div>
-                    <div className="w-full bg-purple-200/80 rounded-full h-2">
-                      <div className="bg-purple-600 h-2 rounded-full w-[94%]" />
-                    </div>
-                  </div>
-                }
-                icon={<Pill className="w-5 h-5 text-purple-600" />}
-              />
-
-              {/* Bento 4: Longitudinal Lab Analytics (col-span-2) */}
-              <BentoGridItem
-                className="md:col-span-2 bg-gradient-to-br from-white via-teal-50/30 to-slate-50 border border-slate-200/90 shadow-card hover:shadow-card-hover"
-                title="Longitudinal Biomarker Analytics"
-                description="Standardizes lab test names and reference intervals across diagnostic providers, highlighting trends in glucose, cholesterol, and kidney markers."
-                header={
-                  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-slate-50/80 p-3.5 border border-slate-200/80 flex-col justify-between overflow-hidden">
-                    <div className="grid grid-cols-3 gap-2 text-xs">
-                      <div className="p-2 bg-white rounded-lg border border-slate-200 text-center">
-                        <p className="text-[10px] text-navy-500 font-bold uppercase">Glucose</p>
-                        <p className="text-sm font-extrabold text-navy-950">92 mg/dL</p>
-                        <span className="text-[10px] text-emerald-700 font-bold">NORMAL</span>
-                      </div>
-                      <div className="p-2 bg-white rounded-lg border border-slate-200 text-center">
-                        <p className="text-[10px] text-navy-500 font-bold uppercase">HbA1c</p>
-                        <p className="text-sm font-extrabold text-navy-950">5.5 %</p>
-                        <span className="text-[10px] text-emerald-700 font-bold">OPTIMAL</span>
-                      </div>
-                      <div className="p-2 bg-white rounded-lg border border-slate-200 text-center">
-                        <p className="text-[10px] text-navy-500 font-bold uppercase">Cholesterol</p>
-                        <p className="text-sm font-extrabold text-navy-950">188 mg/dL</p>
-                        <span className="text-[10px] text-emerald-700 font-bold">IMPROVED</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between text-[11px] text-teal-800 font-semibold px-1 pt-1">
-                      <span>Longitudinal Span: May 2026 – Nov 2026</span>
-                      <span>13 Biomarkers Indexed</span>
-                    </div>
-                  </div>
-                }
-                icon={<BarChart3 className="w-5 h-5 text-amber-600" />}
-              />
-
-              {/* Bento 5: Emergency QR Access (col-span-1) */}
-              <BentoGridItem
-                className="md:col-span-1 bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover"
-                title="Emergency QR Medical Card"
-                description="Provides offline first-responders with instant access to blood type, severe allergies, and ICE contacts without authentication."
-                header={
-                  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-rose-50/50 p-3.5 border border-rose-100 flex-col justify-between overflow-hidden">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-rose-950">Blood Group: O+</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">ICE Ready</span>
-                    </div>
-                    <p className="text-[11px] text-rose-900 font-medium">
-                      Allergies: Penicillin, Sulfa
-                    </p>
-                    <div className="flex items-center gap-1.5 text-[10px] text-rose-700 font-semibold">
-                      <QrCode className="w-3.5 h-3.5" />
-                      <span>Scan via Phone Camera (Revocable)</span>
-                    </div>
-                  </div>
-                }
-                icon={<QrCode className="w-5 h-5 text-rose-600" />}
-              />
-
-              {/* Bento 6: Patient-Isolated RAG Assistant (col-span-2) */}
-              <BentoGridItem
-                className="md:col-span-2 bg-gradient-to-br from-white via-purple-50/30 to-slate-50 border border-slate-200/90 shadow-card hover:shadow-card-hover"
-                title="Tenant-Isolated RAG Clinical Assistant"
-                description="Ask natural-language questions across your clinical records. Retrieves exact text with strict PDF page citations and fail-closed tenant isolation."
-                header={
-                  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-slate-50/80 p-3.5 border border-slate-200/80 flex-col justify-between overflow-hidden">
-                    <div className="p-2 bg-white rounded-lg border border-slate-200 text-xs text-navy-800">
-                      <span className="font-bold text-purple-700">Q: </span>
-                      &ldquo;When was my Lisinopril dosage changed?&rdquo;
-                    </div>
-                    <div className="p-2 bg-purple-50/70 rounded-lg border border-purple-100 text-xs text-navy-900 flex items-center justify-between">
-                      <span>&ldquo;Dr. Chen adjusted it from 5mg to 10mg on May 15, 2026.&rdquo;</span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-white text-purple-700 border border-purple-200 shrink-0 ml-2">
-                        Rx_Lisinopril.pdf (P.1)
-                      </span>
-                    </div>
-                  </div>
-                }
-                icon={<Bot className="w-5 h-5 text-purple-600" />}
-              />
-            </BentoGrid>
-          </div>
-        </section>
-
         {/* CLINICIAN & PATIENT TESTIMONIALS */}
         <section className="py-20 md:py-24 bg-slate-50 border-t border-slate-200/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -915,22 +693,25 @@ export default function LandingPage() {
                 return (
                   <div
                     key={index}
-                    className="rounded-2xl border border-slate-200 bg-slate-50/50 overflow-hidden transition-all"
+                    className="rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden transition-all hover:border-health-400"
                   >
                     <button
+                      type="button"
                       onClick={() => toggleFaq(index)}
-                      className="w-full flex items-center justify-between p-5 text-left font-bold text-navy-900 hover:text-health-600 cursor-pointer transition-colors"
+                      className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-health-600 cursor-pointer transition-colors"
                       aria-expanded={isOpen}
                     >
-                      <span className="text-base sm:text-lg pr-4">{faq.question}</span>
+                      <span className="text-base sm:text-lg font-bold text-slate-900 hover:text-health-600 pr-4 block">
+                        {faq.question}
+                      </span>
                       {isOpen ? (
                         <ChevronUp className="w-5 h-5 text-health-600 shrink-0" />
                       ) : (
-                        <ChevronDown className="w-5 h-5 text-navy-400 shrink-0" />
+                        <ChevronDown className="w-5 h-5 text-slate-500 shrink-0" />
                       )}
                     </button>
                     {isOpen && (
-                      <div className="px-5 pb-5 pt-1 text-sm text-navy-600 leading-relaxed border-t border-slate-200/60 bg-white">
+                      <div className="px-5 pb-5 pt-1 text-sm text-slate-700 leading-relaxed border-t border-slate-100 bg-slate-50/60">
                         {faq.answer}
                       </div>
                     )}
@@ -959,10 +740,9 @@ export default function LandingPage() {
               </Link>
               <button
                 onClick={loginDemo}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white bg-health-700/60 hover:bg-health-700 border border-white/30 rounded-xl hover:-translate-y-0.5 cursor-pointer transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-health-700/60 hover:bg-health-700 border border-white/30 rounded-xl hover:-translate-y-0.5 cursor-pointer transition-all"
               >
-                <Zap className="w-4 h-4 fill-amber-400 text-amber-400" />
-                <span>Explore Instant Demo</span>
+                Instant Demo
               </button>
             </div>
           </div>
