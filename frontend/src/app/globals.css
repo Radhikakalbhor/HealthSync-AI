@@ -1,18 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 15, 23, 42;
-  --background-rgb: 248, 250, 252;
+@layer base {
+  :root {
+    /* Base Surfaces */
+    --bg-base: 210 40% 98%;           /* #F8FAFC */
+    --surface-card: 0 0% 100%;        /* #FFFFFF */
+    --surface-subtle: 210 40% 96%;    /* #F1F5F9 */
+    --surface-overlay: 0 0% 100%;     /* #FFFFFF */
+    --border-subtle: 214 32% 91%;     /* #E2E8F0 */
+    --border-strong: 215 25% 82%;     /* #CBD5E1 */
+
+    /* Typography */
+    --text-primary: 222 47% 11%;      /* #0F172A */
+    --text-muted: 215 16% 47%;        /* #64748B */
+    --text-inverse: 0 0% 100%;        /* #FFFFFF */
+
+    /* Clinical Brand Accents (Teal / Cyan) */
+    --brand-primary: 173 80% 36%;     /* #0D9488 */
+    --brand-hover: 173 84% 31%;       /* #0F766E */
+    --brand-subtle: 168 76% 96%;      /* #F0FDFA */
+    --brand-secondary: 199 89% 48%;   /* #0284C7 */
+
+    /* Clinical Status Tokens */
+    --status-normal-bg: 152 76% 96%;       /* #ECFDF5 */
+    --status-normal-border: 149 60% 80%;   /* #A7F3D0 */
+    --status-normal-text: 158 64% 28%;     /* #047857 */
+
+    --status-warning-bg: 48 100% 96%;      /* #FFFBEB */
+    --status-warning-border: 45 93% 77%;   /* #FDE68A */
+    --status-warning-text: 35 92% 33%;     /* #B45309 */
+
+    --status-critical-bg: 0 86% 97%;       /* #FEF2F2 */
+    --status-critical-border: 0 93% 89%;   /* #FECACA */
+    --status-critical-text: 0 72% 41%;     /* #B91C1C */
+
+    --status-info-bg: 204 100% 97%;        /* #F0F9FF */
+    --status-info-border: 199 89% 86%;     /* #BAE6FD */
+    --status-info-text: 201 96% 32%;       /* #0369A1 */
+
+    /* Motion Tokens */
+    --motion-micro: 150ms;
+    --motion-enter: 200ms;
+    --motion-exit: 150ms;
+    --motion-modal: 240ms;
+    --ease-clinical: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark {
+    /* Base Surfaces */
+    --bg-base: 222 47% 7%;            /* #0B0F19 */
+    --surface-card: 222 40% 12%;      /* #131B2E */
+    --surface-subtle: 222 35% 16%;    /* #1A243B */
+    --surface-overlay: 222 40% 12%;   /* #131B2E */
+    --border-subtle: 217 33% 22%;     /* #243048 */
+    --border-strong: 217 25% 32%;     /* #374663 */
+
+    /* Typography */
+    --text-primary: 210 40% 98%;      /* #F8FAFC */
+    --text-muted: 215 20% 65%;        /* #94A3B8 */
+    --text-inverse: 222 47% 11%;      /* #0F172A */
+
+    /* Clinical Brand Accents (Teal / Cyan) */
+    --brand-primary: 173 70% 48%;     /* #14B8A6 */
+    --brand-hover: 173 80% 36%;       /* #0D9488 */
+    --brand-subtle: 173 80% 12%;      /* #064E3B */
+    --brand-secondary: 199 89% 56%;   /* #38BDF8 */
+
+    /* Clinical Status Tokens */
+    --status-normal-bg: 160 84% 10%;
+    --status-normal-border: 160 60% 25%;
+    --status-normal-text: 152 76% 65%;
+
+    --status-warning-bg: 35 84% 10%;
+    --status-warning-border: 35 60% 25%;
+    --status-warning-text: 45 93% 65%;
+
+    --status-critical-bg: 0 84% 10%;
+    --status-critical-border: 0 60% 25%;
+    --status-critical-text: 0 86% 70%;
+
+    --status-info-bg: 204 84% 10%;
+    --status-info-border: 204 60% 25%;
+    --status-info-text: 199 89% 70%;
+  }
+
+  html, body {
+    overflow-x: clip;
+    color: hsl(var(--text-primary));
+    background-color: hsl(var(--bg-base));
+    font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background-color: #f8fafc;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Accessible focus ring (better-accessibility rule) */
+:focus-visible {
+  outline: 2px solid hsl(var(--brand-primary));
+  outline-offset: 2px;
 }
 
 /* Custom Scrollbars */
@@ -20,29 +109,23 @@ body {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: hsl(var(--surface-subtle));
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: hsl(var(--border-strong));
   border-radius: 9999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: hsl(var(--text-muted));
 }
 
-/* Glassmorphism subtle styles */
-.glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
