@@ -318,16 +318,6 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          {/* Privacy & RLS Card */}
-          <div className="p-5 rounded-2xl bg-gradient-to-br from-teal-50/70 to-slate-50 border border-teal-100 shadow-2xs">
-            <div className="flex items-center gap-2 text-teal-900 font-bold text-xs mb-1.5 font-display">
-              <ShieldCheck className="w-4 h-4 text-teal-600" />
-              <span>Tenant Isolation Active</span>
-            </div>
-            <p className="text-xs text-slate-600 leading-relaxed font-sans">
-              PostgreSQL Row-Level Security restricts all medical records strictly to your verified patient identity (`Alex Morgan`).
-            </p>
-          </div>
         </div>
       </div>
 
