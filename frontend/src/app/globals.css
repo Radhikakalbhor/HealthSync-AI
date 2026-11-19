@@ -129,3 +129,14 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Hide Next.js dev indicator ("N" icon) and overlays */
+nextjs-portal,
+[data-nextjs-dev-indicator],
+[data-nextjs-toast],
+#nextjs-dev-indicator {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
