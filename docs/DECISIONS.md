@@ -32,3 +32,13 @@
 * **Skill Cited:** `jakubkrehel/skills` (better-ui optical radius formula).
 * **Rule:** $\text{Outer Radius} = \text{Inner Radius} + \text{Padding}$.
 * **Decision:** Standardized `rounded-2xl` (`16px`) for cards with `p-3` (`12px`) holding inner `rounded-lg` (`4px–8px`) elements. Standardized buttons and inputs at `rounded-xl` (`12px`).
+
+---
+
+## Step C Decisions (Component Foundation & Accessible Kit)
+
+### DEC-005: Accessible Component Foundation & Tailwind 3.4 Lock
+* **Skill Cited:** `shadcn-ui/ui`, `jakubkrehel/skills` (`better-accessibility`), and user Tailwind lock.
+* **Rule:** Convert all component primitives to strict Tailwind 3.4 syntax (no `@theme`, no `size-*`); integrate visible focus rings (`:focus-visible`), aria roles, 44px target touch areas, and error messaging.
+* **Decision:** Implemented pure React 19 + Tailwind 3.4 primitives (`Button`, `Card`, `Input`, `Select`, `Dialog`, `Sheet`, `Tabs`, `Table`, `Badge`, `Toast`, `Tooltip`, `Skeleton`, `Progress`, `Checkbox`, `Switch`, `BentoGrid`, `BackgroundBeams`). Added custom clinical components (`StatusBadge` with mandatory icon pairing, `StatCard`, `EmptyState`, `DocumentCard`, `AnalyteRow`, `DisclaimerBanner`). Created `/dev/components` showcasing all component states. Verified via successful production build.
+
