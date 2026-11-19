@@ -17,6 +17,10 @@ import {
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { useTranslation } from '@/lib/i18n';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function DoctorSummaryPage() {
   const { t } = useTranslation();
@@ -88,37 +92,42 @@ export default function DoctorSummaryPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-in fade-in duration-300">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-navy-950 tracking-tight flex items-center gap-2">
-            <Stethoscope className="w-7 h-7 text-health-600" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight flex items-center gap-2.5 font-display">
+            <div className="w-10 h-10 rounded-2xl bg-health-50 border border-health-100 flex items-center justify-center text-health-600">
+              <Stethoscope className="w-5 h-5" />
+            </div>
             {t('summary_title')}
           </h1>
-          <p className="text-sm text-navy-600 mt-1">{t('summary_subtitle')}</p>
+          <p className="text-sm text-navy-600 mt-1 max-w-2xl font-sans">{t('summary_subtitle')}</p>
         </div>
 
-        <button
+        <Button
+          variant="primary"
+          size="md"
           onClick={handleDownloadPdf}
-          disabled={downloadingPdf || loadingPreview}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-navy-900 hover:bg-navy-800 disabled:opacity-50 text-white rounded-xl text-xs font-semibold shadow-sm hover:shadow transition-all"
+          loading={downloadingPdf}
+          disabled={loadingPreview}
+          className="shadow-md shadow-health-600/20"
         >
-          <Download className="w-4 h-4" />
+          <Download className="w-4 h-4 mr-1.5" />
           {downloadingPdf ? 'Compiling PDF...' : t('btn_download_pdf')}
-        </button>
+        </Button>
       </div>
 
       {/* Specialty and Notes Config Bar */}
-      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-4">
+      <Card className="p-5 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="block text-xs font-semibold text-navy-800 mb-1.5">
+          <label className="block text-xs font-bold uppercase tracking-wider text-navy-800 mb-1.5">
             {t('summary_specialty_label')}
           </label>
           <select
             value={specialty}
             onChange={(e) => setSpecialty(e.target.value)}
-            className="w-full text-xs rounded-xl border border-slate-200 p-2.5 text-navy-900 bg-white focus:ring-2 focus:ring-health-500/20 focus:border-health-500"
+            className="w-full text-xs rounded-xl border border-slate-200 p-2.5 text-navy-900 bg-white font-medium focus:ring-2 focus:ring-health-500/20 focus:border-health-500"
           >
             <option value="General Medicine">General Medicine / Physician</option>
             <option value="Cardiology">Cardiology</option>
@@ -132,39 +141,41 @@ export default function DoctorSummaryPage() {
         </div>
 
         <div className="md:col-span-2">
-          <label className="block text-xs font-semibold text-navy-800 mb-1.5">
+          <label className="block text-xs font-bold uppercase tracking-wider text-navy-800 mb-1.5">
             Visit Notes (included in report header)
           </label>
-          <input
+          <Input
             type="text"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="e.g. Routine 3-month follow-up, reviewing lipid numbers and blood sugar"
-            className="w-full text-xs rounded-xl border border-slate-200 p-2.5 text-navy-900 placeholder:text-slate-400 focus:ring-2 focus:ring-health-500/20 focus:border-health-500"
+            className="text-xs"
           />
         </div>
-      </div>
+      </Card>
 
       {/* Active vs Previous Medications & Recent Labs Grid */}
       {loadingPreview ? (
-        <div className="py-16 text-center text-sm text-navy-500 flex flex-col items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-health-500 border-t-transparent animate-spin mb-3" />
-          Compiling clinical summary preview...
-        </div>
+        <Card>
+          <CardContent className="py-16 text-center text-sm text-navy-500 flex flex-col items-center justify-center">
+            <div className="w-8 h-8 rounded-full border-2 border-health-600 border-t-transparent animate-spin mb-3" />
+            Compiling clinical summary preview...
+          </CardContent>
+        </Card>
       ) : preview && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Column 1: Medications (Active vs Previous) */}
           <div className="space-y-6">
             {/* Active Medications */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+            <Card className="p-5 space-y-3 shadow-sm">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 className="text-sm font-bold text-navy-950 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-navy-950 flex items-center gap-2 font-display">
                   <Pill className="w-4 h-4 text-emerald-600" />
                   {t('summary_active_meds')} ({preview.active_medications?.length || 0})
-                </h3>
-                <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                </h2>
+                <Badge variant="verified" className="text-[10px]">
                   Last 30 Days
-                </span>
+                </Badge>
               </div>
 
               {preview.active_medications?.length === 0 ? (
@@ -172,31 +183,31 @@ export default function DoctorSummaryPage() {
               ) : (
                 <div className="space-y-2">
                   {preview.active_medications.map((m: any, idx: number) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs hover:border-slate-200 transition-colors">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-navy-950">{m.name}</span>
-                        <span className="font-semibold text-teal-700">{m.dosage}</span>
+                        <span className="font-semibold text-teal-700 font-mono">{m.dosage}</span>
                       </div>
                       <p className="text-slate-500 text-[11px] mt-0.5">
-                        Frequency: <span className="text-navy-800">{m.frequency}</span> • Dr. {m.prescribed_by}
+                        Frequency: <span className="text-navy-800 font-medium">{m.frequency}</span> • Dr. {m.prescribed_by}
                       </p>
                       <p className="text-[10px] text-slate-400 mt-1">Source: {m.source_doc}</p>
                     </div>
                   ))}
                 </div>
               )}
-            </div>
+            </Card>
 
             {/* Previous Medications */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+            <Card className="p-5 space-y-3 shadow-sm">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 className="text-sm font-bold text-navy-950 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-navy-950 flex items-center gap-2 font-display">
                   <Pill className="w-4 h-4 text-slate-400" />
                   {t('summary_prev_meds')} ({preview.previous_medications?.length || 0})
-                </h3>
-                <span className="text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
+                </h2>
+                <Badge variant="default" className="text-[10px]">
                   Historical
-                </span>
+                </Badge>
               </div>
 
               {preview.previous_medications?.length === 0 ? (
@@ -207,7 +218,7 @@ export default function DoctorSummaryPage() {
                     <div key={idx} className="p-2.5 rounded-xl bg-slate-50/60 border border-slate-100 text-xs">
                       <div className="flex items-center justify-between text-slate-700">
                         <span className="font-semibold">{m.name}</span>
-                        <span className="text-slate-500">{m.dosage}</span>
+                        <span className="text-slate-500 font-mono text-[11px]">{m.dosage}</span>
                       </div>
                       <p className="text-[10px] text-slate-400 mt-0.5">
                         Prescribed {m.date} • {m.prescribed_by}
@@ -216,21 +227,21 @@ export default function DoctorSummaryPage() {
                   ))}
                 </div>
               )}
-            </div>
+            </Card>
           </div>
 
           {/* Column 2: Recent Labs & Document References */}
           <div className="space-y-6">
             {/* Recent Labs */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+            <Card className="p-5 space-y-3 shadow-sm">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 className="text-sm font-bold text-navy-950 flex items-center gap-2">
+                <h2 className="text-sm font-bold text-navy-950 flex items-center gap-2 font-display">
                   <BarChart3 className="w-4 h-4 text-health-600" />
                   {t('summary_recent_labs')} ({preview.recent_labs?.length || 0})
-                </h3>
-                <span className="text-[10px] font-semibold text-navy-600 bg-slate-100 px-2 py-0.5 rounded-full">
+                </h2>
+                <Badge variant="purple" className="text-[10px]">
                   Verified Lab Results
-                </span>
+                </Badge>
               </div>
 
               {preview.recent_labs?.length === 0 ? (
@@ -238,21 +249,21 @@ export default function DoctorSummaryPage() {
               ) : (
                 <div className="space-y-2">
                   {preview.recent_labs.map((l: any, idx: number) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs hover:border-slate-200 transition-colors">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-navy-950">{l.test_name}</span>
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-navy-900">
+                          <span className="font-bold text-navy-900 font-mono">
                             {l.value} <span className="font-normal text-slate-500">{l.unit}</span>
                           </span>
                           {l.flag && l.flag !== 'NORMAL' ? (
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">
+                            <Badge variant="high" className="text-[10px]">
                               {l.flag}
-                            </span>
+                            </Badge>
                           ) : (
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                            <Badge variant="normal" className="text-[10px]">
                               NORMAL
-                            </span>
+                            </Badge>
                           )}
                         </div>
                       </div>
@@ -263,54 +274,56 @@ export default function DoctorSummaryPage() {
                   ))}
                 </div>
               )}
-            </div>
+            </Card>
 
             {/* Document References */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-navy-950 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <Card className="p-5 space-y-3 shadow-sm">
+              <h2 className="text-sm font-bold text-navy-950 flex items-center gap-2 border-b border-slate-100 pb-3 font-display">
                 <FileText className="w-4 h-4 text-teal-600" />
                 Indexed Source Documents ({preview.document_references?.length || 0})
-              </h3>
+              </h2>
               <div className="space-y-1.5">
                 {preview.document_references?.map((d: any, idx: number) => (
-                  <div key={idx} className="flex items-center justify-between text-xs p-2 rounded-lg bg-slate-50">
+                  <div key={idx} className="flex items-center justify-between text-xs p-2.5 rounded-xl bg-slate-50">
                     <span className="font-medium text-navy-900 truncate max-w-[220px]">{d.filename}</span>
-                    <span className="text-[10px] text-slate-500 uppercase">{d.type} • {d.date}</span>
+                    <span className="text-[10px] text-slate-500 uppercase font-mono">{d.type} • {d.date}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </Card>
           </div>
         </div>
       )}
 
       {/* PART 2: Pre-Visit Doctor Briefing & Suggested Questions */}
-      <div className="bg-gradient-to-tr from-navy-900 to-navy-950 text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
+      <div className="bg-gradient-to-tr from-navy-950 via-navy-900 to-navy-950 text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl border border-navy-800">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <span className="text-teal-400 font-semibold text-xs uppercase tracking-wider flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4" />
-              Patient Empowerment Tool
-            </span>
-            <h2 className="text-xl font-bold mt-1 text-white">{t('summary_briefing_heading')}</h2>
-            <p className="text-xs text-slate-300 mt-1 max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-semibold mb-2">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Patient Empowerment Tool</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white font-display">{t('summary_briefing_heading')}</h2>
+            <p className="text-xs text-slate-300 mt-1 max-w-xl font-sans">
               Synthesize your medical history and generate tailored questions to ask during your upcoming consultation.
             </p>
           </div>
 
-          <button
+          <Button
+            variant="secondary"
+            size="md"
             onClick={handleGenerateBriefing}
-            disabled={generatingBriefing}
-            className="px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold text-xs shadow-md transition-all flex items-center gap-2"
+            loading={generatingBriefing}
+            className="bg-teal-500 hover:bg-teal-400 text-navy-950 font-bold border-0"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 mr-1.5" />
             {generatingBriefing ? 'Generating Briefing...' : t('btn_generate_briefing')}
-          </button>
+          </Button>
         </div>
 
         {/* Primary Concern Input */}
-        <div>
-          <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+        <div className="space-y-1.5">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-300">
             {t('summary_concern_label')}
           </label>
           <input
@@ -324,8 +337,8 @@ export default function DoctorSummaryPage() {
 
         {/* Generated Briefing Questions */}
         {briefing && (
-          <div className="space-y-4 pt-4 border-t border-white/10">
-            <h3 className="text-sm font-bold text-teal-300 flex items-center gap-2">
+          <div className="space-y-4 pt-4 border-t border-white/10 animate-in fade-in">
+            <h3 className="text-sm font-bold text-teal-300 flex items-center gap-2 font-display">
               <HelpCircle className="w-4 h-4" />
               Suggested Questions for Your Physician
             </h3>
@@ -335,10 +348,10 @@ export default function DoctorSummaryPage() {
                   key={idx}
                   className="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-start justify-between gap-3 text-xs hover:bg-white/10 transition-colors"
                 >
-                  <p className="text-slate-100 leading-relaxed">{q}</p>
+                  <p className="text-slate-100 leading-relaxed font-sans">{q}</p>
                   <button
                     onClick={() => copyToClipboard(q, idx)}
-                    className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 shrink-0"
+                    className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 shrink-0 cursor-pointer"
                     title="Copy question"
                   >
                     {copiedQuestionIdx === idx ? (

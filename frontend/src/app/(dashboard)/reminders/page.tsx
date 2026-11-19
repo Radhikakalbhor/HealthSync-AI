@@ -35,6 +35,10 @@ import {
   AdherenceStats,
   FrequencyType,
 } from '@/types';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function RemindersPage() {
   const [todayReminders, setTodayReminders] = useState<MedicationReminder[]>([]);
@@ -155,34 +159,40 @@ export default function RemindersPage() {
   };
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto pb-12">
+    <div className="space-y-8 max-w-6xl mx-auto pb-12 animate-in fade-in duration-300">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-navy-950">Smart Medication Reminders</h2>
-          <p className="text-xs sm:text-sm text-navy-500 mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight font-display">
+            Smart Medication Reminders
+          </h1>
+          <p className="text-xs sm:text-sm text-navy-500 mt-1 font-sans">
             Prescription-synchronized dose tracking, daily schedules, and weekly adherence
           </p>
         </div>
 
         <div className="flex items-center gap-2.5">
           {notificationPermission !== 'granted' && (
-            <button
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleRequestNotifications}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-teal-800 bg-teal-50 hover:bg-teal-100 border border-teal-200 rounded-xl transition-colors"
+              className="text-teal-800 bg-teal-50 hover:bg-teal-100 border-teal-200"
             >
-              <Bell className="w-3.5 h-3.5 text-teal-600" />
+              <Bell className="w-3.5 h-3.5 mr-1 text-teal-600" />
               Enable Browser Alerts
-            </button>
+            </Button>
           )}
 
-          <button
+          <Button
+            variant="primary"
+            size="md"
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-health-600 hover:bg-health-700 text-white text-xs font-semibold shadow-sm transition-all"
+            className="shadow-md shadow-health-600/20"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-4 h-4 mr-1.5" />
             Add Reminder Schedule
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -191,37 +201,44 @@ export default function RemindersPage() {
         {/* Left 2 Cols: Today's Medication Doses */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-navy-900 flex items-center gap-2">
+            <h2 className="text-base font-bold text-navy-900 flex items-center gap-2 font-display">
               <Calendar className="w-4 h-4 text-health-600" />
               <span>Today&apos;s Dosage Schedule</span>
-            </h3>
-            <span className="text-xs text-navy-400 font-medium">
+            </h2>
+            <span className="text-xs text-navy-400 font-semibold font-mono">
               {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
             </span>
           </div>
 
           {loading ? (
-            <div className="p-12 text-center bg-white rounded-2xl border border-slate-200">
-              <div className="w-7 h-7 border-2 border-health-600 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-              <p className="text-xs text-navy-500">Checking scheduled doses...</p>
-            </div>
+            <Card>
+              <CardContent className="p-12 text-center">
+                <div className="w-7 h-7 border-2 border-health-600 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+                <p className="text-xs text-navy-500">Checking scheduled doses...</p>
+              </CardContent>
+            </Card>
           ) : todayReminders.length === 0 ? (
-            <div className="p-10 text-center bg-white rounded-2xl border border-slate-200 shadow-sm">
-              <div className="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-3">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-              <h4 className="font-bold text-base text-navy-900">No pending doses for today</h4>
-              <p className="text-xs text-navy-500 mt-1 max-w-sm mx-auto">
-                All medications are logged, or no active confirmed reminder schedules are active.
-              </p>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-health-600 rounded-xl"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                Schedule Medication
-              </button>
-            </div>
+            <Card className="border-dashed">
+              <CardContent className="p-10 text-center">
+                <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-base text-navy-900 font-display">No pending doses for today</h3>
+                <p className="text-xs text-navy-500 mt-1 max-w-sm mx-auto">
+                  All medications are logged, or no active confirmed reminder schedules are active.
+                </p>
+                <div className="mt-4">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => setModalOpen(true)}
+                  >
+                    <Plus className="w-3.5 h-3.5 mr-1" />
+                    Schedule Medication
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           ) : (
             <div className="space-y-3">
               {todayReminders.map((dose) => {
@@ -233,14 +250,14 @@ export default function RemindersPage() {
                 const isSkipped = dose.status === 'SKIPPED';
 
                 return (
-                  <div
+                  <Card
                     key={dose.id}
-                    className={`p-4 sm:p-5 rounded-2xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                    className={`p-4 sm:p-5 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                       isTaken
                         ? 'bg-teal-50/50 border-teal-200'
                         : isSkipped
                         ? 'bg-slate-50 border-slate-200 opacity-70'
-                        : 'bg-white border-slate-200 shadow-card hover:shadow-card-hover'
+                        : 'hover:border-health-300'
                     }`}
                   >
                     <div className="flex items-start gap-3.5">
@@ -257,16 +274,16 @@ export default function RemindersPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="font-bold text-navy-900 text-sm">{dose.medication_name}</h4>
+                          <h3 className="font-bold text-navy-950 text-sm font-display">{dose.medication_name}</h3>
                           {dose.dosage && (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-navy-700">
+                            <Badge variant="default" className="text-[10px] font-mono">
                               {dose.dosage}
-                            </span>
+                            </Badge>
                           )}
                         </div>
                         <div className="flex items-center gap-2 text-xs text-navy-500 mt-1">
                           <Clock className="w-3.5 h-3.5 text-slate-400" />
-                          <span>Scheduled for {doseTime}</span>
+                          <span className="font-mono">Scheduled for {doseTime}</span>
                           {dose.instructions && (
                             <>
                               <span>•</span>
@@ -279,34 +296,38 @@ export default function RemindersPage() {
 
                     <div className="flex items-center gap-2 shrink-0">
                       {isTaken ? (
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-bold bg-teal-100 text-teal-800 border border-teal-300">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
+                        <Badge variant="verified" className="text-xs py-1 px-3 flex items-center gap-1 font-bold">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
                           Dose Taken
-                        </span>
+                        </Badge>
                       ) : isSkipped ? (
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-200 text-slate-700">
+                        <Badge variant="default" className="text-xs py-1 px-3 flex items-center gap-1 font-bold">
                           <XCircle className="w-3.5 h-3.5" />
                           Skipped
-                        </span>
+                        </Badge>
                       ) : (
                         <>
-                          <button
+                          <Button
+                            variant="primary"
+                            size="sm"
                             onClick={() => handleLogAction(dose.id, 'TAKEN')}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-teal-600 hover:bg-teal-700 shadow-xs transition-all"
+                            className="bg-teal-600 hover:bg-teal-500 text-xs"
                           >
-                            <CheckCircle2 className="w-3.5 h-3.5" />
+                            <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
                             Mark Taken
-                          </button>
-                          <button
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
                             onClick={() => handleLogAction(dose.id, 'SKIPPED')}
-                            className="px-3 py-1.5 rounded-xl text-xs font-semibold text-navy-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+                            className="text-xs text-slate-600 hover:bg-slate-100"
                           >
                             Skip
-                          </button>
+                          </Button>
                         </>
                       )}
                     </div>
-                  </div>
+                  </Card>
                 );
               })}
             </div>
@@ -315,16 +336,16 @@ export default function RemindersPage() {
 
         {/* Right 1 Col: Weekly Adherence Statistics & Chart */}
         <div className="space-y-6">
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-card">
+          <Card className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-purple-600" />
-                <h3 className="text-xs font-bold text-navy-900 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-navy-900 uppercase tracking-wider font-display">
                   Weekly Adherence
                 </h3>
               </div>
               <span
-                className={`text-sm font-extrabold ${
+                className={`text-sm font-extrabold font-mono ${
                   adherence?.adherence_percentage !== null &&
                   adherence?.adherence_percentage !== undefined &&
                   (adherence?.total_scheduled ?? 0) > 0
@@ -336,7 +357,7 @@ export default function RemindersPage() {
                 adherence?.adherence_percentage !== undefined &&
                 (adherence?.total_scheduled ?? 0) > 0
                   ? `${adherence.adherence_percentage}%`
-                  : 'No adherence data available'}
+                  : 'No adherence data'}
               </span>
             </div>
 
@@ -354,7 +375,7 @@ export default function RemindersPage() {
                     <YAxis tick={{ fontSize: 10, fill: '#64748b' }} allowDecimals={false} />
                     <Tooltip
                       formatter={(val: any, name: any) => [`${val} doses`, name === 'taken' ? 'Taken' : 'Scheduled']}
-                      contentStyle={{ backgroundColor: '#0f172a', borderRadius: '8px', color: '#fff', fontSize: '11px' }}
+                      contentStyle={{ backgroundColor: '#0f172a', borderRadius: '12px', color: '#fff', fontSize: '11px', border: '1px solid #1e293b' }}
                     />
                     <Bar dataKey="taken" fill="#0d9488" radius={[4, 4, 0, 0]} />
                   </BarChart>
@@ -362,28 +383,28 @@ export default function RemindersPage() {
               </div>
             ) : (
               <div className="h-36 flex items-center justify-center text-xs text-navy-400 text-center px-4">
-                No adherence data available yet. Adherence will calculate automatically as doses are scheduled and taken.
+                No adherence data available yet. Adherence calculates automatically as doses are scheduled.
               </div>
             )}
 
             <div className="grid grid-cols-3 gap-2 pt-4 border-t border-slate-100 text-center text-xs mt-3">
               <div>
-                <p className="font-bold text-navy-900">{adherence?.total_scheduled ?? 0}</p>
-                <p className="text-[10px] text-navy-400 uppercase mt-0.5">Scheduled</p>
+                <p className="font-bold text-navy-900 font-mono">{adherence?.total_scheduled ?? 0}</p>
+                <p className="text-[10px] text-navy-400 uppercase mt-0.5 font-bold">Scheduled</p>
               </div>
               <div>
-                <p className="font-bold text-teal-700">{adherence?.total_taken ?? 0}</p>
-                <p className="text-[10px] text-navy-400 uppercase mt-0.5">Taken</p>
+                <p className="font-bold text-teal-700 font-mono">{adherence?.total_taken ?? 0}</p>
+                <p className="text-[10px] text-navy-400 uppercase mt-0.5 font-bold">Taken</p>
               </div>
               <div>
-                <p className="font-bold text-amber-700">{adherence?.total_skipped ?? 0}</p>
-                <p className="text-[10px] text-navy-400 uppercase mt-0.5">Skipped</p>
+                <p className="font-bold text-amber-700 font-mono">{adherence?.total_skipped ?? 0}</p>
+                <p className="text-[10px] text-navy-400 uppercase mt-0.5 font-bold">Skipped</p>
               </div>
             </div>
-          </div>
+          </Card>
 
           {/* Safety Rule Card */}
-          <div className="p-4 rounded-xl bg-amber-50/90 border border-amber-200 text-xs text-amber-900">
+          <div className="p-4 rounded-2xl bg-amber-50/90 border border-amber-200/80 text-xs text-amber-900 shadow-sm">
             <div className="flex items-start gap-2.5">
               <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
               <p className="leading-relaxed">
@@ -396,23 +417,25 @@ export default function RemindersPage() {
       </div>
 
       {/* Active Schedules Management */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-card p-6 space-y-4">
+      <Card className="p-6 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
           <div>
-            <h3 className="text-sm font-bold text-navy-900 uppercase tracking-wider">
+            <h2 className="text-sm font-bold text-navy-900 uppercase tracking-wider font-display">
               Medication Schedule Roster ({schedules.length})
-            </h3>
+            </h2>
             <p className="text-xs text-navy-500">
               Active routines verified and confirmed by you
             </p>
           </div>
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-health-600 hover:text-health-700 bg-health-50 hover:bg-health-100 rounded-lg transition-colors"
+            className="text-health-600 hover:text-health-700 bg-health-50 hover:bg-health-100 text-xs"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5 mr-1" />
             Add Schedule
-          </button>
+          </Button>
         </div>
 
         {schedules.length === 0 ? (
@@ -428,20 +451,20 @@ export default function RemindersPage() {
               >
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-navy-900 text-sm">{s.medication_name}</span>
+                    <span className="font-bold text-navy-900 text-sm font-display">{s.medication_name}</span>
                     {s.dosage && (
-                      <span className="text-xs font-semibold text-teal-700">({s.dosage})</span>
+                      <span className="text-xs font-semibold text-teal-700 font-mono">({s.dosage})</span>
                     )}
                     {!s.is_active && (
-                      <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-slate-100 text-slate-500">
+                      <Badge variant="default" className="text-[10px]">
                         Inactive
-                      </span>
+                      </Badge>
                     )}
                   </div>
                   <div className="flex items-center gap-3 text-xs text-navy-500 mt-1">
                     <span className="capitalize">{s.frequency.replace(/_/g, ' ').toLowerCase()}</span>
                     <span>•</span>
-                    <span>Times: {s.reminder_times.join(', ')}</span>
+                    <span className="font-mono">Times: {s.reminder_times.join(', ')}</span>
                     {s.instructions && (
                       <>
                         <span>•</span>
@@ -454,7 +477,7 @@ export default function RemindersPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <button
                     onClick={() => handleToggleSchedule(s)}
-                    className={`p-1.5 rounded-lg transition-colors ${
+                    className={`p-2 rounded-xl transition-colors cursor-pointer ${
                       s.is_active
                         ? 'text-teal-700 hover:bg-teal-50'
                         : 'text-slate-400 hover:bg-slate-100'
@@ -465,7 +488,7 @@ export default function RemindersPage() {
                   </button>
                   <button
                     onClick={() => handleDeleteSchedule(s.id)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                    className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
                     title="Delete Schedule"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -475,54 +498,54 @@ export default function RemindersPage() {
             ))}
           </div>
         )}
-      </div>
+      </Card>
 
       {/* Add Schedule Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-navy-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="relative w-full max-w-md bg-white rounded-2xl shadow-xl p-6 space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
-            <h3 className="text-base font-bold text-navy-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+          <Card className="relative w-full max-w-md bg-white p-6 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+            <h3 className="text-base font-bold text-navy-900 border-b border-slate-100 pb-3 flex items-center gap-2 font-display">
               <Pill className="w-4 h-4 text-health-600" />
               <span>Create Medication Schedule</span>
             </h3>
 
             <form onSubmit={handleCreateSchedule} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold text-navy-700 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-navy-700 mb-1">
                   Medication Name *
                 </label>
-                <input
+                <Input
                   type="text"
                   required
                   value={medName}
                   onChange={(e) => setMedName(e.target.value)}
                   placeholder="e.g. Amoxicillin, Metformin"
-                  className="w-full text-xs border border-slate-300 rounded-xl px-3 py-2 text-navy-900 focus:outline-none focus:ring-2 focus:ring-health-500"
+                  className="text-xs"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-navy-700 mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-navy-700 mb-1">
                     Dosage
                   </label>
-                  <input
+                  <Input
                     type="text"
                     value={dosage}
                     onChange={(e) => setDosage(e.target.value)}
                     placeholder="e.g. 500mg, 10ml"
-                    className="w-full text-xs border border-slate-300 rounded-xl px-3 py-2 text-navy-900 focus:outline-none focus:ring-2 focus:ring-health-500"
+                    className="text-xs"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-navy-700 mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-navy-700 mb-1">
                     Frequency
                   </label>
                   <select
                     value={frequency}
                     onChange={(e) => setFrequency(e.target.value as FrequencyType)}
-                    className="w-full text-xs border border-slate-300 rounded-xl px-3 py-2 text-navy-900 bg-white focus:outline-none focus:ring-2 focus:ring-health-500"
+                    className="w-full text-xs font-semibold border border-slate-300 rounded-xl px-3 py-2.5 text-navy-900 bg-white focus:outline-none focus:ring-2 focus:ring-health-500"
                   >
                     <option value="ONCE_DAILY">Once Daily</option>
                     <option value="TWICE_DAILY">Twice Daily</option>
@@ -533,63 +556,65 @@ export default function RemindersPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-navy-700 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-navy-700 mb-1">
                   Reminder Times (24h format, comma separated)
                 </label>
-                <input
+                <Input
                   type="text"
                   value={reminderTimes}
                   onChange={(e) => setReminderTimes(e.target.value)}
                   placeholder="08:00, 20:00"
-                  className="w-full text-xs border border-slate-300 rounded-xl px-3 py-2 text-navy-900 focus:outline-none focus:ring-2 focus:ring-health-500"
+                  className="text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-navy-700 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-navy-700 mb-1">
                   Instructions
                 </label>
-                <input
+                <Input
                   type="text"
                   value={instructions}
                   onChange={(e) => setInstructions(e.target.value)}
                   placeholder="e.g. Take with food"
-                  className="w-full text-xs border border-slate-300 rounded-xl px-3 py-2 text-navy-900 focus:outline-none focus:ring-2 focus:ring-health-500"
+                  className="text-xs"
                 />
               </div>
 
               {/* Explicit User Confirmation Requirement */}
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
                 <input
                   type="checkbox"
                   id="confirmDose"
                   checked={userConfirmed}
                   onChange={(e) => setUserConfirmed(e.target.checked)}
-                  className="mt-0.5 rounded border-slate-300 text-health-600 focus:ring-health-500"
+                  className="mt-0.5 rounded border-slate-300 text-health-600 focus:ring-health-500 cursor-pointer"
                 />
-                <label htmlFor="confirmDose" className="text-[11px] text-navy-700 cursor-pointer">
+                <label htmlFor="confirmDose" className="text-[11px] text-navy-700 cursor-pointer font-medium">
                   I confirm that this medication schedule accurately reflects my doctor&apos;s prescription.
                 </label>
               </div>
 
               <div className="pt-2 flex items-center justify-end gap-2.5">
-                <button
+                <Button
                   type="button"
+                  variant="outline"
+                  size="sm"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-semibold text-navy-700 hover:bg-slate-100 rounded-xl"
                 >
                   Cancel
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
-                  disabled={submitting}
-                  className="px-5 py-2 text-xs font-semibold text-white bg-health-600 hover:bg-health-700 rounded-xl shadow-sm"
+                  variant="primary"
+                  size="sm"
+                  loading={submitting}
                 >
-                  {submitting ? 'Saving...' : 'Save Schedule'}
-                </button>
+                  Save Schedule
+                </Button>
               </div>
             </form>
-          </div>
+          </Card>
         </div>
       )}
     </div>

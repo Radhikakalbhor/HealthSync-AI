@@ -18,6 +18,10 @@ import {
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import { ChatConversation, ChatMessage } from '@/types';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function AssistantPage() {
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
@@ -144,23 +148,25 @@ export default function AssistantPage() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-140px)] gap-6 max-w-7xl mx-auto pb-4">
+    <div className="flex h-[calc(100vh-140px)] gap-6 max-w-7xl mx-auto pb-4 animate-in fade-in duration-300">
       {/* Left Sidebar: Conversations History */}
-      <div className="hidden md:flex flex-col w-72 bg-white rounded-2xl border border-slate-200 shadow-card overflow-hidden shrink-0">
+      <Card className="hidden md:flex flex-col w-72 overflow-hidden shrink-0 shadow-sm">
         <div className="p-4 border-b border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-health-600" />
-            <h3 className="font-bold text-xs uppercase tracking-wider text-navy-900">
+            <h2 className="font-bold text-xs uppercase tracking-wider text-navy-900 font-display">
               Chat History
-            </h3>
+            </h2>
           </div>
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={handleCreateNewConversation}
-            className="p-1.5 rounded-lg bg-health-50 text-health-600 hover:bg-health-100 transition-colors"
+            className="w-8 h-8 rounded-lg bg-health-50 text-health-600 hover:bg-health-100"
             title="Start New Chat"
           >
             <Plus className="w-4 h-4" />
-          </button>
+          </Button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-2 space-y-1">
@@ -175,16 +181,16 @@ export default function AssistantPage() {
                 <div
                   key={c.id}
                   onClick={() => loadConversation(c.id)}
-                  className={`group px-3 py-2.5 rounded-xl text-xs font-medium cursor-pointer transition-all flex items-center justify-between ${
+                  className={`group px-3 py-2.5 rounded-xl text-xs font-semibold cursor-pointer transition-all flex items-center justify-between ${
                     isActive
-                      ? 'bg-health-50 text-health-700 font-semibold'
+                      ? 'bg-health-50 text-health-700 shadow-2xs'
                       : 'text-navy-700 hover:bg-slate-50'
                   }`}
                 >
                   <span className="truncate pr-2">{c.title}</span>
                   <button
                     onClick={(e) => handleDeleteConversation(c.id, e)}
-                    className="opacity-0 group-hover:opacity-100 p-1 rounded hover:text-rose-600 transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 p-1 rounded hover:text-rose-600 transition-opacity cursor-pointer"
                     title="Delete Chat"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -199,28 +205,28 @@ export default function AssistantPage() {
           <ShieldAlert className="w-3.5 h-3.5 text-amber-500 shrink-0" />
           <span>Patient-isolated RAG: Searches strictly your own records.</span>
         </div>
-      </div>
+      </Card>
 
       {/* Main Chat Area */}
-      <div className="flex-1 bg-white rounded-2xl border border-slate-200 shadow-card flex flex-col overflow-hidden">
+      <Card className="flex-1 flex flex-col overflow-hidden shadow-sm">
         {/* Chat Header */}
         <div className="px-6 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-health-600 to-teal-500 text-white flex items-center justify-center shadow-xs">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-health-600 to-teal-500 text-white flex items-center justify-center shadow-xs">
               <Bot className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-navy-950">AI Medical Records Assistant</h3>
+              <h1 className="font-bold text-sm text-navy-950 font-display">AI Medical Records Assistant</h1>
               <p className="text-[11px] text-navy-500">
                 Citation-backed responses from your uploaded health documents
               </p>
             </div>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 text-xs text-teal-800 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
-            <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+          <Badge variant="teal" className="hidden sm:flex items-center gap-1.5 text-xs">
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Zero-Hallucination Safe Mode</span>
-          </div>
+          </Badge>
         </div>
 
         {/* Message Thread */}
@@ -231,9 +237,9 @@ export default function AssistantPage() {
                 <Bot className="w-7 h-7" />
               </div>
               <div>
-                <h4 className="font-bold text-base text-navy-950">
+                <h3 className="font-bold text-base text-navy-950 font-display">
                   Ask anything about your health records
-                </h4>
+                </h3>
                 <p className="text-xs text-navy-500 mt-1 leading-relaxed">
                   The assistant retrieves facts directly from your verified prescriptions and lab reports, providing verifiable source document links for every claim.
                 </p>
@@ -248,7 +254,7 @@ export default function AssistantPage() {
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(prompt)}
-                    className="w-full text-left p-2.5 rounded-xl border border-slate-200 hover:border-health-400 bg-slate-50 hover:bg-health-50/50 text-xs font-medium text-navy-800 transition-all flex items-center justify-between"
+                    className="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-health-400 bg-slate-50 hover:bg-health-50/50 text-xs font-semibold text-navy-800 transition-all flex items-center justify-between cursor-pointer"
                   >
                     <span>{prompt}</span>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
@@ -293,7 +299,7 @@ export default function AssistantPage() {
                             <Link
                               key={cIdx}
                               href={`/documents/${c.document_id}/review`}
-                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-teal-200 text-teal-800 text-[11px] font-semibold hover:bg-teal-50 transition-colors shadow-2xs"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-teal-200 text-teal-800 text-[11px] font-semibold hover:bg-teal-50 transition-colors shadow-2xs"
                               title={c.snippet}
                             >
                               <FileText className="w-3 h-3 text-teal-600" />
@@ -347,28 +353,30 @@ export default function AssistantPage() {
             }}
             className="flex items-center gap-2.5"
           >
-            <input
+            <Input
               type="text"
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               placeholder="Ask about medications, lab results, doctors, or medical documents..."
               disabled={sending}
-              className="flex-1 py-2.5 px-4 text-xs sm:text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-health-500 text-navy-900 placeholder-slate-400"
+              className="flex-1 text-xs sm:text-sm"
             />
-            <button
+            <Button
               type="submit"
+              variant="primary"
+              size="md"
               disabled={!inputQuery.trim() || sending}
-              className="p-2.5 rounded-xl bg-health-600 hover:bg-health-700 text-white disabled:opacity-50 transition-all shadow-sm"
+              className="shadow-sm px-4"
               title="Send Message"
             >
               <Send className="w-4 h-4" />
-            </button>
+            </Button>
           </form>
           <div className="mt-2 text-center text-[10px] text-navy-400">
             HealthSync AI never provides clinical diagnoses or changes treatment regimens. Always consult your doctor.
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
