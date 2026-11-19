@@ -23,4 +23,12 @@
 - **Verification:** `npx tsc --noEmit` and `npm run build` both passed with 0 errors. Logged DEC-006.
 - **Next Screen in Step D:** Screen 2: Dashboard (`/dashboard` - stats, today's medication tracker, recent records).
 
+## Step D2: Patient Dashboard Redesign
+- **What was built:** Redesigned `/dashboard` using our `StatCard` KPI metrics, clinical-warm welcome banner, and real-looking data for demo user Alex Morgan.
+- **Feed & Tracker:** Re-architected Recent Medical Records with `StatusBadge` triage indicators and added Today's Medication Tracker with check states.
+- **Components:** Used `StatCard`, `EmptyState`, `StatusBadge`, `Button`, and `DisclaimerBanner`.
+- **Verification:** `npx tsc --noEmit` and `npm run build` both passed with 0 errors. Logged DEC-007.
+- **Next Screen in Step D:** Screen 3: Analytics (`/analytics` - Recharts biomarker trends with reference bands).
+
+
 

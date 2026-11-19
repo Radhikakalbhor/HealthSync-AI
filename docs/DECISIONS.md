@@ -51,4 +51,10 @@
 * **Rule:** Clinical verification requires co-locating the ground-truth document alongside extracted fields to eliminate hallucination risk. Mobile layouts must provide a seamless switcher without horizontal squishing.
 * **Decision:** Re-architected `/documents/[id]/review` into a balanced split-screen layout. Left Pane (6 cols) displays original scanned document with zoom/rotation/fullscreen controls, raw OCR text drawer, and SHA-256 integrity check. Right Pane (6 cols) provides calibrated confidence scoring, flagged field alerts, editable encounter metadata, medication tables, analyte rows with `StatusBadge`, clinician certification dialog, and persistent `DisclaimerBanner`. Added responsive tab toggle for mobile viewports.
 
+### DEC-007: Patient Dashboard Redesign & Adherence Layout
+* **Skill Cited:** `ui-ux-pro-max-skill` (StatCard KPI System) & `taste-skill` (Restrained Hero Pacing).
+* **Rule:** Triage metrics must immediately indicate status without cognitive overload; today's doses must be verifiable with one touch.
+* **Decision:** Applied `StatCard` across the 4 key clinical metrics (Total Documents, Prescriptions, Lab Reports, Review Needed). Designed the welcome banner with clinical-warm tokens. Connected interactive `StatusBadge` to recent documents feed and medication adherence list. Positioned `DisclaimerBanner` persistently. Verified with production build.
+
+
 
