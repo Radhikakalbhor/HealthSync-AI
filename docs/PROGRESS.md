@@ -15,3 +15,12 @@
 - **Decisions logged:** Logged DEC-005 in `/docs/DECISIONS.md`.
 - **Next Step:** Step D (Screen-by-Screen redesign, starting with Document Review split-screen hero).
 
+## Step D1: Document Review Split-Screen Hero Redesign
+- **What was built:** Completely redesigned `/documents/[id]/review` into a clinical split-screen hero experience.
+- **Left Column:** Original scanned document viewer (PDF/Image) with interactive zoom controls (50%–200%), rotate, full-window view, cryptographic SHA-256 integrity badge, and collapsible verbatim OCR audit drawer.
+- **Right Column:** Model verification confidence meter, attention tags for flagged fields, editable patient/doctor/facility/date inputs, extracted medication table, lab analyte table with `StatusBadge`, clinician verification dialog, and persistent `DisclaimerBanner`.
+- **Responsive design:** Added mobile tab toggle allowing smooth switching between document scan and extracted data on phones.
+- **Verification:** `npx tsc --noEmit` and `npm run build` both passed with 0 errors. Logged DEC-006.
+- **Next Screen in Step D:** Screen 2: Dashboard (`/dashboard` - stats, today's medication tracker, recent records).
+
+

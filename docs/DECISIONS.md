@@ -42,3 +42,13 @@
 * **Rule:** Convert all component primitives to strict Tailwind 3.4 syntax (no `@theme`, no `size-*`); integrate visible focus rings (`:focus-visible`), aria roles, 44px target touch areas, and error messaging.
 * **Decision:** Implemented pure React 19 + Tailwind 3.4 primitives (`Button`, `Card`, `Input`, `Select`, `Dialog`, `Sheet`, `Tabs`, `Table`, `Badge`, `Toast`, `Tooltip`, `Skeleton`, `Progress`, `Checkbox`, `Switch`, `BentoGrid`, `BackgroundBeams`). Added custom clinical components (`StatusBadge` with mandatory icon pairing, `StatCard`, `EmptyState`, `DocumentCard`, `AnalyteRow`, `DisclaimerBanner`). Created `/dev/components` showcasing all component states. Verified via successful production build.
 
+---
+
+## Step D Decisions (Screen-by-Screen Clinical Redesign)
+
+### DEC-006: Document Review Hero Split-Screen Architecture
+* **Skill Cited:** `taste-skill` (Real Product UI / No empty ground), `ui-ux-pro-max-skill` (Clinical Validation & Provenance), and Healthcare Non-Negotiables.
+* **Rule:** Clinical verification requires co-locating the ground-truth document alongside extracted fields to eliminate hallucination risk. Mobile layouts must provide a seamless switcher without horizontal squishing.
+* **Decision:** Re-architected `/documents/[id]/review` into a balanced split-screen layout. Left Pane (6 cols) displays original scanned document with zoom/rotation/fullscreen controls, raw OCR text drawer, and SHA-256 integrity check. Right Pane (6 cols) provides calibrated confidence scoring, flagged field alerts, editable encounter metadata, medication tables, analyte rows with `StatusBadge`, clinician certification dialog, and persistent `DisclaimerBanner`. Added responsive tab toggle for mobile viewports.
+
+
