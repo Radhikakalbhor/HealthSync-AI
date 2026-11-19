@@ -58,7 +58,11 @@ export function normalizeDocument(raw: any): MedicalDocument {
 class ApiClient {
   private getToken(): string | null {
     if (typeof window === 'undefined') return null;
-    return localStorage.getItem('healthsync_token');
+    const token = localStorage.getItem('healthsync_token');
+    if (!token || token === 'undefined' || token === 'null' || token.trim() === '') {
+      return null;
+    }
+    return token.trim();
   }
 
   public setToken(token: string): void {
@@ -94,6 +98,14 @@ class ApiClient {
     });
 
     if (!response.ok) {
+      if (response.status === 401 && !endpoint.includes('/auth/login') && !endpoint.includes('/auth/register')) {
+        if (typeof window !== 'undefined') {
+          const currentToken = localStorage.getItem('healthsync_token');
+          if (currentToken && currentToken !== 'demo-jwt-token-healthsync-ai') {
+            this.clearToken();
+          }
+        }
+      }
       let errorMessage = `Request failed with status ${response.status}`;
       try {
         const errorData = await response.json();

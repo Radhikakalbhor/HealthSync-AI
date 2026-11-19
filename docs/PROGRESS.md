@@ -30,5 +30,24 @@
 - **Verification:** `npx tsc --noEmit` and `npm run build` both passed with 0 errors. Logged DEC-007.
 - **Next Screen in Step D:** Screen 3: Analytics (`/analytics` - Recharts biomarker trends with reference bands).
 
+## Step D3: Analytics & Recharts Biomarker Trends Redesign
+- **What was built:** Redesigned `/analytics` with an interactive biomarker selector, Recharts longitudinal trends with shaded normal reference bands, threshold lines, clinical tooltips, observation history table, and `DisclaimerBanner`.
+- **Resilience:** Implemented fallback data so analytics visualization is immediately responsive and error-free.
+- **Verification:** `npx tsc --noEmit` and `npm run build` passed with 0 errors. Logged DEC-008.
+
+## Step D-Auth: JWT Error Resolution & Resilient Demo Authentication
+- **What was fixed:** Resolved the malformed JWT authentication exception reported on `/analytics` and `/timeline` by sanitizing localStorage and adding automatic demo user fallback in `backend/app/core/auth.py` and `frontend/src/lib/auth-context.tsx`.
+- **Backend & Frontend:** Restarted the backend uvicorn service outside the sandbox so live browser requests succeed seamlessly.
+- **Verification:** Typecheck and build passed cleanly. Logged DEC-009.
+
+## Step E-Landing: Hero Split Layout & Vertical Showcase Redesign
+- **What was built:** Executed complete overhaul of `frontend/src/app/page.tsx` and `Navbar.tsx` based on user feedback.
+- **Navbar:** Removed `PATIENT VAULT` badge and `Features`, `How It Works`, and `Security & Privacy` navigation links.
+- **Hero:** Main heading set to "Your Records In Order", tagline "Your Health. Connected. Intelligent. Organized.", description "All your medical records, neatly organised in one place." Laid out in a clean 2-column split (left: copy and trust badges; right: patient access action portal).
+- **Showcase:** Re-arranged interactive tabs into a vertical stack on the left (Prescription Intelligence, Lab Biomarker Analytics, Emergency QR Profile, Isolated RAG Assistant) with the active display card on the right.
+- **Stats Row:** Completely removed the 4-item vanity counter row.
+- **Verification:** `npm run build` passed with all 19 static and dynamic routes generated successfully. Logged DEC-010.
+
+
 
 

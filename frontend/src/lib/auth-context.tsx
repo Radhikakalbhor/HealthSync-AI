@@ -34,11 +34,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const storedToken = localStorage.getItem('healthsync_token');
       const storedUser = localStorage.getItem('healthsync_user');
 
-      if (storedToken) {
-        setToken(storedToken);
-        if (storedUser) {
+      // Sanitize malformed stored token (e.g., token without 3 segments)
+      if (storedToken && !storedToken.startsWith('demo-') && storedToken.split('.').length !== 3) {
+        localStorage.removeItem('healthsync_token');
+        localStorage.removeItem('healthsync_user');
+        api.clearToken();
+      }
+
+      const activeToken = localStorage.getItem('healthsync_token');
+      const activeUser = localStorage.getItem('healthsync_user');
+
+      if (activeToken) {
+        setToken(activeToken);
+        if (activeUser) {
           try {
-            setUser(JSON.parse(storedUser));
+            setUser(JSON.parse(activeUser));
           } catch {
             // parse error
           }
@@ -50,8 +60,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(profile);
           localStorage.setItem('healthsync_user', JSON.stringify(profile));
         } catch (err: any) {
-          // If token expired or invalid, clear unless demo token
-          if (storedToken !== 'demo-jwt-token-healthsync-ai') {
+          // If token expired or invalid, clear and fallback to demo if applicable
+          if (activeToken !== 'demo-jwt-token-healthsync-ai') {
             api.clearToken();
             setToken(null);
             setUser(null);

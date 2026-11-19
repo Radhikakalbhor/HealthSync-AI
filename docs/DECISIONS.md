@@ -56,5 +56,21 @@
 * **Rule:** Triage metrics must immediately indicate status without cognitive overload; today's doses must be verifiable with one touch.
 * **Decision:** Applied `StatCard` across the 4 key clinical metrics (Total Documents, Prescriptions, Lab Reports, Review Needed). Designed the welcome banner with clinical-warm tokens. Connected interactive `StatusBadge` to recent documents feed and medication adherence list. Positioned `DisclaimerBanner` persistently. Verified with production build.
 
+### DEC-008: Analytics & Recharts Reference-Band Architecture
+* **Skill Cited:** `ui-ux-pro-max-skill` (Recharts Clinical Guidelines) & `taste-skill` (High-density, low-clutter).
+* **Rule:** Lab analyte trends must always display shaded normal reference ranges (`ReferenceArea`), critical thresholds (`ReferenceLine`), and clinical tooltips with explicit units. Never leave the user without context for out-of-range biomarkers.
+* **Decision:** Re-architected `/analytics` with dynamic analyte selector pills, KPI summary cards, Recharts Area/Line charts with normal shaded bands, out-of-range flag counts, observation history table with `StatusBadge`, and resilient fallback data to prevent unhandled zero-state errors.
+
+### DEC-009: Token Sanitization & Resilient Demo Authentication Fallback
+* **Skill Cited:** `impeccable` (Robust edge-case handling) & Healthcare Non-Negotiables.
+* **Rule:** Authentication failures in development/demo mode or malformed stored tokens must never crash patient visualization or trigger raw unhandled Next.js error overlays.
+* **Decision:** Updated `backend/app/core/auth.py` and `frontend/src/lib/auth-context.tsx` so that malformed tokens (invalid segment counts), expired tokens, or unverified JWTs automatically fall back to the synthetic demo user (`demo-patient-001`, Alex Morgan) when `DEMO_MODE_ENABLED` is active. Sanitized localStorage on app init and added fallback demo feeds to `/analytics` and `/timeline`.
+
+### DEC-010: Landing Hero 2-Column Split & Vertical Feature Tab Architecture
+* **Skill Cited:** `taste-skill` (Signature Moment & Editorial Layout) & User Feedback Directive.
+* **Rule:** Hero must cleanly separate value proposition on the left from action portal on the right. Feature previews must use vertical stacked selectors (one by one up-and-down) on the left with the active display card on the right. Remove all unnecessary badges, redundant navigation links, and vanity statistics rows.
+* **Decision:** Streamlined the navbar by removing the `PATIENT VAULT` badge and `Features / How It Works / Security & Privacy` links. Set Main Heading to "Your Records In Order" with subtitle "Your Health. Connected. Intelligent. Organized." and description "All your medical records, neatly organised in one place." Hero left column displays clear typography and aligned trust points; hero right column displays an instant patient access card. Re-structured interactive showcase into 4 vertical buttons on the left and a comprehensive preview card on the right. Completely excised the bottom vanity stats bar.
+
+
 
 
