@@ -868,9 +868,6 @@ export default function DocumentReviewPage() {
               </CardContent>
             </Card>
           )}
-
-          {/* 5. Persistent Clinical Disclaimer */}
-          <DisclaimerBanner />
         </div>
       </div>
 

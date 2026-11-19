@@ -317,12 +317,8 @@ export default function DashboardPage() {
               </div>
             </CardContent>
           </Card>
-
         </div>
       </div>
-
-      {/* Persistent Medical Disclaimer */}
-      <DisclaimerBanner />
 
       <UploadModal
         isOpen={isUploadOpen}

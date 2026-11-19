@@ -453,9 +453,6 @@ export default function AnalyticsPage() {
               </div>
             </Card>
           )}
-
-          {/* Persistent Medical Disclaimer */}
-          <DisclaimerBanner />
         </div>
       )}
     </div>
