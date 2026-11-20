@@ -12,15 +12,22 @@ STRICT SAFETY GUARANTEES:
 - Guaranteed connection cleanup and cross-connection claim isolation via connection pooling.
 """
 
+from __future__ import annotations
+
 from contextlib import contextmanager
 import logging
 import threading
 from typing import Any, Dict, Generator, List, Optional
 import uuid
 
-import psycopg
-from psycopg.rows import dict_row
-from psycopg_pool import ConnectionPool
+try:
+    import psycopg
+    from psycopg.rows import dict_row
+    from psycopg_pool import ConnectionPool
+except (ImportError, Exception):
+    psycopg = None
+    dict_row = None
+    ConnectionPool = None
 
 from backend.app.core.config import settings
 from backend.app.core.exceptions import HealthSyncException

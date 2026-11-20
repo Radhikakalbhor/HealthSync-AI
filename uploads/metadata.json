@@ -656,5 +656,413 @@
     "user_reviewed_at": "2026-06-18T13:45:00Z",
     "created_at": "2026-06-18T13:45:00Z",
     "updated_at": "2026-06-18T13:45:00Z"
+  },
+  "ee3c3642-b2bb-4b94-9c9d-9302f3d15090": {
+    "document_id": "ee3c3642-b2bb-4b94-9c9d-9302f3d15090",
+    "user_id": "demo-patient-001",
+    "original_filename": "Sample_Prescription_Lisinopril.pdf",
+    "stored_filename": "ee3c3642-b2bb-4b94-9c9d-9302f3d15090.pdf",
+    "storage_path": "ee3c3642-b2bb-4b94-9c9d-9302f3d15090.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 1398,
+    "status": "extracted",
+    "document_type": "prescription",
+    "raw_text": "METRO HEALTH FAMILY MEDICINE\n742 Evergreen Terrace, Suite 300, Springfield\nPhone: (555) 019-2834 | Fax: (555) 019-2835\nLicense: MD-98214-SYN | DEA: BV9283741\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nDate: 2026-11-15\nPatient Name: Alex Morgan\nDate of Birth: 1988-04-12\nDiagnosis: Essential Hypertension & Allergic Rhinitis\nPRESCRIPTION:\n1. Lisinopril 10 mg Tablet\n   Sig: Take 1 tablet orally once daily in the morning with food for 30 days.\n   Dispense: 30 tablets | Refills: 3\n2. Cetirizine 10 mg Tablet\n   Sig: Take 1 tablet orally once daily at bedtime for 30 days.\n   Dispense: 30 tablets | Refills: 2\nPrescribing Physician: Dr. Marcus Vance, MD\nSignature: Dr. M. Vance, MD",
+    "extraction_result": {
+      "document_id": "ee3c3642-b2bb-4b94-9c9d-9302f3d15090",
+      "document_type": "prescription",
+      "raw_text": "METRO HEALTH FAMILY MEDICINE\n742 Evergreen Terrace, Suite 300, Springfield\nPhone: (555) 019-2834 | Fax: (555) 019-2835\nLicense: MD-98214-SYN | DEA: BV9283741\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nDate: 2026-11-15\nPatient Name: Alex Morgan\nDate of Birth: 1988-04-12\nDiagnosis: Essential Hypertension & Allergic Rhinitis\nPRESCRIPTION:\n1. Lisinopril 10 mg Tablet\n   Sig: Take 1 tablet orally once daily in the morning with food for 30 days.\n   Dispense: 30 tablets | Refills: 3\n2. Cetirizine 10 mg Tablet\n   Sig: Take 1 tablet orally once daily at bedtime for 30 days.\n   Dispense: 30 tablets | Refills: 2\nPrescribing Physician: Dr. Marcus Vance, MD\nSignature: Dr. M. Vance, MD",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 1.0,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 1.0,
+        "llm_confidence": null,
+        "overall_confidence": 0.9,
+        "confidence_method": "digital_pdf_stream",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "DATA",
+        "doctor_name": "Dr. Marcus Vance",
+        "clinic_or_hospital": null,
+        "prescription_date": "2026-11-15",
+        "medications": [
+          {
+            "name": "Lisinopril Tablet",
+            "dosage": "10 mg",
+            "frequency": "once daily",
+            "duration": "30 days",
+            "instructions": "orally in the morning"
+          },
+          {
+            "name": "Cetirizine Tablet",
+            "dosage": "10 mg",
+            "frequency": "once daily",
+            "duration": "30 days",
+            "instructions": "orally at bedtime"
+          }
+        ],
+        "diagnosis_text": "Essential Hypertension & Allergic Rhinitis"
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Extracted via rule-based parser. Vision LLM provider not configured.",
+      "review_notes": "All fields verified clearly.",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "error_message": null,
+    "shares": [],
+    "created_at": "2026-11-20T13:08:18.224357+00:00",
+    "updated_at": "2026-11-20T13:08:18.348055+00:00",
+    "requires_verification": false
+  },
+  "a33fc177-334b-472b-8a7a-f179d47dc720": {
+    "document_id": "a33fc177-334b-472b-8a7a-f179d47dc720",
+    "user_id": "demo-patient-001",
+    "original_filename": "Sample_Lab_Report_Lipid_Panel.pdf",
+    "stored_filename": "a33fc177-334b-472b-8a7a-f179d47dc720.pdf",
+    "storage_path": "a33fc177-334b-472b-8a7a-f179d47dc720.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 1671,
+    "status": "needs_review",
+    "document_type": "lab_report",
+    "raw_text": "QUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+    "extraction_result": {
+      "document_id": "a33fc177-334b-472b-8a7a-f179d47dc720",
+      "document_type": "lab_report",
+      "raw_text": "QUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 1.0,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 1.0,
+        "llm_confidence": null,
+        "overall_confidence": 0.9,
+        "confidence_method": "digital_pdf_stream",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "DATA",
+        "doctor_or_lab_name": "QUEST DIAGNOSTICS SYNTHETIC CLINIC",
+        "report_date": "1988-04-12",
+        "test_category": "Biochemistry",
+        "tests": [
+          {
+            "test_name": "Total Cholesterol",
+            "measured_value": "185",
+            "unit": "mg/dL",
+            "reference_range": "100 - 199",
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          },
+          {
+            "test_name": "HDL Cholesterol",
+            "measured_value": "54",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          },
+          {
+            "test_name": "LDL Cholesterol (Calculated)",
+            "measured_value": "112",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": true
+          },
+          {
+            "test_name": "Triglycerides",
+            "measured_value": "95",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          },
+          {
+            "test_name": "Fasting Plasma Glucose",
+            "measured_value": "88",
+            "unit": "mg/dL",
+            "reference_range": "70 - 99",
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [
+        "test[2].abnormal_value"
+      ],
+      "requires_verification": true,
+      "extraction_notes": "Extracted via rule-based parser. Vision LLM provider not configured.",
+      "review_notes": "Please verify flagged fields.",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "error_message": null,
+    "shares": [],
+    "created_at": "2026-11-20T13:13:18.605556+00:00",
+    "updated_at": "2026-11-20T13:13:18.734002+00:00",
+    "requires_verification": true
+  },
+  "89d777be-44cb-4671-89ce-e711a38cbf84": {
+    "document_id": "89d777be-44cb-4671-89ce-e711a38cbf84",
+    "user_id": "demo-patient-001",
+    "original_filename": "Sample_Lab_Report_Lipid_Panel.pdf",
+    "stored_filename": "89d777be-44cb-4671-89ce-e711a38cbf84.pdf",
+    "storage_path": "89d777be-44cb-4671-89ce-e711a38cbf84.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 1671,
+    "status": "needs_review",
+    "document_type": "lab_report",
+    "raw_text": "QUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+    "extraction_result": {
+      "document_id": "89d777be-44cb-4671-89ce-e711a38cbf84",
+      "document_type": "lab_report",
+      "raw_text": "QUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 1.0,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 1.0,
+        "llm_confidence": null,
+        "overall_confidence": 0.9,
+        "confidence_method": "digital_pdf_stream",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "DATA",
+        "doctor_or_lab_name": "QUEST DIAGNOSTICS SYNTHETIC CLINIC",
+        "report_date": "1988-04-12",
+        "test_category": "Biochemistry",
+        "tests": [
+          {
+            "test_name": "Total Cholesterol",
+            "measured_value": "185",
+            "unit": "mg/dL",
+            "reference_range": "100 - 199",
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          },
+          {
+            "test_name": "HDL Cholesterol",
+            "measured_value": "54",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          },
+          {
+            "test_name": "LDL Cholesterol (Calculated)",
+            "measured_value": "112",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": true
+          },
+          {
+            "test_name": "Triglycerides",
+            "measured_value": "95",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          },
+          {
+            "test_name": "Fasting Plasma Glucose",
+            "measured_value": "88",
+            "unit": "mg/dL",
+            "reference_range": "70 - 99",
+            "test_category": "Biochemistry",
+            "is_abnormal": null
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [
+        "test[2].abnormal_value"
+      ],
+      "requires_verification": true,
+      "extraction_notes": "Extracted via rule-based parser. Vision LLM provider not configured.",
+      "review_notes": "Please verify flagged fields.",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "error_message": null,
+    "shares": [],
+    "created_at": "2026-11-20T13:13:34.491490+00:00",
+    "updated_at": "2026-11-20T13:13:34.601856+00:00",
+    "requires_verification": true
+  },
+  "bac668c6-e469-44d1-8c34-597b99ebdcf8": {
+    "document_id": "bac668c6-e469-44d1-8c34-597b99ebdcf8",
+    "user_id": "demo-patient-001",
+    "original_filename": "Sample_Prescription_Lisinopril.pdf",
+    "stored_filename": "bac668c6-e469-44d1-8c34-597b99ebdcf8.pdf",
+    "storage_path": "bac668c6-e469-44d1-8c34-597b99ebdcf8.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 1398,
+    "status": "extracted",
+    "document_type": "prescription",
+    "raw_text": "METRO HEALTH FAMILY MEDICINE\n742 Evergreen Terrace, Suite 300, Springfield\nPhone: (555) 019-2834 | Fax: (555) 019-2835\nLicense: MD-98214-SYN | DEA: BV9283741\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nDate: 2026-11-15\nPatient Name: Alex Morgan\nDate of Birth: 1988-04-12\nDiagnosis: Essential Hypertension & Allergic Rhinitis\nPRESCRIPTION:\n1. Lisinopril 10 mg Tablet\n   Sig: Take 1 tablet orally once daily in the morning with food for 30 days.\n   Dispense: 30 tablets | Refills: 3\n2. Cetirizine 10 mg Tablet\n   Sig: Take 1 tablet orally once daily at bedtime for 30 days.\n   Dispense: 30 tablets | Refills: 2\nPrescribing Physician: Dr. Marcus Vance, MD\nSignature: Dr. M. Vance, MD",
+    "extraction_result": {
+      "document_id": "bac668c6-e469-44d1-8c34-597b99ebdcf8",
+      "document_type": "prescription",
+      "raw_text": "METRO HEALTH FAMILY MEDICINE\n742 Evergreen Terrace, Suite 300, Springfield\nPhone: (555) 019-2834 | Fax: (555) 019-2835\nLicense: MD-98214-SYN | DEA: BV9283741\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nDate: 2026-11-15\nPatient Name: Alex Morgan\nDate of Birth: 1988-04-12\nDiagnosis: Essential Hypertension & Allergic Rhinitis\nPRESCRIPTION:\n1. Lisinopril 10 mg Tablet\n   Sig: Take 1 tablet orally once daily in the morning with food for 30 days.\n   Dispense: 30 tablets | Refills: 3\n2. Cetirizine 10 mg Tablet\n   Sig: Take 1 tablet orally once daily at bedtime for 30 days.\n   Dispense: 30 tablets | Refills: 2\nPrescribing Physician: Dr. Marcus Vance, MD\nSignature: Dr. M. Vance, MD",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 1.0,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 1.0,
+        "llm_confidence": null,
+        "overall_confidence": 0.9,
+        "confidence_method": "digital_pdf_stream",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "DATA",
+        "doctor_name": "Dr. Marcus Vance",
+        "clinic_name": null,
+        "prescription_date": "2026-11-15",
+        "medications": [
+          {
+            "name": "Lisinopril Tablet",
+            "dosage": "10 mg",
+            "frequency": "once daily",
+            "duration": "30 days",
+            "instructions": "orally in the morning"
+          },
+          {
+            "name": "Cetirizine Tablet",
+            "dosage": "10 mg",
+            "frequency": "once daily",
+            "duration": "30 days",
+            "instructions": "orally at bedtime"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [],
+      "requires_verification": false,
+      "extraction_notes": "Extracted via rule-based parser. Vision LLM provider not configured.",
+      "review_notes": "All fields verified clearly.",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "error_message": null,
+    "shares": [],
+    "created_at": "2026-11-20T13:30:55.852879+00:00",
+    "updated_at": "2026-11-20T13:31:08.156848+00:00",
+    "requires_verification": false,
+    "needs_human_review": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-11-20T13:31:08.156848+00:00",
+    "review_notes": "User verified extracted information"
+  },
+  "5ce9a48b-f2a5-4263-818b-7727e2b470bc": {
+    "document_id": "5ce9a48b-f2a5-4263-818b-7727e2b470bc",
+    "user_id": "demo-patient-001",
+    "original_filename": "Sample_Lab_Report_Lipid_Panel.pdf",
+    "stored_filename": "5ce9a48b-f2a5-4263-818b-7727e2b470bc.pdf",
+    "storage_path": "5ce9a48b-f2a5-4263-818b-7727e2b470bc.pdf",
+    "mime_type": "application/pdf",
+    "file_size_bytes": 1671,
+    "status": "extracted",
+    "document_type": "lab_report",
+    "raw_text": "QUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+    "extraction_result": {
+      "document_id": "5ce9a48b-f2a5-4263-818b-7727e2b470bc",
+      "document_type": "lab_report",
+      "raw_text": "QUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+      "page_count": 1,
+      "ocr_engine": "pymupdf_native_text",
+      "confidence": 1.0,
+      "confidence_method": "digital_pdf_stream",
+      "confidence_info": {
+        "ocr_confidence": 1.0,
+        "llm_confidence": null,
+        "overall_confidence": 0.9,
+        "confidence_method": "digital_pdf_stream",
+        "is_calibrated": true
+      },
+      "structured_data": {
+        "patient_name": "DATA",
+        "doctor_name": null,
+        "clinic_name": null,
+        "prescription_date": "1988-04-12",
+        "results": [
+          {
+            "test_name": "Total Cholesterol",
+            "measured_value": "185",
+            "unit": "mg/dL",
+            "reference_range": "100 - 199",
+            "test_category": "Biochemistry",
+            "is_abnormal": null,
+            "value": "185",
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "HDL Cholesterol",
+            "measured_value": "54",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": null,
+            "value": "54",
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "LDL Cholesterol (Calculated)",
+            "measured_value": "112",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": true,
+            "value": "112",
+            "flag": "HIGH"
+          },
+          {
+            "test_name": "Triglycerides",
+            "measured_value": "95",
+            "unit": "mg/dL",
+            "reference_range": null,
+            "test_category": "Biochemistry",
+            "is_abnormal": null,
+            "value": "95",
+            "flag": "NORMAL"
+          },
+          {
+            "test_name": "Fasting Plasma Glucose",
+            "measured_value": "88",
+            "unit": "mg/dL",
+            "reference_range": "70 - 99",
+            "test_category": "Biochemistry",
+            "is_abnormal": null,
+            "value": "88",
+            "flag": "NORMAL"
+          }
+        ]
+      },
+      "llm_extracted": false,
+      "fields_requiring_verification": [
+        "test[2].abnormal_value"
+      ],
+      "requires_verification": true,
+      "extraction_notes": "Extracted via rule-based parser. Vision LLM provider not configured.",
+      "review_notes": "Please verify flagged fields.",
+      "disclaimer": "HealthSync AI organizes, retrieves, and explains information from existing medical records. It NEVER diagnoses diseases, recommends treatments, or prescribes medications. Always consult a licensed healthcare professional for clinical decisions."
+    },
+    "error_message": null,
+    "shares": [],
+    "created_at": "2026-11-20T13:31:26.684169+00:00",
+    "updated_at": "2026-11-20T13:31:33.424782+00:00",
+    "requires_verification": false,
+    "needs_human_review": false,
+    "user_reviewed": true,
+    "user_reviewed_at": "2026-11-20T13:31:33.424782+00:00",
+    "review_notes": "User verified extracted information"
   }
 }

@@ -29,19 +29,35 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
   className,
   ...props
 }) => {
+  const cat = (category || '').toLowerCase();
+  const isPrescription = cat.includes('prescription') || cat.includes('rx');
+  const isLab = cat.includes('lab') || cat.includes('blood') || cat.includes('test');
+  const isConsultation = cat.includes('consult') || cat.includes('doctor') || cat.includes('note');
+
   return (
     <Link href={href} className="block group">
       <div
         className={cn(
-          "p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs group-hover:shadow-card-hover group-hover:border-teal-300 transition-all duration-200 flex flex-col justify-between space-y-3 cursor-pointer",
+          "p-4 sm:p-5 rounded-2xl bg-white border border-[#d6e8f2] shadow-sm shadow-[#071D2B]/5 group-hover:shadow-md group-hover:border-[#13B8AE] transition-all duration-200 flex flex-col justify-between space-y-3 cursor-pointer",
           className
         )}
         {...props}
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-700 shrink-0 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-150">
-              <FileText className="w-5 h-5" />
+            <div
+              className={cn(
+                "w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105",
+                isPrescription
+                  ? "bg-blue-100/90 text-blue-700 border border-blue-200"
+                  : isLab
+                  ? "bg-purple-100/90 text-purple-700 border border-purple-200"
+                  : isConsultation
+                  ? "bg-emerald-100/90 text-emerald-700 border border-emerald-200"
+                  : "bg-teal-100/90 text-teal-700 border border-teal-200"
+              )}
+            >
+              <FileText className="w-5 h-5 stroke-[2.2]" />
             </div>
             <div>
               <h4 className="text-sm font-bold text-slate-950 font-display group-hover:text-teal-700 transition-colors line-clamp-1">
@@ -70,8 +86,20 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-teal-600 group-hover:translate-x-0.5 transition-all shrink-0 mt-1" />
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-          <Badge variant="secondary" size="sm">
+        <div className="flex items-center justify-between pt-2 border-t border-sky-100 text-xs">
+          <Badge
+            variant={isPrescription ? "secondary" : isLab ? "default" : "secondary"}
+            size="sm"
+            className={cn(
+              isPrescription
+                ? "bg-blue-50 text-blue-700 border-blue-200"
+                : isLab
+                ? "bg-purple-50 text-purple-700 border-purple-200"
+                : isConsultation
+                ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                : "bg-teal-50 text-teal-700 border-teal-200"
+            )}
+          >
             {category}
           </Badge>
 

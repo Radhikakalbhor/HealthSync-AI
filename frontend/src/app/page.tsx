@@ -2,39 +2,38 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FileText,
   Sparkles,
   ShieldCheck,
-  Clock,
   ArrowRight,
   Upload,
-  Database,
   Pill,
   BarChart3,
   Bot,
   Lock,
   CheckCircle2,
-  AlertTriangle,
-  Eye,
-  FileCheck,
-  Zap,
   Activity,
   HeartPulse,
   QrCode,
-  Users,
   ChevronDown,
   ChevronUp,
-  Star,
-  Layers,
+  FileSearch,
+  Stethoscope,
+  Database,
+  Share2,
+  Zap,
   Search,
-  ExternalLink,
-  ShieldAlert,
+  Clock,
+  FolderLock,
+  Calendar,
+  Layers,
+  Play,
 } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { useAuth } from '@/lib/auth-context';
-import { BackgroundBeams } from '@/components/ui/background-beams';
 
 export default function LandingPage() {
   const { user, loginDemo } = useAuth();
@@ -49,640 +48,821 @@ export default function LandingPage() {
     {
       question: 'How does HealthSync AI protect my personal medical data?',
       answer:
-        'HealthSync AI enforces defense-in-depth isolation via PostgreSQL Row-Level Security (RLS). Every document, medication schedule, and extracted analyte is cryptographically tagged with your user UUID. Storage buckets use private access policies with short-lived, authenticated signed URLs. Your medical data is never used to train public AI models.',
+        'HealthSync AI enforces defense-in-depth isolation via PostgreSQL Row-Level Security (RLS). Every document, medication schedule, and extracted analyte is cryptographically isolated to your authenticated account UUID. Private cloud storage buckets use short-lived, authenticated signed URLs. Your health data is never shared or used to train public LLMs.',
     },
     {
       question: 'Does HealthSync AI diagnose medical conditions or prescribe drugs?',
       answer:
-        'No. HealthSync AI is strictly a clinical document intelligence and personal health record management system. It extracts, organizes, and summarizes your records for personal visibility and clinician consultation. It NEVER diagnoses illnesses or provides medical advice. All extracted values highlight low-confidence items for human-in-the-loop verification.',
+        'No. HealthSync AI is strictly a personal medical record management, OCR extraction, and document organization platform. It NEVER diagnoses illnesses or provides medical advice. All extracted values highlight low-confidence items for patient review.',
     },
     {
-      question: 'How does Emergency QR Sharing work if I am offline or unconscious?',
+      question: 'How does Emergency QR Sharing work if I am offline?',
       answer:
-        'You can generate a secure, time-limited or permanent Emergency Medical Profile. Emergency responders or ER physicians can scan your QR code to instantly view life-critical details: blood type, severe drug allergies, active prescriptions, and emergency contacts—without requiring a login.',
+        'You can generate a secure, tokenized Emergency Medical Profile. Emergency paramedics or ER doctors can scan your QR code to instantly inspect critical data: blood type, severe allergies, active prescriptions, and emergency contacts without requiring a login.',
     },
     {
       question: 'What types of medical files can I upload?',
       answer:
-        'You can upload digital PDF files, scanned documents, and high-resolution smartphone photos (JPEG, PNG). HealthSync AI uses dual-engine text recognition (PyMuPDF for digital text and Tesseract OCR 5.4 for scans) combined with Google Gemini Multimodal Vision for handwritten clinical prescriptions.',
+        'You can upload digital PDF files, smartphone photos, and scanned records (JPEG, PNG). HealthSync AI uses digital text extraction and OCR combined with Google Gemini Vision for handwritten clinical prescriptions.',
     },
     {
       question: 'Can I track biomarker trends across different diagnostic laboratories?',
       answer:
-        'Yes. Whether your blood tests come from Quest, LabCorp, or local clinics, HealthSync AI normalizes test names, measurement units, and reference ranges into longitudinal trend charts (e.g., HbA1c, Fasting Glucose, Lipid Panels) with automated normal/high/critical status flags.',
+        'Yes. Whether your blood tests come from Quest, LabCorp, or hospital clinics, HealthSync AI normalizes test names, measurement units, and reference ranges into longitudinal trend charts (HbA1c, Fasting Glucose, Lipid Panels) with automated normal/high/critical status flags.',
     },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 selection:bg-health-100 selection:text-health-900">
-      <Navbar />
-
+    <div className="flex flex-col min-h-screen bg-[#EAF4F8] selection:bg-[#13B8AE]/30 selection:text-[#071D2B]">
       <main className="flex-1">
-        {/* HERO SECTION */}
-        <section className="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-24 bg-gradient-to-b from-health-50/70 via-white to-slate-50">
-          <div className="absolute inset-0 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
+        {/* ========================================================= */}
+        {/* 1. HERO SECTION: Matching Hero-poster.jpg Exactly        */}
+        {/* ========================================================= */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#071D2B] via-[#0B3D4A] to-[#041824] text-white pb-16 md:pb-20 border-b border-[#0e3b48]">
+          {/* Subtle medical cross symbols & grid background overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-20"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(54, 214, 232, 0.35) 1.5px, transparent 0)`,
+              backgroundSize: '36px 36px',
+            }}
+          />
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Top 2-Column Split: Headline + Actions */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
-              {/* Left Column (7 cols): Main Heading, Tagline, Description & Feature Points */}
-              <div className="lg:col-span-7 space-y-6">
-                <div>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-navy-950 tracking-tight leading-[1.08] font-display">
-                    Your Records In Order
-                  </h1>
-                  <p className="mt-3 text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-health-600 via-teal-600 to-health-700 font-display">
-                    Your Health. Connected. Intelligent. Organized.
-                  </p>
-                  <p className="mt-4 text-base sm:text-lg text-navy-600 leading-relaxed font-sans max-w-xl">
-                    All your medical records, neatly organised in one place.
-                  </p>
+          {/* Glowing Ambient Cyan / Teal Light Orbs */}
+          <div className="absolute top-10 right-1/4 w-[500px] h-[500px] rounded-full bg-[#13B8AE]/20 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-10 left-5 w-[400px] h-[400px] rounded-full bg-[#36D6E8]/15 blur-3xl pointer-events-none" />
+
+          {/* Transparent seamless navbar */}
+          <Navbar />
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+              {/* Left Column (6 cols): Content & CTAs from Hero-poster.jpg */}
+              <div className="lg:col-span-6 space-y-6 text-left z-10">
+                {/* Main Headline from previous design */}
+                <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl font-black text-white tracking-tight leading-[1.08] font-display">
+                  Your Health Records.
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#13B8AE] via-[#36D6E8] to-[#3289D8]">
+                    Connected, Secure
+                  </span>{' '}
+                  & Always Accessible.
+                </h1>
+
+                {/* Subtitle from previous design */}
+                <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans max-w-xl">
+                  One intelligent platform to organize your prescriptions, laboratory reports and medical history. Access your health information whenever you need it.
+                </p>
+
+                {/* Action Buttons from previous design */}
+                <div className="pt-2 flex flex-wrap items-center gap-4">
+                  <Link href="/register">
+                    <button className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#13B8AE] to-[#36D6E8] hover:from-[#0da59c] hover:to-[#22b5c6] text-[#071D2B] font-black text-sm shadow-lg shadow-teal-500/25 transition-all hover:-translate-y-0.5 cursor-pointer flex items-center gap-2">
+                      Get Started Free
+                      <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                    </button>
+                  </Link>
+
+                  <button
+                    onClick={loginDemo}
+                    className="px-6 py-3.5 rounded-xl bg-[#0B3D4A] hover:bg-[#13B8AE]/20 text-[#36D6E8] border border-[#13B8AE]/40 font-bold text-sm transition-all hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+                  >
+                    <Zap className="w-4 h-4 fill-[#36D6E8] animate-cardiac-pulse" />
+                    Explore Platform (Instant Demo)
+                  </button>
                 </div>
 
-                {/* Trust & Capability Points: one single line below medical records */}
-                <div className="pt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-navy-600 font-medium">
+                {/* Trust Points from previous design */}
+                <div className="pt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-300 font-medium">
                   <span className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
-                    Zero-Hallucination Extraction
+                    <CheckCircle2 className="w-4 h-4 text-[#13B8AE]" />
+                    Zero-Hallucination OCR
                   </span>
-                  <span className="text-slate-300 hidden sm:inline">•</span>
                   <span className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
-                    Calibrated Confidence Scoring
-                  </span>
-                  <span className="text-slate-300 hidden sm:inline">•</span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#13B8AE]" />
                     PostgreSQL Row-Level Security
                   </span>
-                  <span className="text-slate-300 hidden sm:inline">•</span>
                   <span className="inline-flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
-                    Emergency QR Medical Card
+                    <CheckCircle2 className="w-4 h-4 text-[#13B8AE]" />
+                    Offline Emergency QR Card
                   </span>
                 </div>
               </div>
 
-              {/* Right Column: Only two clean buttons without card or emoji */}
-              <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-row gap-3 items-center justify-start lg:justify-end pt-2">
-                <Link href="/register">
-                  <button className="px-6 py-3 rounded-xl bg-health-600 hover:bg-health-700 text-white font-bold text-sm shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer">
-                    Get Started Free
-                  </button>
-                </Link>
+              {/* Right Column (6 cols): Doctor Graphic with Floating Cards and Synchronized ECG Waveform */}
+              <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
+                <div className="relative w-full max-w-[620px] lg:scale-105 xl:scale-110 origin-center transition-transform duration-300">
+                  {/* Concentric glowing cyan tech ring with synchronized heartbeat pulse */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#13B8AE]/25 via-[#36D6E8]/20 to-transparent blur-3xl pointer-events-none animate-heartbeat-glow" />
+
+                  {/* Dedicated Animated ECG Waveform Ring behind floating cards */}
+                  <div className="absolute inset-x-[-10%] top-[45%] h-20 pointer-events-none z-0 opacity-80 overflow-hidden">
+                    <svg viewBox="0 0 700 80" preserveAspectRatio="none" className="w-full h-full fill-none">
+                      <path
+                        d="M 0 40 L 120 40 Q 135 32 150 40 L 165 40 L 175 46 L 190 8 L 205 60 L 215 40 L 235 40 Q 255 26 275 40 L 470 40 Q 485 32 500 40 L 515 40 L 525 46 L 540 8 L 555 60 L 565 40 L 585 40 Q 605 26 625 40 L 700 40"
+                        stroke="#36D6E8"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeDasharray="200 870"
+                        className="animate-ecg-doctor animate-ecg-glow"
+                      >
+                        <animate
+                          attributeName="stroke-dashoffset"
+                          from="1070"
+                          to="0"
+                          dur="2.4s"
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                    </svg>
+                  </div>
+
+                  {/* High Quality Doctor & Floating Medical Cards Graphic */}
+                  <img
+                    src="/hero-doctor-transparent.png"
+                    alt="HealthSync AI - Digital Health Records Platform"
+                    className="w-full h-auto object-contain drop-shadow-[0_12px_30px_rgba(7,29,43,0.85)] relative z-10 transition-transform duration-500 hover:scale-[1.03]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* ========================================================= */}
+            {/* POWERFUL FEATURES BAR: 6 Cards from Hero-poster.jpg       */}
+            {/* ========================================================= */}
+            <div className="mt-8 pt-4">
+              {/* Glowing Continuous ECG Heartbeat Waveform Monitor Line directly above Powerful Features */}
+              <div className="w-full h-16 sm:h-20 mb-4 relative overflow-hidden flex items-center justify-center">
+                <svg viewBox="0 0 1400 80" preserveAspectRatio="none" className="w-full h-full fill-none">
+                  <defs>
+                    <linearGradient id="ecgFeatureGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#13B8AE" stopOpacity="0" />
+                      <stop offset="25%" stopColor="#13B8AE" stopOpacity="0.4" />
+                      <stop offset="50%" stopColor="#36D6E8" stopOpacity="0.8" />
+                      <stop offset="85%" stopColor="#36D6E8" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+                    </linearGradient>
+                    <filter id="ecgFeatureGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  {/* Subtle static guide track */}
+                  <path
+                    d="M 0 40 L 100 40 Q 115 32 130 40 L 145 40 L 155 46 L 170 8 L 185 60 L 195 40 L 215 40 Q 235 26 255 40 L 450 40 Q 465 32 480 40 L 495 40 L 505 46 L 520 8 L 535 60 L 545 40 L 565 40 Q 585 26 605 40 L 800 40 Q 815 32 830 40 L 845 40 L 855 46 L 870 8 L 885 60 L 895 40 L 915 40 Q 935 26 955 40 L 1150 40 Q 1165 32 1180 40 L 1195 40 L 1205 46 L 1220 8 L 1235 60 L 1245 40 L 1265 40 Q 1285 26 1305 40 L 1400 40"
+                    stroke="#13B8AE"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.25"
+                  />
+                  {/* Continuous moving glowing pulse */}
+                  <path
+                    d="M 0 40 L 100 40 Q 115 32 130 40 L 145 40 L 155 46 L 170 8 L 185 60 L 195 40 L 215 40 Q 235 26 255 40 L 450 40 Q 465 32 480 40 L 495 40 L 505 46 L 520 8 L 535 60 L 545 40 L 565 40 Q 585 26 605 40 L 800 40 Q 815 32 830 40 L 845 40 L 855 46 L 870 8 L 885 60 L 895 40 L 915 40 Q 935 26 955 40 L 1150 40 Q 1165 32 1180 40 L 1195 40 L 1205 46 L 1220 8 L 1235 60 L 1245 40 L 1265 40 Q 1285 26 1305 40 L 1400 40"
+                    stroke="url(#ecgFeatureGrad)"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    filter="url(#ecgFeatureGlow)"
+                    strokeDasharray="260 1740"
+                    className="animate-ecg-travel animate-ecg-glow"
+                  >
+                    <animate
+                      attributeName="stroke-dashoffset"
+                      from="2000"
+                      to="0"
+                      dur="2.8s"
+                      repeatCount="indefinite"
+                    />
+                  </path>
+                </svg>
+              </div>
+
+              {/* Divider Heading */}
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-[1px] w-12 sm:w-28 bg-gradient-to-r from-transparent via-[#36D6E8]/60 to-[#13B8AE]" />
+                <h2 className="text-xs sm:text-sm font-extrabold text-[#36D6E8] tracking-widest uppercase">
+                  Powerful Features for Better Healthcare
+                </h2>
+                <div className="h-[1px] w-12 sm:w-28 bg-gradient-to-l from-transparent via-[#36D6E8]/60 to-[#13B8AE]" />
+              </div>
+
+              {/* 6 Feature Cards Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+                {/* 1. Upload Documents */}
+                <div className="p-4 rounded-2xl bg-[#0B3D4A]/60 border border-[#13B8AE]/30 hover:border-[#36D6E8] hover:bg-[#0B3D4A]/80 transition-all duration-200 text-center flex flex-col items-center justify-between group shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#13B8AE]/20 text-[#36D6E8] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Upload className="w-5 h-5 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white">Upload Documents</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Prescriptions • Reports</p>
+                </div>
+
+                {/* 2. OCR Extraction */}
+                <div className="p-4 rounded-2xl bg-[#0B3D4A]/60 border border-[#13B8AE]/30 hover:border-[#36D6E8] hover:bg-[#0B3D4A]/80 transition-all duration-200 text-center flex flex-col items-center justify-between group shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#13B8AE]/20 text-[#36D6E8] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <FileSearch className="w-5 h-5 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white">OCR Extraction</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Smart Data Capture</p>
+                </div>
+
+                {/* 3. Organize Records */}
+                <div className="p-4 rounded-2xl bg-[#0B3D4A]/60 border border-[#13B8AE]/30 hover:border-[#36D6E8] hover:bg-[#0B3D4A]/80 transition-all duration-200 text-center flex flex-col items-center justify-between group shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#13B8AE]/20 text-[#36D6E8] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Database className="w-5 h-5 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white">Organize Records</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">By Date & Category</p>
+                </div>
+
+                {/* 4. Search & Access */}
+                <div className="p-4 rounded-2xl bg-[#0B3D4A]/60 border border-[#13B8AE]/30 hover:border-[#36D6E8] hover:bg-[#0B3D4A]/80 transition-all duration-200 text-center flex flex-col items-center justify-between group shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#13B8AE]/20 text-[#36D6E8] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Search className="w-5 h-5 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white">Search & Access</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Find Records Easily</p>
+                </div>
+
+                {/* 5. Share Securely */}
+                <div className="p-4 rounded-2xl bg-[#0B3D4A]/60 border border-[#13B8AE]/30 hover:border-[#36D6E8] hover:bg-[#0B3D4A]/80 transition-all duration-200 text-center flex flex-col items-center justify-between group shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#13B8AE]/20 text-[#36D6E8] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Share2 className="w-5 h-5 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white">Share Securely</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">With Your Doctor</p>
+                </div>
+
+                {/* 6. Track Medical History */}
+                <div className="p-4 rounded-2xl bg-[#0B3D4A]/60 border border-[#13B8AE]/30 hover:border-[#36D6E8] hover:bg-[#0B3D4A]/80 transition-all duration-200 text-center flex flex-col items-center justify-between group shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#13B8AE]/20 text-[#36D6E8] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <Clock className="w-5 h-5 stroke-[2.5]" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white">Track History</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Chronological Timeline</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 2. OUR PLATFORM: Medical Innovation Overview             */}
+        {/* ========================================================= */}
+        <section id="platform" className="py-16 md:py-20 bg-[#EAF4F8] relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-black text-[#13B8AE] uppercase tracking-widest">
+                Our Platform
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#071D2B] mt-2 tracking-tight font-display">
+                Engineered for Modern Clinical Document Intelligence
+              </h2>
+              <p className="mt-3 text-base text-slate-600 leading-relaxed font-sans">
+                HealthSync AI bridges the gap between chaotic paper records and actionable medical insight using advanced OCR, calibrated confidence scoring, and strict patient data isolation.
+              </p>
+            </div>
+
+            {/* Platform Feature Triad Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+              <div className="p-7 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm shadow-[#071D2B]/5 hover:shadow-xl hover:shadow-[#13B8AE]/10 hover:border-[#13B8AE] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-13 h-13 rounded-2xl bg-[#071D2B] text-[#36D6E8] flex items-center justify-center mb-5 shadow-md shadow-[#071D2B]/20">
+                    <FileSearch className="w-6 h-6 stroke-[2]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#071D2B] font-display mb-2">Multimodal OCR & Vision</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Extracts structured clinical data from smartphone photos, lab PDFs, and doctor consultation notes with calibrated confidence scoring.
+                  </p>
+                </div>
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-[#13B8AE]">
+                  <span>Dual-Engine Processing</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+
+              <div className="p-7 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm shadow-[#071D2B]/5 hover:shadow-xl hover:shadow-[#13B8AE]/10 hover:border-[#13B8AE] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-13 h-13 rounded-2xl bg-[#0B3D4A] text-[#13B8AE] flex items-center justify-center mb-5 shadow-md shadow-[#0B3D4A]/20">
+                    <BarChart3 className="w-6 h-6 stroke-[2]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#071D2B] font-display mb-2">Biomarker Longitudinal Trends</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Charts biomarker history over time (Glucose, HbA1c, Cholesterol, Liver Enzymes) across multiple labs and consultation visits.
+                  </p>
+                </div>
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-[#13B8AE]">
+                  <span>Automated Range Flagging</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+
+              <div className="p-7 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm shadow-[#071D2B]/5 hover:shadow-xl hover:shadow-[#13B8AE]/10 hover:border-[#13B8AE] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-13 h-13 rounded-2xl bg-[#071D2B] text-rose-400 flex items-center justify-center mb-5 shadow-md shadow-[#071D2B]/20">
+                    <ShieldCheck className="w-6 h-6 stroke-[2]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#071D2B] font-display mb-2">Defense-in-Depth Vault</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    PostgreSQL Row-Level Security ensures that each patient record is cryptographically isolated to that specific patient UUID.
+                  </p>
+                </div>
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-[#13B8AE]">
+                  <span>Cryptographic Isolation</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 3. CORE CAPABILITIES: Interactive Showcase Grid          */}
+        {/* ========================================================= */}
+        <section id="features" className="py-16 md:py-20 bg-white border-y border-[#d6e8f2] relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-black text-[#13B8AE] uppercase tracking-widest">
+                Core Capabilities
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#071D2B] mt-2 tracking-tight font-display">
+                Everything You Need In One Personal Vault
+              </h2>
+              <p className="mt-3 text-base text-slate-600 leading-relaxed">
+                Click any category below to preview how clinical documents are organized and analyzed.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Selector Tabs (4 cols) */}
+              <div className="lg:col-span-4 flex flex-col gap-3">
                 <button
-                  onClick={loginDemo}
-                  className="px-6 py-3 rounded-xl bg-teal-50 hover:bg-teal-100/80 text-teal-900 border border-teal-200/90 font-bold text-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                  type="button"
+                  onClick={() => setActiveTab('prescription')}
+                  className={`p-4 rounded-2xl text-left border transition-all duration-200 cursor-pointer ${
+                    activeTab === 'prescription'
+                      ? 'bg-[#071D2B] text-white border-[#13B8AE] shadow-lg shadow-[#071D2B]/15 ring-1 ring-[#13B8AE]/40'
+                      : 'bg-white hover:bg-slate-50 text-slate-800 border-[#d6e8f2] hover:border-[#13B8AE]/60'
+                  }`}
                 >
-                  Instant Demo
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${activeTab === 'prescription' ? 'bg-[#13B8AE] text-[#071D2B]' : 'bg-blue-50 text-[#3289D8]'}`}>
+                      <Pill className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3
+                        style={{ color: activeTab === 'prescription' ? '#ffffff' : '#071D2B' }}
+                        className="font-bold text-sm font-display"
+                      >
+                        Prescription Management
+                      </h3>
+                      <p
+                        style={{ color: activeTab === 'prescription' ? '#94a3b8' : '#64748b' }}
+                        className="text-xs mt-0.5"
+                      >
+                        Medication tracking, dosages & schedule
+                      </p>
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('labs')}
+                  className={`p-4 rounded-2xl text-left border transition-all duration-200 cursor-pointer ${
+                    activeTab === 'labs'
+                      ? 'bg-[#071D2B] text-white border-[#13B8AE] shadow-lg shadow-[#071D2B]/15 ring-1 ring-[#13B8AE]/40'
+                      : 'bg-white hover:bg-slate-50 text-slate-800 border-[#d6e8f2] hover:border-[#13B8AE]/60'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${activeTab === 'labs' ? 'bg-[#13B8AE] text-[#071D2B]' : 'bg-purple-50 text-purple-700'}`}>
+                      <BarChart3 className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3
+                        style={{ color: activeTab === 'labs' ? '#ffffff' : '#071D2B' }}
+                        className="font-bold text-sm font-display"
+                      >
+                        Diagnostic Lab Reports
+                      </h3>
+                      <p
+                        style={{ color: activeTab === 'labs' ? '#94a3b8' : '#64748b' }}
+                        className="text-xs mt-0.5"
+                      >
+                        Analyte ranges & longitudinal flags
+                      </p>
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('emergency')}
+                  className={`p-4 rounded-2xl text-left border transition-all duration-200 cursor-pointer ${
+                    activeTab === 'emergency'
+                      ? 'bg-[#071D2B] text-white border-[#13B8AE] shadow-lg shadow-[#071D2B]/15 ring-1 ring-[#13B8AE]/40'
+                      : 'bg-white hover:bg-slate-50 text-slate-800 border-[#d6e8f2] hover:border-[#13B8AE]/60'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${activeTab === 'emergency' ? 'bg-[#13B8AE] text-[#071D2B]' : 'bg-rose-50 text-rose-600'}`}>
+                      <QrCode className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3
+                        style={{ color: activeTab === 'emergency' ? '#ffffff' : '#071D2B' }}
+                        className="font-bold text-sm font-display"
+                      >
+                        Emergency Health Card & QR
+                      </h3>
+                      <p
+                        style={{ color: activeTab === 'emergency' ? '#94a3b8' : '#64748b' }}
+                        className="text-xs mt-0.5"
+                      >
+                        Instant access for paramedics & ER
+                      </p>
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('assistant')}
+                  className={`p-4 rounded-2xl text-left border transition-all duration-200 cursor-pointer ${
+                    activeTab === 'assistant'
+                      ? 'bg-[#071D2B] text-white border-[#13B8AE] shadow-lg shadow-[#071D2B]/15 ring-1 ring-[#13B8AE]/40'
+                      : 'bg-white hover:bg-slate-50 text-slate-800 border-[#d6e8f2] hover:border-[#13B8AE]/60'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${activeTab === 'assistant' ? 'bg-[#13B8AE] text-[#071D2B]' : 'bg-teal-50 text-[#13B8AE]'}`}>
+                      <Bot className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3
+                        style={{ color: activeTab === 'assistant' ? '#ffffff' : '#071D2B' }}
+                        className="font-bold text-sm font-display"
+                      >
+                        Patient-Isolated Assistant
+                      </h3>
+                      <p
+                        style={{ color: activeTab === 'assistant' ? '#94a3b8' : '#64748b' }}
+                        className="text-xs mt-0.5"
+                      >
+                        Ask natural questions with direct citations
+                      </p>
+                    </div>
+                  </div>
                 </button>
               </div>
-            </div>
 
-            {/* INTERACTIVE SHOWCASE: Left Vertical Buttons, Right Display Box */}
-            <div className="mt-16 max-w-6xl mx-auto text-left">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                {/* Left Side (4 cols): Stacked Buttons One by One Up and Down */}
-                <div className="lg:col-span-4 flex flex-col gap-3">
-                  <button
-                    onClick={() => setActiveTab('prescription')}
-                    className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                      activeTab === 'prescription'
-                        ? 'bg-white border-health-500 shadow-md ring-2 ring-health-500/20 text-navy-950'
-                        : 'bg-white/80 hover:bg-white text-navy-700 border-slate-200/90 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                          activeTab === 'prescription'
-                            ? 'bg-health-600 text-white'
-                            : 'bg-health-50 text-health-600'
-                        }`}
-                      >
-                        <Pill className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-sm text-navy-950 font-display">
-                          Prescription Intelligence
-                        </h3>
-                        <p className="text-[11px] text-navy-500 mt-0.5">
-                          Medications, dosages & schedules
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveTab('labs')}
-                    className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                      activeTab === 'labs'
-                        ? 'bg-white border-teal-500 shadow-md ring-2 ring-teal-500/20 text-navy-950'
-                        : 'bg-white/80 hover:bg-white text-navy-700 border-slate-200/90 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                          activeTab === 'labs'
-                            ? 'bg-teal-600 text-white'
-                            : 'bg-teal-50 text-teal-600'
-                        }`}
-                      >
-                        <BarChart3 className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-sm text-navy-950 font-display">
-                          Lab Biomarker Analytics
-                        </h3>
-                        <p className="text-[11px] text-navy-500 mt-0.5">
-                          Analytes, trends & reference ranges
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveTab('emergency')}
-                    className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                      activeTab === 'emergency'
-                        ? 'bg-white border-rose-500 shadow-md ring-2 ring-rose-500/20 text-navy-950'
-                        : 'bg-white/80 hover:bg-white text-navy-700 border-slate-200/90 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                          activeTab === 'emergency'
-                            ? 'bg-rose-600 text-white'
-                            : 'bg-rose-50 text-rose-600'
-                        }`}
-                      >
-                        <QrCode className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-sm text-navy-950 font-display">
-                          Emergency QR Profile
-                        </h3>
-                        <p className="text-[11px] text-navy-500 mt-0.5">
-                          Offline blood group, allergies & ICE
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-
-                  <button
-                    onClick={() => setActiveTab('assistant')}
-                    className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                      activeTab === 'assistant'
-                        ? 'bg-white border-purple-500 shadow-md ring-2 ring-purple-500/20 text-navy-950'
-                        : 'bg-white/80 hover:bg-white text-navy-700 border-slate-200/90 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                          activeTab === 'assistant'
-                            ? 'bg-purple-600 text-white'
-                            : 'bg-purple-50 text-purple-600'
-                        }`}
-                      >
-                        <Bot className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-sm text-navy-950 font-display">
-                          Isolated RAG Assistant
-                        </h3>
-                        <p className="text-[11px] text-navy-500 mt-0.5">
-                          Citation-backed record answers
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-
-                {/* Right Side (8 cols): The Display Box */}
-                <div className="lg:col-span-8">
-                  <div className="rounded-3xl p-2 bg-gradient-to-b from-navy-200/50 to-navy-100/20 shadow-2xl border border-navy-200/60">
-                    <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-inner min-h-[360px] flex flex-col justify-center">
-                      {/* TAB 1: Prescription */}
-                      {activeTab === 'prescription' && (
-                        <div className="space-y-6">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-health-100 text-health-700 flex items-center justify-center font-bold text-sm shadow-xs">
-                                <Pill className="w-5 h-5" />
-                              </div>
-                              <div>
-                                <h3 className="font-bold text-navy-900 text-base">
-                                  Prescription Document: Rx_Amoxicillin_Nov2026.pdf
-                                </h3>
-                                <p className="text-xs text-navy-500">
-                                  Dr. Sarah Jenkins, MD • Clinical General Practice • Verified Nov 14, 2026
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-teal-50 text-teal-700 border border-teal-200 font-mono">
-                                Confidence: 98%
-                              </span>
-                              <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-health-50 text-health-700 border border-health-200">
-                                Verified Active
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                              <span className="text-[11px] font-bold text-navy-500 uppercase tracking-wider">Medication Name</span>
-                              <h4 className="text-base font-bold text-navy-950 mt-1">Amoxicillin</h4>
-                              <p className="text-xs text-navy-600 mt-1">Dosage: 500 mg • Oral Capsule</p>
-                              <div className="mt-3 inline-flex items-center gap-1 text-[11px] text-teal-700 bg-teal-50 px-2 py-0.5 rounded font-medium border border-teal-100">
-                                <CheckCircle2 className="w-3 h-3" /> Exact match verified
-                              </div>
-                            </div>
-
-                            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                              <span className="text-[11px] font-bold text-navy-500 uppercase tracking-wider">Schedule & Duration</span>
-                              <h4 className="text-base font-bold text-navy-950 mt-1">3 Times Daily</h4>
-                              <p className="text-xs text-navy-600 mt-1">Every 8 hours with meals • 10-day course</p>
-                              <div className="mt-3 inline-flex items-center gap-1 text-[11px] text-health-700 bg-health-50 px-2 py-0.5 rounded font-medium border border-health-100">
-                                <Clock className="w-3 h-3" /> 8:00 AM, 2:00 PM, 8:00 PM
-                              </div>
-                            </div>
-
-                            <div className="p-4 rounded-xl bg-teal-50/50 border border-teal-200/70">
-                              <span className="text-[11px] font-bold text-teal-800 uppercase tracking-wider">Adherence Tracker</span>
-                              <h4 className="text-base font-bold text-teal-950 mt-1">94% Adherence</h4>
-                              <p className="text-xs text-teal-700 mt-1">28 of 30 doses logged on schedule</p>
-                              <div className="mt-3 w-full bg-teal-200 rounded-full h-1.5">
-                                <div className="bg-teal-600 h-1.5 rounded-full w-[94%]" />
-                              </div>
-                            </div>
-                          </div>
+              {/* Right Display Card (8 cols) - Guaranteed high contrast on all text */}
+              <div className="lg:col-span-8 bg-[#EAF4F8] rounded-3xl p-6 sm:p-8 border border-[#d6e8f2] shadow-sm transition-all duration-300">
+                {activeTab === 'prescription' && (
+                  <div className="space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#d6e8f2] gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-blue-100 text-[#3289D8] flex items-center justify-center font-bold">
+                          <Pill className="w-5 h-5" />
                         </div>
-                      )}
-
-                      {/* TAB 2: Lab Reports */}
-                      {activeTab === 'labs' && (
-                        <div className="space-y-6">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-sm shadow-xs">
-                                <BarChart3 className="w-5 h-5" />
-                              </div>
-                              <div>
-                                <h3 className="font-bold text-navy-900 text-base">
-                                  Comprehensive Metabolic Panel (CMP)
-                                </h3>
-                                <p className="text-xs text-navy-500">
-                                  Quest Diagnostics • Specimen ID: #QD-99214 • Extracted automatically
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-50 text-amber-700 border border-amber-200 font-mono">
-                                1 Flagged Analyte
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="overflow-x-auto">
-                            <table className="w-full text-left text-sm text-navy-700">
-                              <thead className="text-xs uppercase bg-slate-50 text-navy-500 border-b border-slate-200">
-                                <tr>
-                                  <th className="py-2.5 px-3">Analyte / Test</th>
-                                  <th className="py-2.5 px-3">Observed Value</th>
-                                  <th className="py-2.5 px-3">Reference Range</th>
-                                  <th className="py-2.5 px-3">Clinical Status</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
-                                <tr>
-                                  <td className="py-2.5 px-3 font-semibold text-navy-950">Fasting Plasma Glucose</td>
-                                  <td className="py-2.5 px-3 font-bold text-navy-900 font-mono">92 mg/dL</td>
-                                  <td className="py-2.5 px-3 text-navy-500 font-mono">70 - 99 mg/dL</td>
-                                  <td className="py-2.5 px-3">
-                                    <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                      NORMAL
-                                    </span>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td className="py-2.5 px-3 font-semibold text-navy-950">HbA1c (Glycated Hemoglobin)</td>
-                                  <td className="py-2.5 px-3 font-bold text-navy-900 font-mono">5.5 %</td>
-                                  <td className="py-2.5 px-3 text-navy-500 font-mono">&lt; 5.7 %</td>
-                                  <td className="py-2.5 px-3">
-                                    <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                      OPTIMAL
-                                    </span>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td className="py-2.5 px-3 font-semibold text-navy-950">Total Serum Cholesterol</td>
-                                  <td className="py-2.5 px-3 font-bold text-amber-900 font-mono">208 mg/dL</td>
-                                  <td className="py-2.5 px-3 text-navy-500 font-mono">&lt; 200 mg/dL</td>
-                                  <td className="py-2.5 px-3">
-                                    <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
-                                      SLIGHTLY HIGH
-                                    </span>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
+                        <div>
+                          <h4 style={{ color: '#071D2B' }} className="font-bold text-base">
+                            Amoxicillin 500mg Prescription
+                          </h4>
+                          <p style={{ color: '#64748b' }} className="text-xs">
+                            Dr. Sarah Jenkins • Verified Oct 28, 2026
+                          </p>
                         </div>
-                      )}
+                      </div>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 text-[#13B8AE] border border-teal-200">
+                        98% Match
+                      </span>
+                    </div>
 
-                      {/* TAB 3: Emergency Card */}
-                      {activeTab === 'emergency' && (
-                        <div className="space-y-6">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shadow-xs">
-                                <HeartPulse className="w-5 h-5" />
-                              </div>
-                              <div>
-                                <h3 className="font-bold text-navy-900 text-base">
-                                  Emergency Medical Responder Vault
-                                </h3>
-                                <p className="text-xs text-navy-500">
-                                  Instant offline QR token • No password required for emergency paramedics
-                                </p>
-                              </div>
-                            </div>
-                            <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-50 text-rose-700 border border-rose-200 font-mono">
-                              Active Token: Valid
-                            </span>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                              <span className="text-[11px] font-bold text-navy-500 uppercase tracking-wider">Blood Group</span>
-                              <h4 className="text-xl font-extrabold text-navy-950 mt-1 font-mono">O Positive (O+)</h4>
-                              <p className="text-xs text-navy-500 mt-1">Donor Profile: Universal Red Cells</p>
-                            </div>
-
-                            <div className="p-4 rounded-xl bg-rose-50/50 border border-rose-200/70">
-                              <span className="text-[11px] font-bold text-rose-800 uppercase tracking-wider">Severe Allergies</span>
-                              <h4 className="text-base font-bold text-rose-950 mt-1">Penicillin, Sulfa Drugs</h4>
-                              <p className="text-xs text-rose-700 mt-1">Anaphylaxis Risk: High Alert</p>
-                            </div>
-
-                            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                              <span className="text-[11px] font-bold text-navy-500 uppercase tracking-wider">Primary ICE Contact</span>
-                              <h4 className="text-base font-bold text-navy-950 mt-1">Emma Morgan (Spouse)</h4>
-                              <p className="text-xs text-navy-600 mt-1 font-mono">+1 (555) 234-5678 • Verified</p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* TAB 4: Assistant */}
-                      {activeTab === 'assistant' && (
-                        <div className="space-y-6">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm shadow-xs">
-                                <Bot className="w-5 h-5" />
-                              </div>
-                              <div>
-                                <h3 className="font-bold text-navy-900 text-base">
-                                  Patient-Isolated RAG Clinical Assistant
-                                </h3>
-                                <p className="text-xs text-navy-500">
-                                  Ground truth queries with zero hallucination & strict PDF page citations
-                                </p>
-                              </div>
-                            </div>
-                            <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-purple-50 text-purple-700 border border-purple-200">
-                              Isolated Context
-                            </span>
-                          </div>
-
-                          <div className="space-y-3">
-                            <div className="p-3.5 rounded-xl bg-slate-100/80 text-xs sm:text-sm text-navy-800 max-w-lg">
-                              <span className="font-semibold text-navy-900">Patient: </span>
-                              &ldquo;What was my fasting glucose in my last metabolic test and has it changed?&rdquo;
-                            </div>
-
-                            <div className="p-4 rounded-xl bg-health-50/80 border border-health-100 text-xs sm:text-sm text-navy-900 space-y-2">
-                              <div className="flex items-center gap-1.5 text-xs font-bold text-health-800">
-                                <Sparkles className="w-3.5 h-3.5 text-health-600" />
-                                <span>HealthSync Assistant:</span>
-                              </div>
-                              <p className="leading-relaxed">
-                                Your Fasting Plasma Glucose was <strong>92 mg/dL</strong> on November 14, 2026. This is within the normal reference range of 70–99 mg/dL and represents a healthy 4 mg/dL decrease compared to your July 2026 panel (96 mg/dL).
-                              </p>
-                              <div className="pt-2 flex items-center gap-2 text-[11px] text-navy-500 border-t border-health-100/60">
-                                <span className="font-semibold text-navy-700">Source:</span>
-                                <span className="px-2 py-0.5 rounded bg-white border border-slate-200 text-navy-700 font-mono text-[10px]">
-                                  CMP_Report_Nov2026.pdf (Page 1)
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                        <span style={{ color: '#64748b' }} className="text-[10px] font-bold uppercase tracking-wider block">Medication</span>
+                        <h5 style={{ color: '#071D2B' }} className="font-bold text-base mt-1">Amoxicillin</h5>
+                        <p style={{ color: '#64748b' }} className="text-xs mt-0.5">500 mg • Oral Capsule</p>
+                      </div>
+                      <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                        <span style={{ color: '#64748b' }} className="text-[10px] font-bold uppercase tracking-wider block">Schedule</span>
+                        <h5 style={{ color: '#071D2B' }} className="font-bold text-base mt-1">3x Daily</h5>
+                        <p style={{ color: '#64748b' }} className="text-xs mt-0.5">Every 8h with water</p>
+                      </div>
+                      <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                        <span style={{ color: '#64748b' }} className="text-[10px] font-bold uppercase tracking-wider block">Adherence</span>
+                        <h5 className="font-bold text-emerald-700 text-base mt-1">94% Logged</h5>
+                        <p style={{ color: '#64748b' }} className="text-xs mt-0.5">28 / 30 doses taken</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {activeTab === 'labs' && (
+                  <div className="space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#d6e8f2] gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+                          <BarChart3 className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 style={{ color: '#071D2B' }} className="font-bold text-base">
+                            Comprehensive Metabolic Panel (CMP)
+                          </h4>
+                          <p style={{ color: '#64748b' }} className="text-xs">
+                            Quest Diagnostics • Extracted automatically
+                          </p>
+                        </div>
+                      </div>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                        1 Abnormal Value
+                      </span>
+                    </div>
+
+                    <div className="overflow-x-auto bg-white rounded-2xl border border-[#d6e8f2]">
+                      <table className="w-full text-left text-xs sm:text-sm">
+                        <thead className="bg-slate-50 border-b border-[#d6e8f2]">
+                          <tr>
+                            <th style={{ color: '#071D2B' }} className="p-3 font-bold">Analyte</th>
+                            <th style={{ color: '#071D2B' }} className="p-3 font-bold">Observed</th>
+                            <th style={{ color: '#071D2B' }} className="p-3 font-bold">Ref Range</th>
+                            <th style={{ color: '#071D2B' }} className="p-3 font-bold">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 font-sans">
+                          <tr>
+                            <td style={{ color: '#071D2B' }} className="p-3 font-bold">Fasting Glucose</td>
+                            <td style={{ color: '#071D2B' }} className="p-3 font-mono font-bold">92 mg/dL</td>
+                            <td style={{ color: '#64748b' }} className="p-3 font-mono">70 - 99 mg/dL</td>
+                            <td className="p-3"><span className="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">NORMAL</span></td>
+                          </tr>
+                          <tr>
+                            <td style={{ color: '#071D2B' }} className="p-3 font-bold">HbA1c</td>
+                            <td style={{ color: '#071D2B' }} className="p-3 font-mono font-bold">5.5 %</td>
+                            <td style={{ color: '#64748b' }} className="p-3 font-mono">&lt; 5.7 %</td>
+                            <td className="p-3"><span className="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">OPTIMAL</span></td>
+                          </tr>
+                          <tr>
+                            <td style={{ color: '#071D2B' }} className="p-3 font-bold">Total Cholesterol</td>
+                            <td className="p-3 font-mono font-bold text-amber-900">208 mg/dL</td>
+                            <td style={{ color: '#64748b' }} className="p-3 font-mono">&lt; 200 mg/dL</td>
+                            <td className="p-3"><span className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200">HIGH</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'emergency' && (
+                  <div className="space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#d6e8f2] gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center font-bold">
+                          <QrCode className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 style={{ color: '#071D2B' }} className="font-bold text-base">
+                            Emergency Health Card
+                          </h4>
+                          <p style={{ color: '#64748b' }} className="text-xs">
+                            Offline emergency QR code token
+                          </p>
+                        </div>
+                      </div>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                        Token Active
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                        <span style={{ color: '#64748b' }} className="text-[10px] font-bold uppercase tracking-wider block">Blood Type</span>
+                        <h5 style={{ color: '#071D2B' }} className="font-black text-xl mt-1 font-mono">O Positive (O+)</h5>
+                        <p style={{ color: '#64748b' }} className="text-xs mt-0.5">Universal Red Cells</p>
+                      </div>
+                      <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                        <span style={{ color: '#64748b' }} className="text-[10px] font-bold uppercase tracking-wider block">Critical Allergies</span>
+                        <h5 className="font-bold text-rose-700 text-base mt-1">Penicillin, Sulfa</h5>
+                        <p style={{ color: '#64748b' }} className="text-xs mt-0.5">Anaphylaxis risk</p>
+                      </div>
+                      <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                        <span style={{ color: '#64748b' }} className="text-[10px] font-bold uppercase tracking-wider block">Emergency Contact</span>
+                        <h5 style={{ color: '#071D2B' }} className="font-bold text-base mt-1">Emma Morgan</h5>
+                        <p style={{ color: '#64748b' }} className="text-xs mt-0.5 font-mono">+1 (555) 019-2831</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'assistant' && (
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-2xl bg-white border border-[#d6e8f2]">
+                      <span className="text-[11px] font-bold text-[#13B8AE] uppercase tracking-wider block">Patient Query</span>
+                      <p style={{ color: '#071D2B' }} className="font-bold text-sm mt-1">
+                        &quot;What was my fasting glucose level in my latest lab test?&quot;
+                      </p>
+                    </div>
+
+                    <div className="p-5 rounded-2xl bg-white border border-teal-300 shadow-xs">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Sparkles className="w-4 h-4 text-[#13B8AE]" />
+                        <span style={{ color: '#0B3D4A' }} className="text-xs font-bold uppercase tracking-wide">
+                          HealthSync AI Clinical Assistant
+                        </span>
+                      </div>
+                      <p style={{ color: '#071D2B' }} className="text-sm leading-relaxed">
+                        Your fasting glucose was <strong className="text-emerald-700">92 mg/dL</strong> according to your Comprehensive Metabolic Panel performed on November 15, 2026. This is within the standard reference range of 70 - 99 mg/dL.
+                      </p>
+                      <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs" style={{ color: '#64748b' }}>
+                        <FileText className="w-3.5 h-3.5 text-[#13B8AE]" />
+                        <span>Source: Synthetic_Lab_Report_CMP.pdf (Page 1)</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </section>
 
-        {/* THE HEALTHCARE REALITY */}
-        <section className="py-16 md:py-24 bg-slate-50">
+        {/* ========================================================= */}
+        {/* 4. HOW IT WORKS: Step-by-Step Clinical Ingestion Flow    */}
+        {/* ========================================================= */}
+        <section id="workflow" className="py-16 md:py-20 bg-[#EAF4F8]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <span className="text-xs font-bold text-health-600 uppercase tracking-wider">
-                The Healthcare Reality
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-black text-[#13B8AE] uppercase tracking-widest">
+                Workflow
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 mt-2 tracking-tight">
-                Why personal medical history is fragmented today
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#071D2B] mt-2 tracking-tight font-display">
+                How HealthSync AI Works
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-navy-600">
-                Patients visit multiple clinics and diagnostic laboratories, accumulating paper slips that are impossible to search when urgent medical care is needed.
+              <p className="mt-3 text-base text-slate-600 leading-relaxed font-sans">
+                A streamlined four-step workflow from messy medical documents to structured, queryable clinical intelligence.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
-                  <AlertTriangle className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-navy-900 mb-2">Paper Records Get Lost</h3>
-                <p className="text-sm text-navy-600 leading-relaxed">
-                  Prescriptions fade in drawers, laboratory slips are misplaced between moves, and discharge summaries are missing during critical specialist appointments.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center mb-4">
-                  <Eye className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-navy-900 mb-2">Doctor Handwriting is Illegible</h3>
-                <p className="text-sm text-navy-600 leading-relaxed">
-                  Rapid clinical doctor notes, drug dosages, and abbreviations are difficult for patients to decipher, leading to missed doses and medication scheduling errors.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-health-100 text-health-700 flex items-center justify-center mb-4">
-                  <BarChart3 className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-navy-900 mb-2">Invisible Biomarker Trends</h3>
-                <p className="text-sm text-navy-600 leading-relaxed">
-                  Blood tests across different diagnostic providers cannot be plotted longitudinally, obscuring early indicators in cholesterol, HbA1c, or kidney function.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CLINICIAN & PATIENT TESTIMONIALS */}
-        <section className="py-20 md:py-24 bg-slate-50 border-t border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <span className="text-xs font-bold text-health-600 uppercase tracking-wider">
-                Clinical Endorsements & Patient Stories
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 mt-2 tracking-tight">
-                Trusted by doctors, caregivers, and patients
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+              {/* Step 1 */}
+              <div className="p-6 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm hover:shadow-md hover:border-[#13B8AE] transition-all duration-200 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1 text-amber-400 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-2xl bg-[#071D2B] text-[#36D6E8] flex items-center justify-center font-black text-base shadow-sm">
+                      1
+                    </div>
+                    <span className="text-[11px] font-bold text-[#13B8AE] uppercase tracking-wider">Step 01</span>
                   </div>
-                  <p className="text-sm text-navy-700 leading-relaxed italic">
-                    &ldquo;During emergency intake or second opinion consultations, patients often arrive with chaotic folders. HealthSync AI gives me a clean, structured longitudinal medication summary in under 30 seconds.&rdquo;
+                  <h3 className="text-base font-bold text-[#071D2B] font-display">Upload Document</h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Upload paper prescriptions, photos, or digital diagnostic lab PDFs securely.
                   </p>
                 </div>
-                <div className="mt-6 flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <div className="w-10 h-10 rounded-full bg-health-100 text-health-700 font-bold flex items-center justify-center text-xs">
-                    RC
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-6 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm hover:shadow-md hover:border-[#13B8AE] transition-all duration-200 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-2xl bg-[#0B3D4A] text-[#13B8AE] flex items-center justify-center font-black text-base shadow-sm">
+                      2
+                    </div>
+                    <span className="text-[11px] font-bold text-[#13B8AE] uppercase tracking-wider">Step 02</span>
                   </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-navy-950">Dr. Robert Chen, MD</h4>
-                    <p className="text-xs text-navy-500">Chief of Internal Medicine, Metro Health</p>
-                  </div>
+                  <h3 className="text-base font-bold text-[#071D2B] font-display">Extract & Classify</h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    OCR and Multimodal AI parse clinical entities, dosages, and reference values.
+                  </p>
                 </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between">
+              {/* Step 3 */}
+              <div className="p-6 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm hover:shadow-md hover:border-[#13B8AE] transition-all duration-200 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1 text-amber-400 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-2xl bg-[#071D2B] text-[#3289D8] flex items-center justify-center font-black text-base shadow-sm">
+                      3
+                    </div>
+                    <span className="text-[11px] font-bold text-[#13B8AE] uppercase tracking-wider">Step 03</span>
                   </div>
-                  <p className="text-sm text-navy-700 leading-relaxed italic">
-                    &ldquo;Managing medical records for my 78-year-old mother used to be overwhelming. Having her blood pressure, diabetic lab trends, and active prescriptions indexed in one place is life-changing.&rdquo;
+                  <h3 className="text-base font-bold text-[#071D2B] font-display">Verify & Review</h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Calibrated confidence scoring flags low-confidence fields for one-click verification.
                   </p>
-                </div>
-                <div className="mt-6 flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-xs">
-                    SM
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-navy-950">Sarah Miller</h4>
-                    <p className="text-xs text-navy-500">Caregiver & Family Health Coordinator</p>
-                  </div>
                 </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col justify-between">
+              {/* Step 4 */}
+              <div className="p-6 rounded-3xl bg-white border border-[#d6e8f2] shadow-sm hover:shadow-md hover:border-[#13B8AE] transition-all duration-200 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1 text-amber-400 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-2xl bg-[#0B3D4A] text-emerald-400 flex items-center justify-center font-black text-base shadow-sm">
+                      4
+                    </div>
+                    <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">Step 04</span>
                   </div>
-                  <p className="text-sm text-navy-700 leading-relaxed italic">
-                    &ldquo;The Emergency QR Card gave me immense peace of mind when traveling. Having my severe penicillin allergy and emergency contacts accessible without unlocking my phone is invaluable.&rdquo;
+                  <h3 className="text-base font-bold text-[#071D2B] font-display">Access & Trends</h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Explore chronological timelines, longitudinal charts, and emergency QR cards.
                   </p>
-                </div>
-                <div className="mt-6 flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-700 font-bold flex items-center justify-center text-xs">
-                    DK
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-navy-950">David K.</h4>
-                    <p className="text-xs text-navy-500">Chronic Care Patient</p>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SECURITY & PRIVACY */}
-        <section id="security" className="py-20 md:py-28 bg-navy-950 text-white relative overflow-hidden">
-          <BackgroundBeams className="opacity-35 pointer-events-none" />
+        {/* ========================================================= */}
+        {/* 5. SECURITY & PRIVACY: Defense-In-Depth Architecture     */}
+        {/* ========================================================= */}
+        <section id="security" className="py-16 md:py-20 bg-[#071D2B] text-white border-t border-[#0e3b48] relative overflow-hidden">
+          {/* Subtle teal ambient lighting glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#13B8AE]/10 rounded-full blur-3xl pointer-events-none" />
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-3xl mb-14">
-              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">
-                Cryptographic Privacy By Design
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-black text-[#13B8AE] uppercase tracking-widest">
+                Security & Defense-In-Depth
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 tracking-tight">
-                Your medical data belongs to you. Period.
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 tracking-tight font-display">
+                Your Health Data Is Strictly Isolated
               </h2>
-              <p className="text-navy-300 mt-4 text-base leading-relaxed">
-                HealthSync AI enforces defense-in-depth isolation at both the application API layer and PostgreSQL database engine.
+              <p className="mt-3 text-base text-slate-300 leading-relaxed font-sans">
+                Enterprise security controls ensuring private patient data is never co-mingled or used to train public AI models.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-6 rounded-xl bg-navy-900/90 border border-navy-800">
-                <ShieldCheck className="w-8 h-8 text-teal-400 mb-4" />
-                <h4 className="font-bold text-white mb-2">Row-Level Security</h4>
-                <p className="text-xs text-navy-300 leading-relaxed">
-                  PostgreSQL RLS ensures that queries strictly isolate data to the owning user UUID. No cross-tenant data leaks.
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              <div className="p-7 rounded-2xl bg-[#0B3D4A]/60 border border-[#0e3b48] hover:border-[#13B8AE]/50 transition-all duration-300">
+                <ShieldCheck className="w-8 h-8 text-[#13B8AE] mb-4" />
+                <h4 className="font-bold text-white text-base mb-2">Row-Level Security (RLS)</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Every SQL transaction applies PostgreSQL RLS policies ensuring tenant isolation.
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl bg-navy-900/90 border border-navy-800">
-                <Lock className="w-8 h-8 text-health-400 mb-4" />
-                <h4 className="font-bold text-white mb-2">Private Storage</h4>
-                <p className="text-xs text-navy-300 leading-relaxed">
-                  Original medical files are stored in private cloud buckets. Downloads require authenticated, short-lived signed URLs.
+              <div className="p-7 rounded-2xl bg-[#0B3D4A]/60 border border-[#0e3b48] hover:border-[#13B8AE]/50 transition-all duration-300">
+                <Lock className="w-8 h-8 text-[#36D6E8] mb-4" />
+                <h4 className="font-bold text-white text-base mb-2">Private Signed Access</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Medical documents are saved in private buckets accessible only via authenticated time-limited signed URLs.
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl bg-navy-900/90 border border-navy-800">
-                <FileText className="w-8 h-8 text-amber-400 mb-4" />
-                <h4 className="font-bold text-white mb-2">Audit Immutability</h4>
-                <p className="text-xs text-navy-300 leading-relaxed">
-                  Every upload, retrieval, and sharing action is logged in an append-only audit trail with zero PHI or passwords stored.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-xl bg-navy-900/90 border border-navy-800">
-                <Sparkles className="w-8 h-8 text-purple-400 mb-4" />
-                <h4 className="font-bold text-white mb-2">Zero Hallucinations</h4>
-                <p className="text-xs text-navy-300 leading-relaxed">
-                  The AI extraction strictly outputs null for missing or unreadable clinical data rather than fabricating medical values.
+              <div className="p-7 rounded-2xl bg-[#0B3D4A]/60 border border-[#0e3b48] hover:border-[#13B8AE]/50 transition-all duration-300">
+                <Activity className="w-8 h-8 text-rose-400 mb-4" />
+                <h4 className="font-bold text-white text-base mb-2">Immutable Audit History</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Every access and document verification creates an append-only audit record without storing raw PHI.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* FREQUENTLY ASKED QUESTIONS (FAQ) */}
-        <section className="py-20 md:py-24 bg-white border-t border-slate-200/80">
+        {/* ========================================================= */}
+        {/* 6. CALL TO ACTION SECTION                                */}
+        {/* ========================================================= */}
+        <section className="py-16 md:py-20 bg-gradient-to-r from-[#071D2B] via-[#0B3D4A] to-[#071D2B] text-white text-center border-t border-[#0e3b48] relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#13B8AE_1px,transparent_1px)] [background-size:24px_24px]" />
+
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight font-display">
+              Ready to organize your complete medical history?
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-xl mx-auto">
+              Join thousands of patients digitizing their prescriptions and diagnostic records with clinical accuracy.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link href="/register">
+                <button className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#13B8AE] via-[#36D6E8] to-[#13B8AE] hover:from-[#0da59c] hover:to-[#22b5c6] text-[#071D2B] font-black text-sm shadow-xl shadow-teal-500/25 transition-all hover:-translate-y-0.5 cursor-pointer">
+                  Create Free Account
+                </button>
+              </Link>
+              <button
+                onClick={loginDemo}
+                className="px-8 py-3.5 rounded-full bg-[#0B3D4A] hover:bg-[#13B8AE]/20 text-[#36D6E8] border border-[#13B8AE]/40 font-bold text-sm transition-all hover:-translate-y-0.5 hover:border-[#13B8AE]/70 cursor-pointer"
+              >
+                Launch Instant Demo
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 7. FREQUENTLY ASKED QUESTIONS                            */}
+        {/* ========================================================= */}
+        <section id="faq" className="py-16 md:py-20 bg-white border-t border-[#d6e8f2]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-14">
-              <span className="text-xs font-bold text-health-600 uppercase tracking-wider">
-                Got Questions?
+            <div className="text-center mb-12">
+              <span className="text-xs font-black text-[#13B8AE] uppercase tracking-widest">
+                Support & Details
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-950 mt-2 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#071D2B] mt-2 tracking-tight font-display">
                 Frequently Asked Questions
               </h2>
             </div>
@@ -693,57 +873,39 @@ export default function LandingPage() {
                 return (
                   <div
                     key={index}
-                    className="rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden transition-all hover:border-health-400"
+                    className={`rounded-2xl border bg-white shadow-xs overflow-hidden transition-all duration-200 ${
+                      isOpen ? 'border-[#13B8AE] ring-1 ring-[#13B8AE]/30' : 'border-[#d6e8f2] hover:border-[#13B8AE]'
+                    }`}
                   >
                     <button
                       type="button"
                       onClick={() => toggleFaq(index)}
-                      className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-health-600 cursor-pointer transition-colors"
+                      className="group w-full flex items-center justify-between p-5 text-left cursor-pointer transition-colors"
                       aria-expanded={isOpen}
                     >
-                      <span className="text-base sm:text-lg font-bold text-slate-900 hover:text-health-600 pr-4 block">
+                      <span
+                        style={{ color: '#071D2B' }}
+                        className="text-base sm:text-lg font-extrabold text-[#071D2B] text-slate-900 group-hover:text-[#13B8AE] pr-4 block transition-colors"
+                      >
                         {faq.question}
                       </span>
                       {isOpen ? (
-                        <ChevronUp className="w-5 h-5 text-health-600 shrink-0" />
+                        <ChevronUp className="w-5 h-5 text-[#13B8AE] shrink-0 transition-transform" />
                       ) : (
-                        <ChevronDown className="w-5 h-5 text-slate-500 shrink-0" />
+                        <ChevronDown className="w-5 h-5 text-[#0B3D4A] group-hover:text-[#13B8AE] shrink-0 transition-colors" />
                       )}
                     </button>
                     {isOpen && (
-                      <div className="px-5 pb-5 pt-1 text-sm text-slate-700 leading-relaxed border-t border-slate-100 bg-slate-50/60">
+                      <div
+                        style={{ color: '#0f172a' }}
+                        className="px-5 pb-5 pt-2 text-sm text-slate-900 leading-relaxed border-t border-[#d6e8f2] bg-[#EAF4F8]/60 font-medium"
+                      >
                         {faq.answer}
                       </div>
                     )}
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* BOTTOM CTA */}
-        <section className="py-16 md:py-20 bg-gradient-to-r from-health-600 via-teal-600 to-health-700 text-white text-center">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Ready to take control of your medical history?
-            </h2>
-            <p className="mt-4 text-base sm:text-lg text-health-100 max-w-xl mx-auto">
-              Join patients digitizing their prescriptions and diagnostic records with clinical accuracy and bank-grade privacy.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/register"
-                className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold text-health-700 bg-white hover:bg-slate-100 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer transition-all"
-              >
-                Create Free Account
-              </Link>
-              <button
-                onClick={loginDemo}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-health-700/60 hover:bg-health-700 border border-white/30 rounded-xl hover:-translate-y-0.5 cursor-pointer transition-all"
-              >
-                Instant Demo
-              </button>
             </div>
           </div>
         </section>

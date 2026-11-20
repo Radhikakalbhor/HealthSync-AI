@@ -56,16 +56,34 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
-      {/* Sidebar Navigation */}
-      <Sidebar
-        onOpenUpload={() => setUploadModalOpen(true)}
-        mobileOpen={mobileOpen}
-        setMobileOpen={setMobileOpen}
-      />
+    <div className="h-screen bg-[#EAF4F8] flex overflow-hidden relative">
+      {/* Background medical ambient gradient - soft blue and teal layered lighting */}
+      <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-br from-[#EAF4F8] via-[#e2f0f7] to-[#d6ebf4]" />
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* Subtle medical cross pattern grid overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 opacity-40"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(19, 184, 174, 0.18) 1.5px, transparent 0)`,
+          backgroundSize: '32px 32px'
+        }}
+      />
+      
+      {/* Decorative ambient medical glowing orbs */}
+      <div className="fixed top-[-10%] right-[-5%] w-[550px] h-[550px] rounded-full bg-teal-400/10 blur-3xl pointer-events-none z-0" />
+      <div className="fixed bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-cyan-400/10 blur-3xl pointer-events-none z-0" />
+
+      {/* Sidebar Navigation - Fixed & Non-scrolling */}
+      <div className="h-screen shrink-0 z-40">
+        <Sidebar
+          onOpenUpload={() => setUploadModalOpen(true)}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+        />
+      </div>
+
+      {/* Main Content Area - Independently scrollable */}
+      <div className="flex-1 flex flex-col h-screen min-w-0 overflow-y-auto relative z-10">
         <Header
           title={getPageTitle()}
           onOpenUpload={() => setUploadModalOpen(true)}

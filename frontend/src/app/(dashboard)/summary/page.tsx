@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Stethoscope,
   Download,
@@ -35,20 +35,29 @@ export default function DoctorSummaryPage() {
   const [downloadingPdf, setDownloadingPdf] = useState(false);
   const [generatingBriefing, setGeneratingBriefing] = useState(false);
   const [copiedQuestionIdx, setCopiedQuestionIdx] = useState<number | null>(null);
+  const requestSeq = useRef(0);
 
   useEffect(() => {
-    fetchPreview();
+    fetchPreview(specialty);
   }, [specialty]);
 
-  const fetchPreview = async () => {
+  const fetchPreview = async (selectedSpecialty: string = specialty) => {
+    const seq = ++requestSeq.current;
     setLoadingPreview(true);
     try {
-      const data = await api.previewDoctorSummary(undefined, specialty, notes);
-      setPreview(data);
+      const [data] = await Promise.all([
+        api.previewDoctorSummary(undefined, selectedSpecialty, notes),
+        new Promise((resolve) => setTimeout(resolve, 650)),
+      ]);
+      if (seq === requestSeq.current) {
+        setPreview(data);
+      }
     } catch (err) {
       console.error('Failed to load doctor summary preview:', err);
     } finally {
-      setLoadingPreview(false);
+      if (seq === requestSeq.current) {
+        setLoadingPreview(false);
+      }
     }
   };
 
@@ -156,14 +165,14 @@ export default function DoctorSummaryPage() {
 
       {/* Active vs Previous Medications & Recent Labs Grid */}
       {loadingPreview ? (
-        <Card>
+        <Card className="animate-in fade-in duration-200">
           <CardContent className="py-16 text-center text-sm text-navy-500 flex flex-col items-center justify-center">
             <div className="w-8 h-8 rounded-full border-2 border-health-600 border-t-transparent animate-spin mb-3" />
             Compiling clinical summary preview...
           </CardContent>
         </Card>
       ) : preview && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-in fade-in duration-300">
           {/* Column 1: Medications (Active vs Previous) */}
           <div className="space-y-6">
             {/* Active Medications */}

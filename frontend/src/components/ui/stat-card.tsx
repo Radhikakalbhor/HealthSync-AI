@@ -26,11 +26,12 @@ export const StatCard: React.FC<StatCardProps> = ({
   return (
     <div
       className={cn(
-        "p-5 rounded-2xl bg-white border border-slate-200/90 shadow-card flex flex-col justify-between transition-shadow hover:shadow-card-hover duration-200",
+        "p-5 rounded-2xl bg-white border border-[#d6e8f2] shadow-sm shadow-[#071D2B]/5 flex flex-col justify-between transition-all hover:-translate-y-1 hover:border-[#13B8AE] hover:shadow-lg hover:shadow-[#0B3D4A]/10 duration-200 relative overflow-hidden group",
         className
       )}
       {...props}
     >
+      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#13B8AE]/10 to-transparent rounded-bl-full pointer-events-none group-hover:from-[#13B8AE]/20 transition-all duration-300" />
       <div className="flex items-start justify-between gap-3">
         <span className="text-xs font-bold uppercase tracking-wider text-slate-500 font-display">
           {title}

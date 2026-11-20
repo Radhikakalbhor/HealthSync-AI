@@ -89,7 +89,7 @@ export const DesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "h-full px-4 py-4 hidden md:flex md:flex-col bg-white border-r border-slate-200/90 w-[260px] shrink-0",
+          "h-full px-4 py-4 hidden md:flex md:flex-col bg-[#071727] text-slate-100 border-r border-[#0e2a44] shadow-2xl w-[260px] shrink-0",
           className
         )}
         animate={{
@@ -115,21 +115,22 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "h-12 px-4 py-2 flex flex-row md:hidden items-center justify-between bg-white border-b border-slate-200 w-full sticky top-0 z-40"
+          "h-12 px-4 py-2 flex flex-row md:hidden items-center justify-between bg-[#071727] border-b border-[#0e2a44] w-full sticky top-0 z-40 text-white"
         )}
         {...props}
       >
         <div className="flex justify-between items-center z-20 w-full">
-          <span className="font-extrabold text-base text-navy-950 tracking-tight">
-            HealthSync<span className="text-health-500">.AI</span>
+          <span className="font-extrabold text-base text-white tracking-tight flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse" />
+            HealthSync<span className="text-teal-400">.AI</span>
           </span>
           <button
             type="button"
-            className="p-1.5 rounded-lg text-slate-700 hover:bg-slate-100"
+            className="p-1.5 rounded-lg text-slate-300 hover:bg-[#0e2a44]"
             onClick={() => setOpen(!open)}
             aria-label="Toggle navigation"
           >
-            <IconMenu2 className="w-5 h-5 text-slate-700" />
+            <IconMenu2 className="w-5 h-5 text-slate-200" />
           </button>
         </div>
         <AnimatePresence>
@@ -143,12 +144,12 @@ export const MobileSidebar = ({
                 ease: "easeInOut",
               }}
               className={cn(
-                "fixed h-full w-full inset-0 bg-white p-6 z-[100] flex flex-col justify-between overflow-y-auto",
+                "fixed h-full w-full inset-0 bg-[#071727] p-6 z-[100] flex flex-col justify-between overflow-y-auto text-slate-100",
                 className
               )}
             >
               <div
-                className="absolute right-6 top-6 z-50 text-slate-700 p-2 cursor-pointer hover:bg-slate-100 rounded-lg"
+                className="absolute right-6 top-6 z-50 text-slate-300 p-2 cursor-pointer hover:bg-[#0e2a44] rounded-lg"
                 onClick={() => setOpen(!open)}
               >
                 <IconX className="w-5 h-5" />
@@ -180,15 +181,17 @@ export const SidebarLink = ({
       href={link.href}
       onClick={onClick}
       className={cn(
-        "flex items-center justify-start gap-3 rounded-xl px-2.5 py-2 group/sidebar transition-colors cursor-pointer",
+        "flex items-center justify-start gap-3 rounded-xl px-3 py-2.5 group/sidebar transition-all cursor-pointer relative",
         isActive
-          ? "bg-health-50 text-health-700 font-bold"
-          : "text-slate-600 hover:text-navy-950 hover:bg-slate-100/80 font-medium",
+          ? "bg-gradient-to-r from-teal-500/25 to-teal-400/10 text-teal-300 font-bold border-l-4 border-teal-400 shadow-sm"
+          : "text-slate-300 hover:text-white hover:bg-white/5 font-medium",
         className
       )}
       {...props}
     >
-      <div className="shrink-0">{link.icon}</div>
+      <div className={cn("shrink-0 transition-colors", isActive ? "text-teal-300" : "text-slate-400 group-hover/sidebar:text-teal-300")}>
+        {link.icon}
+      </div>
 
       <motion.span
         animate={{
@@ -197,7 +200,7 @@ export const SidebarLink = ({
         }}
         className={cn(
           "text-sm whitespace-pre inline-block !p-0 !m-0 transition duration-150 truncate",
-          isActive ? "text-health-700 font-bold" : "text-slate-700 group-hover/sidebar:text-navy-950"
+          isActive ? "text-teal-300 font-bold" : "text-slate-300 group-hover/sidebar:text-white"
         )}
       >
         {link.label}

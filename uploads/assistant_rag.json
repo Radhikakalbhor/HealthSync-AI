@@ -1,87 +1,251 @@
 {
-  "conversations": {
-    "demo-conv-medication-review": {
-      "id": "demo-conv-medication-review",
+  "conversations": {},
+  "messages": {},
+  "chunks": {
+    "b6c966f3-8e12-4910-af64-8effd4527595": {
+      "id": "b6c966f3-8e12-4910-af64-8effd4527595",
+      "document_id": "demo-doc-rx-lisinopril",
       "user_id": "demo-patient-001",
-      "title": "Current Medications & Allergy Consultation",
-      "created_at": "2026-11-14T10:00:00Z",
-      "updated_at": "2026-11-14T10:05:00Z"
+      "chunk_index": 0,
+      "chunk_text": "Prescription Document: Prescription_Lisinopril_10mg.pdf\nPrescribing Doctor: Dr. Robert Chen, MD\nClinic: Not specified\nDate: 2026-05-15\nMedications Prescribed:\n- Lisinopril: 10 mg Once daily (Morning) (Take 1 tablet orally once daily in the morning with water)",
+      "metadata": {
+        "filename": "Prescription_Lisinopril_10mg.pdf",
+        "doc_type": "prescription",
+        "date": "2026-05-15",
+        "doctor": "Dr. Robert Chen, MD",
+        "section": "medications"
+      },
+      "created_at": "2026-11-20T13:49:05.116543+00:00"
     },
-    "demo-conv-glucose-trends": {
-      "id": "demo-conv-glucose-trends",
+    "bf0d4e65-20c3-4788-ab74-b512f8fc7b09": {
+      "id": "bf0d4e65-20c3-4788-ab74-b512f8fc7b09",
+      "document_id": "demo-doc-rx-lisinopril",
       "user_id": "demo-patient-001",
-      "title": "Cholesterol & Blood Glucose 6-Month Progress",
-      "created_at": "2026-11-15T14:30:00Z",
-      "updated_at": "2026-11-15T14:35:00Z"
+      "chunk_index": 1,
+      "chunk_text": "Document: Prescription_Lisinopril_10mg.pdf (Excerpt 1):\nMETRO CARDIOLOGY ASSOCIATES - PRESCRIPTION ORDER\nPhysician: Dr. Robert Chen, MD (Cardiology)\nPatient: Alex Morgan | DOB: 1988-04-12 | Date: 2026-05-15\nDiagnosis: Primary Essential Hypertension\nRx: Lisinopril 10 mg Oral Tablet\nSig: Take 1 tablet orally once daily in the morning with water.\nDispense: 90 tablets | Refills: 3",
+      "metadata": {
+        "filename": "Prescription_Lisinopril_10mg.pdf",
+        "doc_type": "prescription",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:05.116543+00:00"
+    },
+    "e9bfbafd-8a06-467f-ae8a-2b73f13b356c": {
+      "id": "e9bfbafd-8a06-467f-ae8a-2b73f13b356c",
+      "document_id": "demo-doc-rx-metformin",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Prescription Document: Prescription_Metformin_500mg.pdf\nPrescribing Doctor: Dr. Sarah Lin, MD\nClinic: Not specified\nDate: 2026-08-20\nMedications Prescribed:\n- Metformin Extended-Release: 500 mg Twice daily with meals (Take 1 tablet orally twice daily with breakfast and dinner)",
+      "metadata": {
+        "filename": "Prescription_Metformin_500mg.pdf",
+        "doc_type": "prescription",
+        "date": "2026-08-20",
+        "doctor": "Dr. Sarah Lin, MD",
+        "section": "medications"
+      },
+      "created_at": "2026-11-20T13:49:05.555230+00:00"
+    },
+    "53bc8a5a-c5fe-4ef7-bd23-afd8cb1f1ad7": {
+      "id": "53bc8a5a-c5fe-4ef7-bd23-afd8cb1f1ad7",
+      "document_id": "demo-doc-rx-metformin",
+      "user_id": "demo-patient-001",
+      "chunk_index": 1,
+      "chunk_text": "Document: Prescription_Metformin_500mg.pdf (Excerpt 1):\nMETRO HEALTH FAMILY MEDICINE - PRESCRIPTION ORDER\nPhysician: Dr. Sarah Lin, MD\nPatient: Alex Morgan | DOB: 1988-04-12 | Date: 2026-08-20\nDiagnosis: Impaired Fasting Glucose\nRx: Metformin HCl 500 mg Extended-Release Tablet\nSig: Take 1 tablet orally twice daily with meals (morning and evening).\nDispense: 60 tablets | Refills: 2",
+      "metadata": {
+        "filename": "Prescription_Metformin_500mg.pdf",
+        "doc_type": "prescription",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:05.555230+00:00"
+    },
+    "ddebb221-0f4e-43a9-a652-6650d94a534c": {
+      "id": "ddebb221-0f4e-43a9-a652-6650d94a534c",
+      "document_id": "demo-doc-rx-amoxicillin",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Prescription Document: Prescription_Amoxicillin_500mg.pdf\nPrescribing Doctor: Dr. Sarah Lin, MD\nClinic: Not specified\nDate: 2026-11-10\nMedications Prescribed:\n- Amoxicillin Capsule: 500 mg Every 8 hours (Take 1 capsule orally every 8 hours with food. Complete entire course.)",
+      "metadata": {
+        "filename": "Prescription_Amoxicillin_500mg.pdf",
+        "doc_type": "prescription",
+        "date": "2026-11-10",
+        "doctor": "Dr. Sarah Lin, MD",
+        "section": "medications"
+      },
+      "created_at": "2026-11-20T13:49:06.016105+00:00"
+    },
+    "c7ad150a-bed9-4852-a0b6-e2912022e21d": {
+      "id": "c7ad150a-bed9-4852-a0b6-e2912022e21d",
+      "document_id": "demo-doc-rx-amoxicillin",
+      "user_id": "demo-patient-001",
+      "chunk_index": 1,
+      "chunk_text": "Document: Prescription_Amoxicillin_500mg.pdf (Excerpt 1):\nMETRO HEALTH URGENT CARE - PRESCRIPTION\nDoctor: Dr. Sarah Lin, MD\nPatient: Alex Morgan | Date: 2026-11-10\nDiagnosis: Acute Bacterial Sinusitis\nRx: Amoxicillin 500 mg Capsule\nSig: Take 1 capsule orally every 8 hours with food for 10 days.\nDispense: 30 capsules | Refills: 0 (Course Completed)",
+      "metadata": {
+        "filename": "Prescription_Amoxicillin_500mg.pdf",
+        "doc_type": "prescription",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:06.016105+00:00"
+    },
+    "3e3c7f59-7ae3-4901-a6cb-a9c07a52602e": {
+      "id": "3e3c7f59-7ae3-4901-a6cb-a9c07a52602e",
+      "document_id": "demo-doc-lab-lipid-may",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Document: Lab_Report_Lipid_Panel_May2026.pdf (Excerpt 1):\nQUEST DIAGNOSTICS CLINICAL REPORT\nDate: 2026-05-15 | Patient: Alex Morgan\nTotal Cholesterol: 215 mg/dL (Ref: 125-200) HIGH\nLDL Cholesterol: 135 mg/dL (Ref: 0-100) HIGH\nHDL Cholesterol: 48 mg/dL (Ref: 40-60) NORMAL\nTriglycerides: 160 mg/dL (Ref: 0-150) HIGH\nFasting Blood Glucose: 110 mg/dL (Ref: 70-99) HIGH\nSerum ALT: 28 U/L (Ref: 7-56) NORMAL\nSystolic Blood Pressure: 138 mmHg (Ref: 90-120) HIGH\nDiastolic Blood Pressure: 88 mmHg (Ref: 60-80) HIGH",
+      "metadata": {
+        "filename": "Lab_Report_Lipid_Panel_May2026.pdf",
+        "doc_type": "lab_report",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:06.461533+00:00"
+    },
+    "d0c116d7-b75e-4a8b-9beb-de62ac8c5700": {
+      "id": "d0c116d7-b75e-4a8b-9beb-de62ac8c5700",
+      "document_id": "demo-doc-lab-cmp-aug",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Document: Lab_Report_CMP_August2026.pdf (Excerpt 1):\nQUEST DIAGNOSTICS CMP REPORT\nDate: 2026-08-20 | Patient: Alex Morgan\nFasting Blood Glucose: 104 mg/dL (Ref: 70-99) HIGH\nTotal Cholesterol: 202 mg/dL (Ref: 125-200) HIGH\nLDL Cholesterol: 124 mg/dL (Ref: 0-100) HIGH\nHDL Cholesterol: 52 mg/dL (Ref: 40-60) NORMAL\nSerum Sodium: 139 mEq/L (Ref: 135-145) NORMAL\nSerum Potassium: 4.3 mEq/L (Ref: 3.5-5.0) NORMAL\nSerum Calcium: 9.5 mg/dL (Ref: 8.5-10.2) NORMAL\nSerum ALT: 26 U/L (Ref: 7-56) NORMAL\nSerum Creatinine: 0.9 mg/dL (Ref: 0.6-1.2) NORMAL\nSystolic Blood Pressure: 130 mmHg (Ref: 90-120) HIGH\nDiastolic Blood Pressure: 84 mmHg (Ref: 60-80) HIGH",
+      "metadata": {
+        "filename": "Lab_Report_CMP_August2026.pdf",
+        "doc_type": "lab_report",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:06.928998+00:00"
+    },
+    "3409efd7-9e49-41b0-ade0-295e678f9e2d": {
+      "id": "3409efd7-9e49-41b0-ade0-295e678f9e2d",
+      "document_id": "demo-doc-consult-annual",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Prescription Document: Consultation_Annual_Wellness_Summary.pdf\nPrescribing Doctor: Dr. Sarah Lin, MD\nClinic: Metro Health Family Medicine\nDate: Not specified\nMedications Prescribed:\n- Lisinopril: 10 mg Once daily ()\n- Metformin ER: 500 mg Twice daily with meals ()",
+      "metadata": {
+        "filename": "Consultation_Annual_Wellness_Summary.pdf",
+        "doc_type": "consultation_record",
+        "date": null,
+        "doctor": "Dr. Sarah Lin, MD",
+        "section": "medications"
+      },
+      "created_at": "2026-11-20T13:49:07.412489+00:00"
+    },
+    "2b722805-792f-4a27-b264-c046d185431c": {
+      "id": "2b722805-792f-4a27-b264-c046d185431c",
+      "document_id": "demo-doc-consult-annual",
+      "user_id": "demo-patient-001",
+      "chunk_index": 1,
+      "chunk_text": "Document: Consultation_Annual_Wellness_Summary.pdf (Excerpt 1):\nMETRO HEALTH ANNUAL WELLNESS SUMMARY\nPhysician: Dr. Sarah Lin, MD\nPatient: Alex Morgan | Date: 2026-10-05\nAssessment:\n1. Essential Hypertension: Well-controlled on Lisinopril 10mg.\n2. Metabolic Management: Favorable glycemic trend on Metformin 500mg BID.\n3. Preventive: Annual influenza vaccine administered.\nAllergies: Sulfa antibiotics, Latex.\nPlan: Repeat fasting labs in 1 month.",
+      "metadata": {
+        "filename": "Consultation_Annual_Wellness_Summary.pdf",
+        "doc_type": "consultation_record",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:07.412489+00:00"
+    },
+    "530bb663-ca94-4c04-8b7d-a922290b3634": {
+      "id": "530bb663-ca94-4c04-8b7d-a922290b3634",
+      "document_id": "demo-doc-imaging-chest",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Document: Radiology_Chest_PA_Lateral.pdf (Excerpt 1):\nMETRO DIAGNOSTIC IMAGING REPORT\nRadiologist: Dr. Michael Chang, MD\nPatient: Alex Morgan | Date: 2026-06-18\nProcedure: 2-View Chest Radiograph (PA & Lateral)\nFindings: Lungs clear. Heart size normal. No pleural effusion or pneumothorax.\nImpression: Normal two-view chest examination without acute cardiopulmonary disease.",
+      "metadata": {
+        "filename": "Radiology_Chest_PA_Lateral.pdf",
+        "doc_type": "imaging_report",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:07.853885+00:00"
+    },
+    "f0b31c29-08c8-4e71-bf97-4b9434b4e0f8": {
+      "id": "f0b31c29-08c8-4e71-bf97-4b9434b4e0f8",
+      "document_id": "ee3c3642-b2bb-4b94-9c9d-9302f3d15090",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Prescription Document: Sample_Prescription_Lisinopril.pdf\nPrescribing Doctor: Dr. Marcus Vance\nClinic: Not specified\nDate: 2026-11-15\nMedications Prescribed:\n- Lisinopril Tablet: 10 mg once daily (orally in the morning)\n- Cetirizine Tablet: 10 mg once daily (orally at bedtime)",
+      "metadata": {
+        "filename": "Sample_Prescription_Lisinopril.pdf",
+        "doc_type": "prescription",
+        "date": "2026-11-15",
+        "doctor": "Dr. Marcus Vance",
+        "section": "medications"
+      },
+      "created_at": "2026-11-20T13:49:08.354453+00:00"
+    },
+    "4c493329-c093-483c-bf16-287a1ae7b23a": {
+      "id": "4c493329-c093-483c-bf16-287a1ae7b23a",
+      "document_id": "ee3c3642-b2bb-4b94-9c9d-9302f3d15090",
+      "user_id": "demo-patient-001",
+      "chunk_index": 1,
+      "chunk_text": "Document: Sample_Prescription_Lisinopril.pdf (Excerpt 1):\nMETRO HEALTH FAMILY MEDICINE\n742 Evergreen Terrace, Suite 300, Springfield\nPhone: (555) 019-2834 | Fax: (555) 019-2835\nLicense: MD-98214-SYN | DEA: BV9283741\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nDate: 2026-11-15\nPatient Name: Alex Morgan\nDate of Birth: 1988-04-12\nDiagnosis: Essential Hypertension & Allergic Rhinitis\nPRESCRIPTION:\n1. Lisinopril 10 mg Tablet\n   Sig: Take 1 tablet orally once daily in the morning with food for 30 days.\n   Dispense: 30 tablets | Refills: 3\n2. Cetirizine 10 mg Tablet\n   Sig: Take 1 tablet orally once daily at bedtime for 30 days.\n   Dispense: 30 tablets | Refills: 2\nPrescribing Physician: Dr. Marcus Vance, MD\nSignature: Dr. M. Vance, MD",
+      "metadata": {
+        "filename": "Sample_Prescription_Lisinopril.pdf",
+        "doc_type": "prescription",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:08.354453+00:00"
+    },
+    "960ee052-07cc-4866-88ce-2337ac62eaaa": {
+      "id": "960ee052-07cc-4866-88ce-2337ac62eaaa",
+      "document_id": "bac668c6-e469-44d1-8c34-597b99ebdcf8",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Prescription Document: Sample_Prescription_Lisinopril.pdf\nPrescribing Doctor: Dr. Marcus Vance\nClinic: None\nDate: 2026-11-15\nMedications Prescribed:\n- Lisinopril Tablet: 10 mg once daily (orally in the morning)\n- Cetirizine Tablet: 10 mg once daily (orally at bedtime)",
+      "metadata": {
+        "filename": "Sample_Prescription_Lisinopril.pdf",
+        "doc_type": "prescription",
+        "date": "2026-11-15",
+        "doctor": "Dr. Marcus Vance",
+        "section": "medications"
+      },
+      "created_at": "2026-11-20T13:49:08.848410+00:00"
+    },
+    "dc9973d9-a83d-489f-8448-9dbca0a09a53": {
+      "id": "dc9973d9-a83d-489f-8448-9dbca0a09a53",
+      "document_id": "bac668c6-e469-44d1-8c34-597b99ebdcf8",
+      "user_id": "demo-patient-001",
+      "chunk_index": 1,
+      "chunk_text": "Document: Sample_Prescription_Lisinopril.pdf (Excerpt 1):\nMETRO HEALTH FAMILY MEDICINE\n742 Evergreen Terrace, Suite 300, Springfield\nPhone: (555) 019-2834 | Fax: (555) 019-2835\nLicense: MD-98214-SYN | DEA: BV9283741\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nDate: 2026-11-15\nPatient Name: Alex Morgan\nDate of Birth: 1988-04-12\nDiagnosis: Essential Hypertension & Allergic Rhinitis\nPRESCRIPTION:\n1. Lisinopril 10 mg Tablet\n   Sig: Take 1 tablet orally once daily in the morning with food for 30 days.\n   Dispense: 30 tablets | Refills: 3\n2. Cetirizine 10 mg Tablet\n   Sig: Take 1 tablet orally once daily at bedtime for 30 days.\n   Dispense: 30 tablets | Refills: 2\nPrescribing Physician: Dr. Marcus Vance, MD\nSignature: Dr. M. Vance, MD",
+      "metadata": {
+        "filename": "Sample_Prescription_Lisinopril.pdf",
+        "doc_type": "prescription",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:08.848410+00:00"
+    },
+    "797916e3-3b2b-49ae-93a5-d4070dccf520": {
+      "id": "797916e3-3b2b-49ae-93a5-d4070dccf520",
+      "document_id": "5ce9a48b-f2a5-4263-818b-7727e2b470bc",
+      "user_id": "demo-patient-001",
+      "chunk_index": 0,
+      "chunk_text": "Laboratory Diagnostic Report: Sample_Lab_Report_Lipid_Panel.pdf\nLab Facility: Not specified\nTest Date: Not specified\nAnalytes & Biomarkers:\n- Total Cholesterol: 185 mg/dL (Reference: 100 - 199, Flag: NORMAL)\n- HDL Cholesterol: 54 mg/dL (Reference: None, Flag: NORMAL)\n- LDL Cholesterol (Calculated): 112 mg/dL (Reference: None, Flag: HIGH)\n- Triglycerides: 95 mg/dL (Reference: None, Flag: NORMAL)\n- Fasting Plasma Glucose: 88 mg/dL (Reference: 70 - 99, Flag: NORMAL)",
+      "metadata": {
+        "filename": "Sample_Lab_Report_Lipid_Panel.pdf",
+        "doc_type": "lab_report",
+        "date": null,
+        "lab": null,
+        "section": "lab_results"
+      },
+      "created_at": "2026-11-20T13:49:09.313784+00:00"
+    },
+    "bc00daa1-56b5-4c0c-b087-8ac4fdfe4eab": {
+      "id": "bc00daa1-56b5-4c0c-b087-8ac4fdfe4eab",
+      "document_id": "5ce9a48b-f2a5-4263-818b-7727e2b470bc",
+      "user_id": "demo-patient-001",
+      "chunk_index": 1,
+      "chunk_text": "Document: Sample_Lab_Report_Lipid_Panel.pdf (Excerpt 1):\nQUEST DIAGNOSTICS SYNTHETIC CLINICAL LABORATORY\nAccreditation: CAP / CLIA #99D1029384\n450 Laboratory Way, Science Park, CA 94016\n======================================================================\nSYNTHETIC MEDICAL RECORD FOR DEMO PURPOSES ONLY - NO REAL PATIENT DATA\n======================================================================\nOrdering Physician: Dr. Marcus Vance, MD\nPatient: Alex Morgan (SYNTHETIC PATIENT)\nDOB: 1988-04-12 | Gender: Non-binary\nSpecimen ID: SYN-2026-98124\nCollection Date: 2026-11-14 | Report Date: 2026-11-15\nPANEL: LIPID PANEL & FASTING METABOLIC TESTS\n--------------------------------------------------------------------------------\nTest Name                      Result       Units        Reference Range   Status\n--------------------------------------------------------------------------------\nTotal Cholesterol              185          mg/dL        100 - 199         NORMAL\nHDL Cholesterol                 54          mg/dL        > 40              NORMAL\nLDL Cholesterol (Calculated)   112          mg/dL        < 100             HIGH\nTriglycerides                   95          mg/dL        < 150             NORMAL\nFasting Plasma Glucose          88          mg/dL        70 - 99           NORMAL\nHemoglobin A1c                 5.4          %            < 5.7             NORMAL\n--------------------------------------------------------------------------------\nClinical Interpretation:\nMild elevation in LDL cholesterol (112 mg/dL). All other metabolic parameters\nincluding fasting glucose and HbA1c are within optimal clinical limits.\nLaboratory Director: Dr. Emily Thorne, MD, PhD (SYNTHETIC)",
+      "metadata": {
+        "filename": "Sample_Lab_Report_Lipid_Panel.pdf",
+        "doc_type": "lab_report",
+        "date": null,
+        "section": "excerpt_1"
+      },
+      "created_at": "2026-11-20T13:49:09.313784+00:00"
     }
-  },
-  "messages": {
-    "demo-conv-medication-review-msg-1": {
-      "id": "demo-conv-medication-review-msg-1",
-      "conversation_id": "demo-conv-medication-review",
-      "role": "user",
-      "content": "What are my current active medications and what were they prescribed for?",
-      "citations": [],
-      "created_at": "2026-11-14T10:00:00Z"
-    },
-    "demo-conv-medication-review-msg-2": {
-      "id": "demo-conv-medication-review-msg-2",
-      "conversation_id": "demo-conv-medication-review",
-      "role": "assistant",
-      "content": "Based on your verified medical records, you have two active long-term prescriptions:\n\n1. **Lisinopril (10 mg tablet)**: Take 1 tablet orally once daily in the morning with water. Prescribed by **Dr. Robert Chen, MD** on May 15, 2026 for **Primary Essential Hypertension**.\n\n2. **Metformin ER (500 mg tablet)**: Take 1 tablet orally twice daily with morning and evening meals. Prescribed by **Dr. Sarah Lin, MD** on August 20, 2026 for **Impaired Fasting Glucose**.\n\n*(Note: You also completed an acute 10-day course of Amoxicillin 500mg in November 2026 for sinusitis).*",
-      "citations": [
-        {
-          "document_id": "demo-doc-rx-lisinopril",
-          "document_filename": "Prescription_Lisinopril_10mg.pdf",
-          "document_date": "2026-05-15",
-          "document_type": "prescription",
-          "snippet": "Rx: Lisinopril 10 mg Oral Tablet | Sig: Take 1 tablet orally once daily every morning with water.",
-          "relevance_score": 0.96
-        },
-        {
-          "document_id": "demo-doc-rx-metformin",
-          "document_filename": "Prescription_Metformin_500mg.pdf",
-          "document_date": "2026-08-20",
-          "document_type": "prescription",
-          "snippet": "Rx: Metformin HCl 500 mg Extended-Release | Sig: Take 1 tablet orally twice daily with meals.",
-          "relevance_score": 0.95
-        }
-      ],
-      "created_at": "2026-11-14T10:00:05Z"
-    },
-    "demo-conv-glucose-trends-msg-1": {
-      "id": "demo-conv-glucose-trends-msg-1",
-      "conversation_id": "demo-conv-glucose-trends",
-      "role": "user",
-      "content": "How have my cholesterol and blood glucose levels trended between May and November 2026?",
-      "citations": [],
-      "created_at": "2026-11-15T14:30:00Z"
-    },
-    "demo-conv-glucose-trends-msg-2": {
-      "id": "demo-conv-glucose-trends-msg-2",
-      "conversation_id": "demo-conv-glucose-trends",
-      "role": "assistant",
-      "content": "Reviewing your Quest Diagnostics laboratory panels from May 15, August 20, and November 12, 2026, both your lipid and glycemic biomarkers show significant clinical improvement:\n\n- **Total Cholesterol**: Reduced from **215 mg/dL** [High] in May down to **202 mg/dL** in August, and reached **188 mg/dL** [Normal] on November 12.\n- **LDL Cholesterol**: Dropped from **135 mg/dL** [High] to **124 mg/dL**, and reached **110 mg/dL** [Normal].\n- **HDL Cholesterol**: Improved progressively from **48 mg/dL** to **52 mg/dL**, reaching **55 mg/dL**.\n- **Fasting Blood Glucose**: Decreased from **110 mg/dL** [High] in May and **104 mg/dL** in August down to **92 mg/dL** [Normal] in November.\n- **Hemoglobin A1c**: Verified at **5.5%** [Normal] in your November follow-up panel.",
-      "citations": [
-        {
-          "document_id": "demo-doc-lab-lipid-may",
-          "document_filename": "Lab_Report_Lipid_Panel_May2026.pdf",
-          "document_date": "2026-05-15",
-          "document_type": "lab_report",
-          "snippet": "Total Cholesterol: 215 mg/dL [HIGH] | Fasting Glucose: 110 mg/dL [HIGH]",
-          "relevance_score": 0.97
-        },
-        {
-          "document_id": "demo-doc-lab-panels-nov",
-          "document_filename": "Lab_Report_Metabolic_FollowUp_Nov2026.pdf",
-          "document_date": "2026-11-12",
-          "document_type": "lab_report",
-          "snippet": "Total Cholesterol: 188 mg/dL [NORMAL] | Fasting Glucose: 92 mg/dL [NORMAL] | HbA1c: 5.5%",
-          "relevance_score": 0.98
-        }
-      ],
-      "created_at": "2026-11-15T14:30:05Z"
-    }
-  },
-  "chunks": {}
+  }
 }

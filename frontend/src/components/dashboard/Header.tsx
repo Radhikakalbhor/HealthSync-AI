@@ -17,23 +17,23 @@ export function Header({ title = 'Patient Dashboard', onOpenUpload, onToggleMobi
   const { user } = useAuth();
 
   return (
-    <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 lg:px-8 py-3.5 transition-colors">
+    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#d6e8f2] shadow-xs px-4 sm:px-6 lg:px-8 py-3.5 transition-colors">
       <div className="flex items-center justify-between gap-4">
         {/* Left: Mobile hamburger & Page Title */}
         <div className="flex items-center gap-3">
           <button
             onClick={onToggleMobile}
-            className="p-2 -ml-2 rounded-xl text-navy-600 hover:text-navy-950 hover:bg-slate-100 cursor-pointer transition-colors md:hidden"
+            className="p-2 -ml-2 rounded-xl text-[#0B3D4A] hover:text-[#071D2B] hover:bg-slate-100 cursor-pointer transition-colors md:hidden"
             aria-label="Open sidebar"
           >
             <Menu className="w-5 h-5" />
           </button>
           <div>
-            <h1 className="text-lg sm:text-xl font-extrabold text-navy-950 tracking-tight leading-snug">
+            <h1 className="text-lg sm:text-xl font-extrabold text-[#071D2B] tracking-tight leading-snug">
               {title}
             </h1>
-            <p className="text-xs text-navy-500 hidden sm:block">
-              Welcome back, <span className="font-bold text-navy-800">{user?.full_name || user?.email || 'Patient'}</span>
+            <p className="text-xs text-slate-500 hidden sm:block">
+              Welcome back, <span className="font-bold text-[#0B3D4A]">{user?.full_name || user?.email || 'Patient'}</span>
             </p>
           </div>
         </div>
@@ -46,9 +46,9 @@ export function Header({ title = 'Patient Dashboard', onOpenUpload, onToggleMobi
             variant="primary"
             size="sm"
             onClick={onOpenUpload}
-            className="shadow-sm hover:shadow-md"
+            className="shadow-sm hover:shadow-md bg-gradient-to-r from-[#13B8AE] to-[#0B3D4A] hover:from-[#0da59c] hover:to-[#071D2B] text-white border-0 font-bold"
           >
-            <Upload className="w-3.5 h-3.5" />
+            <Upload className="w-3.5 h-3.5 stroke-[2.5]" />
             <span className="hidden sm:inline">Upload Record</span>
             <span className="sm:hidden">Upload</span>
           </Button>
